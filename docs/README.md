@@ -109,6 +109,6 @@ Email uses the console backend locally. SMTP delivery and optional OAuth require
 their own credentials and configuration. Notification and privacy controls that
 are not implemented are marked unavailable in the interface.
 
-Photo provenance and CC BY / CC BY-SA terms are in
+Photo provenance and CC BY / CC BY-SA / CC0 terms are in
 [`credits.json`](../static/images/places/credits.json). Retain those attributions,
 the bundled Inter/Noto Sans Arabic OFL files and the Lucide license when distributing assets.

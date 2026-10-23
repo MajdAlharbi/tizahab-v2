@@ -771,24 +771,91 @@ assert.equal(photos.tripPhoto({days:[],unscheduled:[]}),null);
         folder = Path(settings.BASE_DIR) / "static/images/places"
         credits = json.loads((folder / "credits.json").read_text(encoding="utf-8"))
         self.assertEqual(len({row["slug"] for row in credits}), len(credits))
+        license_urls = {
+            "CC BY 2.0": "https://creativecommons.org/licenses/by/2.0",
+            "CC BY 3.0": "https://creativecommons.org/licenses/by/3.0",
+            "CC BY 3.0 pl": "https://creativecommons.org/licenses/by/3.0/pl/deed.en",
+            "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0",
+            "CC BY-SA 2.0": "https://creativecommons.org/licenses/by-sa/2.0",
+            "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0",
+            "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0",
+            "CC0": "https://creativecommons.org/publicdomain/zero/1.0",
+        }
         for row in credits:
             with self.subTest(photo=row["slug"]):
                 self.assertTrue(
-                    row["source"].startswith("https://commons.wikimedia.org/wiki/File:")
+                    row["source"].startswith(
+                        (
+                            "https://commons.wikimedia.org/wiki/File:",
+                            "https://cc.spa.gov.sa/en/news/",
+                        )
+                    )
                 )
+                if row["source"].startswith("https://cc.spa.gov.sa/"):
+                    self.assertEqual(
+                        row["source_terms_url"], "https://cc.spa.gov.sa/en/terms"
+                    )
                 self.assertTrue(row["author"])
-                self.assertIn(
-                    row["license"], ("CC BY 2.0", "CC BY-SA 2.0", "CC BY-SA 4.0")
-                )
-                self.assertTrue(
-                    row["license_url"].startswith("https://creativecommons.org/")
+                self.assertIn(row["license"], license_urls)
+                self.assertEqual(
+                    row["license_url"].rstrip("/"), license_urls[row["license"]]
                 )
                 self.assertTrue(row["changes"])
-                for width in (480, 960, 1280):
+                widths = row.get("widths", [480, 960, 1280])
+                self.assertEqual(widths, sorted(set(widths)))
+                self.assertTrue(widths)
+                self.assertGreater(widths[0], 0)
+                self.assertLessEqual(widths[-1], 1280)
+                for width in widths:
                     data = (folder / f"{row['slug']}-{width}.webp").read_bytes()
                     self.assertEqual(data[:4], b"RIFF")
                     self.assertEqual(data[8:12], b"WEBP")
                     self.assertLess(len(data), 300000)
+
+    def test_photo_aliases_reference_only_bundled_sizes_and_keep_unknown_places_empty(
+        self,
+    ):
+        SharedJavaScriptTests.run_js(
+            self,
+            r"""
+const photos=require('./static/js/place_photos.js');
+const credits=JSON.parse(fs.readFileSync('./static/images/places/credits.json','utf8'));
+const aliases=new Set();
+for(const credit of credits){
+  const widths=credit.widths||[480,960,1280];
+  for(const title of credit.aliases){
+    const key=title.normalize('NFKC').toLowerCase().trim().replace(/\s+/g,' ');
+    assert.ok(!aliases.has(key),`Duplicate photo alias: ${title}`);aliases.add(key);
+    const photo=photos.photo({title});assert.equal(photo.slug,credit.slug);
+    assert.ok(photo.src.endsWith(`-${widths.find(w=>w>=960)||widths[widths.length-1]}.webp`));
+    assert.equal(photo.srcset.split(', ').length,widths.length);
+    for(const width of widths){assert.ok(fs.existsSync(`static/images/places/${credit.slug}-${width}.webp`));assert.ok(photo.srcset.includes(`${credit.slug}-${width}.webp ${width}w`));}
+  }
+}
+assert.equal(photos.photo({title:'Unverified Riyadh restaurant',category:'food'}),null);
+assert.equal(photos.photo({title:'Half Million'}),null); // A different branch is not an exact match.
+assert.equal(photos.photo({title:'King Salman Park'}),null); // Proposed renderings are not photographs.
+""",
+        )
+
+    def test_all_destination_photo_sources_and_licenses_are_accessible_in_both_languages(
+        self,
+    ):
+        from django.utils.html import escape
+
+        credits = json.loads(
+            (Path(settings.BASE_DIR) / "static/images/places/credits.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        for path in ("/", "/ar/"):
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            for row in credits:
+                with self.subTest(path=path, photo=row["slug"]):
+                    self.assertContains(response, escape(row["source"]))
+                    self.assertContains(response, escape(row["license_url"]))
+                    self.assertContains(response, escape(row["author"]))
 
     def test_both_public_planners_keep_every_editing_control_and_guest_entry(self):
         for path, direction in (("/trips/", "ltr"), ("/ar/trips/", "rtl")):

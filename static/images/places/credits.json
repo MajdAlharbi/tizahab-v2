@@ -7,7 +7,18 @@
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Al Faisaliyah Tower",
+      "Al Faisaliah Tower",
+      "برج الفيصلية",
+      "Al Faisaliah Mall"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   },
   {
     "slug": "at-turaif",
@@ -17,7 +28,17 @@
     "license": "CC BY 2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "At-Turaif UNESCO Site",
+      "At-Turaif District",
+      "حي الطريف"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   },
   {
     "slug": "kingdom-centre",
@@ -27,7 +48,18 @@
     "license": "CC BY-SA 2.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Kingdom Centre",
+      "Sky Bridge Kingdom Centre",
+      "برج المملكة",
+      "Kingdom Centre Mall"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   },
   {
     "slug": "murabba",
@@ -37,7 +69,16 @@
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Murabba Palace",
+      "قصر المربع"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   },
   {
     "slug": "national-museum",
@@ -47,7 +88,17 @@
     "license": "CC BY 2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "National Museum of Saudi Arabia",
+      "Saudi National Museum",
+      "المتحف الوطني السعودي"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   },
   {
     "slug": "wadi-hanifa",
@@ -57,7 +108,16 @@
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Wadi Hanifa",
+      "وادي حنيفة"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   },
   {
     "slug": "wadi-namar",
@@ -67,7 +127,18 @@
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Wadi Namar",
+      "Wadi Nemar",
+      "وادي نمار",
+      "Lake Park Namars"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   },
   {
     "slug": "masmak",
@@ -77,6 +148,662 @@
     "license": "CC BY 2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "verified": "2026-10-22",
-    "changes": "Resized and converted to WebP; display crops vary by screen."
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Al Masmak Fortress",
+      "Al Masmak Palace",
+      "Masmak Fort",
+      "قصر المصمك"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "historical-center",
+    "title": "Old defensive tower, King Abdulaziz Historical Center, Riyadh (1).jpg",
+    "author": "Richard Mortel",
+    "source": "https://commons.wikimedia.org/wiki/File:Old_defensive_tower,_King_Abdulaziz_Historical_Center,_Riyadh_(1).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "King Abdulaziz Historical Center",
+      "مركز الملك عبدالعزيز التاريخي"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "king-fahd-library",
+    "title": "King Fahd National Library1.jpg",
+    "author": "Yasser Bakhsh",
+    "source": "https://commons.wikimedia.org/wiki/File:King_Fahd_National_Library1.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "King Fahad National Library",
+      "King Fahd National Library",
+      "مكتبه فهد",
+      "مكتبة الملك فهد الوطنية"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "air-force-museum",
+    "title": "RSAF Museum Lockheed L-1011 Tristar.jpg",
+    "author": "Mztourist",
+    "source": "https://commons.wikimedia.org/wiki/File:RSAF_Museum_Lockheed_L-1011_Tristar.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Royal Saudi Air Force Museum",
+      "Saqr Al-Jazira Aviation Museum",
+      "Sakr al Jazeera Aviation Museum",
+      "متحف صقر الجزيرة للطيران"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "boulevard-city",
+    "title": "The Boulevard Riyadh - 2021.jpg",
+    "author": "Slayym",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Boulevard_Riyadh_-_2021.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Boulevard City",
+      "Boulevard Riyadh City",
+      "بوليفارد سيتي"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "boulevard-world",
+    "title": "Boulevard World in Riyadh (2023).jpg",
+    "author": "Saudi Press Agency (SPA)",
+    "source": "https://commons.wikimedia.org/wiki/File:Boulevard_World_in_Riyadh_(2023).jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Boulevard World",
+      "بوليفارد وورلد"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "riyadh-zoo",
+    "title": "Blackbuck in Riyadh Zoo 02.jpg",
+    "author": "കാക്കര",
+    "source": "https://commons.wikimedia.org/wiki/File:Blackbuck_in_Riyadh_Zoo_02.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Riyadh Zoo",
+      "Malaz Zoo",
+      "حديقة الحيوان بالرياض"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "via-riyadh",
+    "title": "Via Riyadh (2024).jpg",
+    "author": "Saudi press Agency (SPA)",
+    "source": "https://commons.wikimedia.org/wiki/File:Via_Riyadh_(2024).jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Via Riyadh",
+      "ڤيا رياض",
+      "فيا رياض"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "roshn-front",
+    "title": "Riyadh Front Shopping Area.jpg",
+    "author": "RiyadhFront",
+    "source": "https://commons.wikimedia.org/wiki/File:Riyadh_Front_Shopping_Area.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Roshn Front",
+      "Riyadh Front",
+      "واجهة روشن",
+      "واجهة الرياض"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "riyadh-gallery",
+    "title": "Riyadh Gallery.jpg",
+    "author": "Sulaiman Al-Kuraishan",
+    "source": "https://commons.wikimedia.org/wiki/File:Riyadh_Gallery.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Riyadh Gallery",
+      "Riyadh Gallery Mall",
+      "الرياض جاليري"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "sahara-mall",
+    "title": "Riyadh Sahara Mall.JPG",
+    "author": "haitham alfalah",
+    "source": "https://commons.wikimedia.org/wiki/File:Riyadh_Sahara_Mall.JPG",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Sahara Mall",
+      "صحارى مول"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "nakheel-mall",
+    "title": "Nakheel-Mall3.jpg",
+    "author": "نزار المكرمي",
+    "source": "https://commons.wikimedia.org/wiki/File:Nakheel-Mall3.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Al Nakheel Mall",
+      "Nakheel Mall",
+      "النخيل مول"
+    ],
+    "widths": [
+      480,
+      600
+    ]
+  },
+  {
+    "slug": "qasr-al-hukm",
+    "title": "Qasr Al Hukm Palace, 2022.jpg",
+    "author": "Geektaker",
+    "source": "https://commons.wikimedia.org/wiki/File:Qasr_Al_Hukm_Palace,_2022.jpg",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Qasr Al Hukm",
+      "قصر الحكم"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "thumairi-gate",
+    "title": "Al Thumairi Gate, 2024.jpg",
+    "author": "Hamza A. Durrani",
+    "source": "https://commons.wikimedia.org/wiki/File:Al_Thumairi_Gate,_2024.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Al Thumairi gate",
+      "بوابة الثميري"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "edge-of-the-world",
+    "title": "Edge of the World.jpg",
+    "author": "S0lL0 TRAVELER",
+    "source": "https://commons.wikimedia.org/wiki/File:Edge_of_the_World.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Edge of the World",
+      "حافة العالم"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "king-abdullah-park",
+    "title": "King Abdullah Park Riyadh lake.jpg",
+    "author": "Derivator2017",
+    "source": "https://commons.wikimedia.org/wiki/File:King_Abdullah_Park_Riyadh_lake.jpg",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "King Abdullah Park",
+      "منتزه الملك عبدالله",
+      "حديقة الملك عبدالله"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "salam-park",
+    "title": "Shuttle Boat Salam Park Riyadh IMG 0404.jpg",
+    "author": "Hamza A. Durrani",
+    "source": "https://commons.wikimedia.org/wiki/File:Shuttle_Boat_Salam_Park_Riyadh_IMG_0404.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Salam Park",
+      "Al Salam Park",
+      "منتزه سلام"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "manakh-park",
+    "title": "King Abdulaziz Manakh Park Riyadh 2024.jpg",
+    "author": "Hamza A. Durrani",
+    "source": "https://commons.wikimedia.org/wiki/File:King_Abdulaziz_Manakh_Park_Riyadh_2024.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Manakh Park",
+      "منتزه المناخ"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "futah-park",
+    "title": "Al Fouta Garden, 2024.jpg",
+    "author": "Hamza A. Durrani",
+    "source": "https://commons.wikimedia.org/wiki/File:Al_Fouta_Garden,_2024.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Al Futah Park",
+      "حديقة الفوطة"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "diriyah-old-town",
+    "title": "Diriyah6.jpg",
+    "author": "Matti&Keti",
+    "source": "https://commons.wikimedia.org/wiki/File:Diriyah6.jpg",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Ad Diriyah",
+      "Diriyah Old Town",
+      "Diriyah Cultural Zone",
+      "الدرعية التاريخية"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "salwa-palace",
+    "title": "قصر سلوى.jpg",
+    "author": "Heritage Commission",
+    "source": "https://commons.wikimedia.org/wiki/File:%D9%82%D8%B5%D8%B1_%D8%B3%D9%84%D9%88%D9%89.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Salwa Palace",
+      "قصر سلوى"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "deera-square",
+    "title": "Deera Square and Imam Turki bin Abdullah Mosque (1).jpg",
+    "author": "Radosław Botev",
+    "source": "https://commons.wikimedia.org/wiki/File:Deera_Square_and_Imam_Turki_bin_Abdullah_Mosque_(1).jpg",
+    "license": "CC BY 3.0 pl",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/pl/deed.en",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Deera Square",
+      "ساحة الديرة"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "imam-turki-mosque",
+    "title": "Deera Square and Imam Turki bin Abdullah Mosque (2).jpg",
+    "author": "Radosław Botev",
+    "source": "https://commons.wikimedia.org/wiki/File:Deera_Square_and_Imam_Turki_bin_Abdullah_Mosque_(2).jpg",
+    "license": "CC BY 3.0 pl",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/pl/deed.en",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Imam Turki Grand Mosque",
+      "جامع الإمام تركي بن عبدالله"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "thumairi-souq",
+    "title": "Thumairi Street, 2024.jpg",
+    "author": "Hamza A. Durrani",
+    "source": "https://commons.wikimedia.org/wiki/File:Thumairi_Street,_2024.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Souq Al Thumairi",
+      "سوق الثميري"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "al-hair-lake",
+    "title": "Lakes Park.jpg",
+    "author": "Muthukurussi",
+    "source": "https://commons.wikimedia.org/wiki/File:Lakes_Park.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Al Hair Lake",
+      "بحيرة الحائر"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "red-dunes-riyadh",
+    "title": "RedsandsnearRiyadh..JPG",
+    "author": "Jtamad",
+    "source": "https://commons.wikimedia.org/wiki/File:RedsandsnearRiyadh..JPG",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Red Sand Dunes",
+      "الكثبان الرملية الحمراء"
+    ],
+    "widths": [
+      480,
+      960,
+      1000
+    ]
+  },
+  {
+    "slug": "wadi-laban",
+    "title": "Wadi Laban panorama (4026364219).jpg",
+    "author": "Peter Dowley from Dubai, United Arab Emirates",
+    "source": "https://commons.wikimedia.org/wiki/File:Wadi_Laban_panorama_(4026364219).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Wadi Laban",
+      "وادي لبن"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "granada-mall",
+    "title": "Granada Centre.jpg",
+    "author": "Sulaiman Al-Kuraishan",
+    "source": "https://commons.wikimedia.org/wiki/File:Granada_Centre.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Granada Center",
+      "Granada Mall",
+      "غرناطه مول",
+      "غرناطة مول"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "remal-mall",
+    "title": "RemalCentre Riyadh..jpg",
+    "author": "Marla Olmstead",
+    "source": "https://commons.wikimedia.org/wiki/File:RemalCentre_Riyadh..jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Remal Mall",
+      "Remal Centre",
+      "الرمال مول"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "suweigah-souq",
+    "title": "Suweigah Souq Riyadh, 2023.jpg",
+    "author": "Hamza A. Durrani",
+    "source": "https://commons.wikimedia.org/wiki/File:Suweigah_Souq_Riyadh,_2023.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Swaigah Commercial Center",
+      "سوق سويقة"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "historical-center-park",
+    "title": "Al Yamamah Park KAHC Riyadh.jpg",
+    "author": "Derivator2017",
+    "source": "https://commons.wikimedia.org/wiki/File:Al_Yamamah_Park_KAHC_Riyadh.jpg",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "King Abdulaziz Historical Center Park"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "six-flags-qiddiya",
+    "title": "City of Thrills (Six Flags Qiddiya City) 1.jpg",
+    "author": "Martin Lewison",
+    "source": "https://commons.wikimedia.org/wiki/File:City_of_Thrills_(Six_Flags_Qiddiya_City)_1.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Six Flags Qiddiya City",
+      "Qiddiya City",
+      "سيكس فلاجز القدية"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "slug": "hayat-mall",
+    "title": "Hayat Mall - Riyadh.jpg",
+    "author": "Zmaassarani",
+    "source": "https://commons.wikimedia.org/wiki/File:Hayat_Mall_-_Riyadh.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "Hayat Mall",
+      "حياة مول"
+    ],
+    "widths": [
+      400
+    ]
+  },
+  {
+    "slug": "aquarabia",
+    "title": "Surfing at Aquarabia in Qiddiya, Central Saudi Arabia (2026)",
+    "author": "Saudi Press Agency (SPA)",
+    "source": "https://cc.spa.gov.sa/en/news/2696488",
+    "source_asset_url": "https://cc-cdn.spa.gov.sa/mashaa/media/3jqfqm3s/10978860.jpg?height=1000&rxy=0.5123197115384616,0.17307692307692307",
+    "source_terms_url": "https://cc.spa.gov.sa/en/terms",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "verified": "2026-10-24",
+    "changes": "Resized and converted to WebP; display crops vary by screen.",
+    "aliases": [
+      "AquArabia Qiddiya City",
+      "Aquarabia",
+      "أكواريبيا القدية"
+    ],
+    "widths": [
+      480,
+      960,
+      1280
+    ]
   }
 ]

@@ -10,14 +10,7 @@
     <p>{% if LANGUAGE_CODE == 'ar' %}مشروع تخرج جامعي، طُوّر بمساهمة فريق Tizahab الأصلي.{% else %}A university graduation project. Built on the work of the original Tizahab team.{% endif %}</p>
     <details class="photo-credits" id="photo-credits"><summary>{% if LANGUAGE_CODE == 'ar' %}حقوق الصور{% else %}Photo credits{% endif %}</summary>
       <p><a href="https://commons.wikimedia.org/wiki/File:Riyadh_Skyline.jpg" target="_blank" rel="noopener">Riyadh Skyline · B.alotaby</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:Masmak_Fort_(12753717253).jpg" target="_blank" rel="noopener">Masmak Fort · Francisco Anzola</a> · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:At-Turaif_District.jpg" target="_blank" rel="noopener">At-Turaif · xiquinhosilva</a> · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:National_Museum_Riyadh_(6781666263).jpg" target="_blank" rel="noopener">National Museum · Sammy Six</a> · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:Kingdom_Centre,_Riyadh_(6129688934).jpg" target="_blank" rel="noopener">Kingdom Centre · Wajahat Mahmood</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:Wadi_Nemar_Riyadh.jpg" target="_blank" rel="noopener">Wadi Namar · Irshadpp</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:Wadi_Hanifa.jpg" target="_blank" rel="noopener">Wadi Hanifa · Ahmedpictures12</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:Murabba_Palace.jpg" target="_blank" rel="noopener">Murabba Palace · saudipics</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
-      <p><a href="https://commons.wikimedia.org/wiki/File:Al-Faisaliyyah_Tower.jpg" target="_blank" rel="noopener">Al-Faisaliyyah · Saud-Al-Marzouq</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+      {% include "includes/place_photo_credits.html" %}
       <p>{% if LANGUAGE_CODE == 'ar' %}صُغّرت الصور وحُوّلت إلى WebP؛ قد يختلف الاقتصاص حسب الشاشة.{% else %}Resized and converted to WebP. Display crops vary by screen.{% endif %}</p>
     </details>
   </div>
