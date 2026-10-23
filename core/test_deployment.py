@@ -111,6 +111,47 @@ assert 'CLIENT_CLASS' not in client.connection_pool.connection_kwargs
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_production_can_disable_unconfigured_email_without_logging_reset_links(
+        self,
+    ):
+        result = self.run_production(
+            """
+from django.conf import settings
+from django.core.mail import send_mail
+assert settings.EMAIL_BACKEND == 'django.core.mail.backends.dummy.EmailBackend'
+assert send_mail('Synthetic reset', 'private synthetic reset link', 'noreply@example.invalid', ['visitor@example.test']) == 1
+""",
+            EMAIL_BACKEND="django.core.mail.backends.dummy.EmailBackend",
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "")
+
+    def test_render_blueprint_keeps_demo_resources_free_and_credentials_private(self):
+        blueprint = yaml.safe_load(
+            (Path(settings.BASE_DIR) / "render.yaml").read_text()
+        )
+        web, database = blueprint["services"][0], blueprint["databases"][0]
+        self.assertEqual(web["plan"], "free")
+        self.assertEqual(database["plan"], "free")
+        self.assertEqual(web["region"], database["region"])
+        self.assertEqual(database["ipAllowList"], [])
+        self.assertEqual(web["branch"], "main")
+        variables = {entry["key"]: entry for entry in web["envVars"]}
+        self.assertEqual(
+            variables["DATABASE_URL"]["fromDatabase"]["name"], database["name"]
+        )
+        self.assertNotIn("value", variables["DATABASE_URL"])
+        self.assertIs(variables["DJANGO_SECRET_KEY"]["sync"], False)
+        self.assertNotIn("value", variables["DJANGO_SECRET_KEY"])
+        self.assertEqual(
+            variables["DJANGO_SETTINGS_MODULE"]["value"], "config.settings_production"
+        )
+        self.assertEqual(variables["CATALOG_SYNC_ENABLED"]["value"], "false")
+        self.assertEqual(
+            variables["EMAIL_BACKEND"]["value"],
+            "django.core.mail.backends.dummy.EmailBackend",
+        )
+
     def test_compose_exposes_only_loopback_proxy_and_requires_database_password(self):
         compose = yaml.safe_load(
             (Path(settings.BASE_DIR) / "docker-compose.yml").read_text()

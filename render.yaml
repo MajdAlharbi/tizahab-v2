@@ -1,0 +1,53 @@
+# Independent portfolio demo. Both compute plans are explicitly free.
+services:
+  - type: web
+    name: tizahab-v2
+    runtime: docker
+    repo: https://github.com/MajdAlharbi/tizahab-v2
+    branch: main
+    region: frankfurt
+    plan: free
+    autoDeployTrigger: checksPass
+    healthCheckPath: /login/
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings_production
+      - key: DJANGO_DEBUG
+        value: "False"
+      # Supply a securely generated secret of at least 50 characters in Render.
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tizahab-v2-db
+          property: connectionString
+      - key: DJANGO_ALLOWED_HOSTS
+        fromService:
+          type: web
+          name: tizahab-v2
+          envVarKey: RENDER_EXTERNAL_HOSTNAME
+      - key: CSRF_TRUSTED_ORIGINS
+        fromService:
+          type: web
+          name: tizahab-v2
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: DB_SSL_REQUIRE
+        value: "True"
+      - key: PORT
+        value: "8000"
+      - key: GUNICORN_WORKERS
+        value: "1"
+      - key: DJANGO_LOAD_INITIAL_DATA
+        value: "False"
+      - key: EMAIL_BACKEND
+        value: django.core.mail.backends.dummy.EmailBackend
+      - key: CATALOG_SYNC_ENABLED
+        value: "false"
+databases:
+  - name: tizahab-v2-db
+    databaseName: tizahab_v2
+    region: frankfurt
+    plan: free
+    postgresMajorVersion: "18"
+    # Only the new web service's private-network connection is needed.
+    ipAllowList: []

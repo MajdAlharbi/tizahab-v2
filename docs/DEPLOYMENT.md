@@ -1,5 +1,43 @@
 # Deployment configuration
 
+## Render portfolio demo
+
+`render.yaml` creates a separate Docker web service and PostgreSQL 18 database,
+both explicitly on the Free compute plan. Import it as a new Blueprint from
+`main`; do not attach the original graduation project's services or database.
+Review Render's resource preview before applying it. Supply a private
+`DJANGO_SECRET_KEY` of at least 50 securely generated characters when prompted.
+Render injects the new database's internal URL and the service's actual public
+hostname/origin; no credentials belong in this file or in Git.
+
+The existing container entrypoint runs migrations, collects WhiteNoise static
+files and binds Gunicorn to port 8000, matching the Blueprint's `PORT`. A fresh
+database receives the bundled catalog through migrations. Additional startup
+imports are disabled. The database requires TLS and blocks public connections.
+Render terminates HTTPS; Django trusts its forwarded protocol and retains secure
+cookies, host validation and HSTS. Automatic service deploys wait for CI checks.
+
+Email delivery is deliberately disabled with Django's dummy backend, so password
+reset emails are not sent or logged. OAuth, Redis, monitoring and provider sync
+remain unconfigured/disabled. Destination discovery and trip planning use the
+local catalog independently of external providers.
+
+Render Free is suitable for a temporary demo, not durable production hosting:
+the web service sleeps after 15 minutes idle; its filesystem is ephemeral; the
+free database has 1 GB storage, expires after 30 days and has no managed backups.
+Record the actual expiration shown in the dashboard. Export any wanted data
+before expiration and obtain approval before a paid upgrade. Workspace build
+minutes, bandwidth and free service hours are shared; review remaining usage and
+potential overages before deploying. See [Render's current Free limits](https://render.com/docs/free).
+
+Verify the public HTTPS URL, registration, authenticated saves, bilingual pages
+and static assets after deployment. A successful image build alone is not a
+verified deployment. Free services do not provide a shell: provision any future
+administrator through a separately authorized secure process, never a hardcoded
+account or public setup endpoint.
+
+## Self-hosted Docker Compose
+
 The Compose stack runs Django, Nginx, PostgreSQL and Redis behind an
 **HTTPS-terminating reverse proxy on the host**. Provide and validate this trusted
 TLS edge before exposing the application publicly.
