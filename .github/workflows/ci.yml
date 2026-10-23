@@ -46,7 +46,7 @@ jobs:
       run: python manage.py collectstatic --noinput
 
     - name: Run tests with coverage
-      run: pytest --cov-report=xml
+      run: pytest --ds=config.settings_test --cov-report=xml
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
