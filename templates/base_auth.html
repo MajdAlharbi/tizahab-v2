@@ -1,0 +1,16 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" id="htmlRoot" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{% block title %}Tizahab{% endblock %}</title>
+<script>(function(){var t=localStorage.getItem('tz_theme')||'light';localStorage.setItem('tz_lang','{{ LANGUAGE_CODE|escapejs }}');if(t==='auto')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();window.DEBUG=false;</script>
+{% include "includes/ui_head.html" %}{% block head %}{% endblock %}</head>
+<body class="{% block body_class %}auth-shell{% endblock %}">
+<a class="skip-link" href="#main-content">{% trans "Skip to content" %}</a>
+<div class="auth-layout">
+  <aside class="auth-story"><img src="{% static 'images/places/faisaliyah-960.webp' %}" srcset="{% static 'images/places/faisaliyah-480.webp' %} 480w, {% static 'images/places/faisaliyah-960.webp' %} 960w, {% static 'images/places/faisaliyah-1280.webp' %} 1280w" sizes="(min-width:900px) 50vw, 1px" alt="" width="960" height="1280" loading="lazy"><a href="{% url 'index' %}" aria-label="Tizahab"><img class="brand-logo" src="{% static 'brand/logo-reverse.svg' %}" alt="Tizahab" width="180" height="52"></a><div class="auth-story-copy"><span class="eyebrow text-white">{% if LANGUAGE_CODE == 'ar' %}الرياض، على طريقتك{% else %}Riyadh, on your terms{% endif %}</span><h2>{% if LANGUAGE_CODE == 'ar' %}لكل رحلة<br>حكاية جديدة.{% else %}A new story.<br>At every turn.{% endif %}</h2><p>{% if LANGUAGE_CODE == 'ar' %}اكتشف أماكن تحبها، وخطّط لأيام تشبهك.{% else %}Discover places you love. Shape days that feel like you.{% endif %}</p></div></aside>
+  <div class="auth-panel"><header class="auth-toolbar"><a class="auth-mobile-logo" href="{% url 'index' %}"><img class="brand-logo-light" src="{% static 'brand/logo.svg' %}" alt="Tizahab" width="140" height="41"><img class="brand-logo-dark" src="{% static 'brand/logo-reverse.svg' %}" alt="Tizahab" width="140" height="41"></a><div class="flex items-center gap-3">{% include "includes/language_switch.html" %}<button class="icon-button" type="button" aria-label="{% trans 'Toggle theme' %}" onclick="toggleTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark')"><i data-lucide="sun-moon"></i></button></div></header>
+  <main id="main-content" class="auth-main" tabindex="-1"><div class="auth-card"><img class="auth-mobile-scene" src="{% static 'images/places/at-turaif-480.webp' %}" alt="{% if LANGUAGE_CODE == 'ar' %}العمارة النجدية في حي الطريف{% else %}Najdi architecture in At-Turaif{% endif %}" width="480" height="320">{% block content %}{% endblock %}<div class="mt-8 text-center"><a class="auth-back" href="{% url 'index' %}" data-i18n="backHome">{% trans "Back to Home" %}</a> · <a class="auth-back" href="{% url 'index' %}#photo-credits">{% if LANGUAGE_CODE == 'ar' %}حقوق الصور{% else %}Photo credits{% endif %}</a></div></div></main></div>
+</div>
+<script src="{% static 'js/auth_i18n.js' %}"></script>{% block scripts %}{% endblock %}
+</body></html>

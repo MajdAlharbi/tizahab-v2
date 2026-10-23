@@ -1,0 +1,1757 @@
+msgid ""
+msgstr "Project-Id-Version: tizahab-web\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-02 00:00+0300\nPO-Revision-Date: 2026-05-02 00:00+0300\nLast-Translator: \nLanguage-Team: Arabic\nLanguage: ar\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "Tizahab"
+msgstr "Tizahab"
+
+msgid "Home"
+msgstr "الرئيسية"
+
+msgid "Daily Plan"
+msgstr "الخطة اليومية"
+
+msgid "Explore"
+msgstr "استكشف"
+
+msgid "Travel Guide"
+msgstr "دليل السفر"
+
+msgid "Booking"
+msgstr "الحجوزات"
+
+msgid "Hotel Booking"
+msgstr "حجز الفنادق"
+
+msgid "Car Rental"
+msgstr "تأجير السيارات"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+msgid "Search destinations, events..."
+msgstr "ابحث عن الوجهات والفعاليات..."
+
+msgid "Toggle theme"
+msgstr "تغيير السمة"
+
+msgid "Welcome to Riyadh"
+msgstr "مرحباً بك في الرياض"
+
+msgid "Loading your journey..."
+msgstr "جارٍ تحميل رحلتك..."
+
+msgid "Day"
+msgstr "اليوم"
+
+msgid "of"
+msgstr "من"
+
+msgid "Discover places, build your route, and turn your Riyadh days into a clear journey."
+msgstr "اكتشف الأماكن، ابنِ مسارك، وحوّل أيامك في الرياض إلى رحلة واضحة."
+
+msgid "View Today’s Plan"
+msgstr "عرض خطة اليوم"
+
+msgid "Explore Places"
+msgstr "استكشف الأماكن"
+
+msgid "Heritage"
+msgstr "تراث"
+
+msgid "Old Riyadh"
+msgstr "الرياض القديمة"
+
+msgid "Food"
+msgstr "مطاعم"
+
+msgid "Dining Stops"
+msgstr "تجارب الطعام"
+
+msgid "Start Exploring"
+msgstr "ابدأ الاستكشاف"
+
+msgid "Jump into the main parts of your trip."
+msgstr "انتقل بسرعة إلى أهم أجزاء رحلتك."
+
+msgid "Recommended Riyadh Places"
+msgstr "أماكن مقترحة في الرياض"
+
+msgid "A few ideas from the live destination data."
+msgstr "اقتراحات مختارة من بيانات الوجهات الحالية."
+
+msgid "View all"
+msgstr "عرض الكل"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Main navigation"
+msgstr "التنقل الرئيسي"
+
+msgid "Navigation menu"
+msgstr "قائمة التنقل"
+
+msgid "All pages"
+msgstr "جميع الصفحات"
+
+msgid "Footer navigation"
+msgstr "روابط الموقع"
+
+msgid "Skip to content"
+msgstr "انتقل إلى المحتوى"
+
+msgid "Preferences"
+msgstr "التفضيلات"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Search places"
+msgstr "ابحث عن مكان"
+
+msgid "Explore Riyadh"
+msgstr "اكتشف الرياض"
+
+msgid "Search places, events..."
+msgstr "ابحث عن أماكن وفعاليات..."
+
+msgid "Clear search"
+msgstr "مسح البحث"
+
+msgid "Categories"
+msgstr "التصنيفات"
+
+msgid "All Places"
+msgstr "كل الأماكن"
+
+msgid "Browse by area"
+msgstr "تصفّح حسب المنطقة"
+
+msgid "Find places across the city."
+msgstr "اكتشف الأماكن في مناطق الرياض."
+
+msgid "Clear Area"
+msgstr "مسح المنطقة"
+
+msgid "Clear all"
+msgstr "مسح الكل"
+
+msgid "Places"
+msgstr "الأماكن"
+
+msgid "Favorites only"
+msgstr "المفضلة فقط"
+
+msgid "Your Favorites"
+msgstr "أماكنك المفضلة"
+
+msgid "Featured Places"
+msgstr "أماكن تستحق الاكتشاف"
+
+msgid "More inspiration"
+msgstr "مزيد من الإلهام"
+
+msgid "Previous places"
+msgstr "الأماكن السابقة"
+
+msgid "Next places"
+msgstr "الأماكن التالية"
+
+msgid "Load More"
+msgstr "عرض المزيد"
+
+msgid "Add to Plan"
+msgstr "أضف إلى الخطة"
+
+msgid "Add Activity"
+msgstr "أضف نشاطًا"
+
+msgid "Choose a day"
+msgstr "اختر يومًا"
+
+msgid "Which day should this place be added to?"
+msgstr "إلى أي يوم تود إضافة هذا المكان؟"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Your Riyadh Journey"
+msgstr "رحلتك في الرياض"
+
+msgid "The route is yours"
+msgstr "المسار لك"
+
+msgid "A little structure. Plenty of room to explore."
+msgstr "خطة واضحة، ومساحة واسعة للاكتشاف."
+
+msgid "Trip days"
+msgstr "أيام الرحلة"
+
+msgid "Loading itinerary"
+msgstr "جارٍ تحميل الخطة"
+
+msgid "No plan for this day yet"
+msgstr "لا توجد خطة لهذا اليوم بعد"
+
+msgid "Generate a personalized itinerary or add activities manually."
+msgstr "أنشئ خطة تناسبك أو أضف الأنشطة بنفسك."
+
+msgid "Set your preferences"
+msgstr "حدّد تفضيلاتك"
+
+msgid "Your route, ready to go"
+msgstr "مسارك جاهز للانطلاق"
+
+msgid "Directions open in Google Maps."
+msgstr "تفتح الاتجاهات في خرائط Google."
+
+msgid "Open route"
+msgstr "افتح المسار"
+
+msgid "Make it your own"
+msgstr "رحلة على طريقتك"
+
+msgid "A plan that fits you"
+msgstr "خطة تناسبك"
+
+msgid "Add a stop, swap an activity, or start fresh for the selected day."
+msgstr "أضف محطة، أو استبدل نشاطًا، أو أنشئ خطة جديدة لليوم المحدّد."
+
+msgid "Regenerate Day"
+msgstr "إعادة تخطيط اليوم"
+
+msgid "Generate Plan"
+msgstr "إنشاء الخطة"
+
+msgid "Edit Preferences"
+msgstr "تعديل التفضيلات"
+
+msgid "About your recommendations"
+msgstr "عن اقتراحات خطتك"
+
+msgid "Choose a place for your plan"
+msgstr "اختر مكانًا لخطتك"
+
+msgid "Search places…"
+msgstr "ابحث عن مكان…"
+
+msgid "Type to search for places"
+msgstr "اكتب للبحث عن مكان"
+
+msgid "No results found"
+msgstr "لا توجد نتائج"
+
+msgid "Searching…"
+msgstr "جارٍ البحث…"
+
+msgid "Search failed. Please try again."
+msgstr "تعذّر البحث. حاول مرة أخرى."
+
+msgid "Your travel collection"
+msgstr "مجموعة رحلاتك"
+
+msgid "Saved for your next adventure"
+msgstr "اكتشافاتك، في مكان واحد"
+
+msgid "Loading profile…"
+msgstr "جارٍ تحميل الحساب…"
+
+msgid "Loading preferences…"
+msgstr "جارٍ تحميل التفضيلات…"
+
+msgid "Plans Created"
+msgstr "خطط محفوظة"
+
+msgid "Saved Places"
+msgstr "أماكن محفوظة"
+
+msgid "Interests"
+msgstr "الاهتمامات"
+
+msgid "My Preferences"
+msgstr "تفضيلاتي"
+
+msgid "My Favorites"
+msgstr "أماكني المفضلة"
+
+msgid "Plans"
+msgstr "الخطط"
+
+msgid "Open planner ↗"
+msgstr "افتح المخطط ↖"
+
+msgid "View all →"
+msgstr "عرض الكل ←"
+
+msgid "No favorites yet."
+msgstr "لا توجد أماكن مفضلة بعد."
+
+msgid "Explore places to save them →"
+msgstr "اكتشف الأماكن واحفظ ما تحب ←"
+
+msgid "No plans yet."
+msgstr "لا توجد خطط محفوظة بعد."
+
+msgid "Create your first plan →"
+msgstr "أنشئ خطتك الأولى ←"
+
+msgid "Load More Plans"
+msgstr "عرض خطط أخرى"
+
+msgid "Load More Favorites"
+msgstr "عرض أماكن أخرى"
+
+msgid "View Details"
+msgstr "عرض التفاصيل"
+
+msgid "Remove favorite"
+msgstr "إزالة من المفضلة"
+
+msgid "Toggle favorite"
+msgstr "حفظ في المفضلة أو إزالتها"
+
+msgid "Unable to load plans. Please reload to try again."
+msgstr "تعذّر تحميل الخطط. أعد تحميل الصفحة للمحاولة مجددًا."
+
+msgid "Unable to load favorites. Please reload to try again."
+msgstr "تعذّر تحميل المفضلة. أعد تحميل الصفحة للمحاولة مجددًا."
+
+msgid "Unable to remove favorite. Please try again."
+msgstr "تعذّرت إزالة المكان من المفضلة. حاول مجددًا."
+
+msgid "A journey that feels like you"
+msgstr "رحلة تشبهك"
+
+msgid "Let's make it personal"
+msgstr "لنخطّط على ذوقك"
+
+msgid "Five simple steps to shape your Riyadh itinerary."
+msgstr "خمس خطوات بسيطة لبناء رحلتك في الرياض."
+
+msgid "Skip for now"
+msgstr "تخطَّ الآن"
+
+msgid "What brings you to Riyadh?"
+msgstr "ما الذي تود اكتشافه في الرياض؟"
+
+msgid "Pick all that interest you"
+msgstr "اختر كل ما يهمك"
+
+msgid "Next →"
+msgstr "التالي ←"
+
+msgid "← Back"
+msgstr "→ السابق"
+
+msgid "When are you visiting?"
+msgstr "متى تخطّط للزيارة؟"
+
+msgid "Set your travel dates"
+msgstr "حدّد مواعيد رحلتك"
+
+msgid "Start Date"
+msgstr "تاريخ البداية"
+
+msgid "End Date"
+msgstr "تاريخ النهاية"
+
+msgid "Number of Travelers"
+msgstr "عدد المسافرين"
+
+msgid "Decrease travelers"
+msgstr "تقليل عدد المسافرين"
+
+msgid "Increase travelers"
+msgstr "زيادة عدد المسافرين"
+
+msgid "Who's in your group?"
+msgstr "من يرافقك في الرحلة؟"
+
+msgid "Helps us recommend age-appropriate activities"
+msgstr "يساعدنا ذلك على اقتراح أنشطة مناسبة للأعمار"
+
+msgid "Kids"
+msgstr "أطفال"
+
+msgid "Teens"
+msgstr "يافعون"
+
+msgid "Adults"
+msgstr "بالغون"
+
+msgid "Seniors"
+msgstr "كبار السن"
+
+msgid "Ages 0–12"
+msgstr "من 0 إلى 12 سنة"
+
+msgid "Ages 13–17"
+msgstr "من 13 إلى 17 سنة"
+
+msgid "Ages 18–59"
+msgstr "من 18 إلى 59 سنة"
+
+msgid "Ages 60+"
+msgstr "60 سنة فأكثر"
+
+msgid "Budget & Quality"
+msgstr "الميزانية والتقييم"
+
+msgid "Price per place and minimum rating. Unknown prices remain visible and are not a budget guarantee."
+msgstr "حدّد السعر لكل مكان وأقل تقييم. تبقى الأماكن ذات السعر غير المعروف ظاهرة، ولا يمكن ضمان ملاءمتها للميزانية."
+
+msgid "Price per place (SAR)"
+msgstr "السعر لكل مكان (ر.س)"
+
+msgid "Minimum"
+msgstr "الحد الأدنى"
+
+msgid "Maximum"
+msgstr "الحد الأعلى"
+
+msgid "Minimum price per place"
+msgstr "أقل سعر لكل مكان"
+
+msgid "Maximum price per place"
+msgstr "أعلى سعر لكل مكان"
+
+msgid "Minimum Rating"
+msgstr "أقل تقييم"
+
+msgid "Any"
+msgstr "أي تقييم"
+
+msgid "Almost ready!"
+msgstr "بقيت خطوة أخيرة!"
+
+msgid "Choose your language and confirm"
+msgstr "اختر لغتك وراجع اختياراتك"
+
+msgid "Preferred Language"
+msgstr "اللغة المفضلة"
+
+msgid "Your Preferences Summary"
+msgstr "ملخص تفضيلاتك"
+
+msgid "Generate My Plan →"
+msgstr "أنشئ خطتي ←"
+
+msgid "Generating your plan..."
+msgstr "جارٍ إنشاء خطتك..."
+
+msgid "Saving..."
+msgstr "جارٍ الحفظ..."
+
+msgid "Interests:"
+msgstr "الاهتمامات:"
+
+msgid "Dates"
+msgstr "التواريخ"
+
+msgid "Travelers"
+msgstr "المسافرون"
+
+msgid "Age Groups"
+msgstr "الفئات العمرية"
+
+msgid "Budget"
+msgstr "الميزانية"
+
+msgid "Breakfast"
+msgstr "الإفطار"
+
+msgid "Activity"
+msgstr "نشاط"
+
+msgid "Lunch"
+msgstr "الغداء"
+
+msgid "Evening"
+msgstr "المساء"
+
+msgid "breakfast"
+msgstr "إفطارًا"
+
+msgid "activity"
+msgstr "نشاطًا"
+
+msgid "lunch"
+msgstr "غداءً"
+
+msgid "evening"
+msgstr "نشاطًا مسائيًا"
+
+msgid "Navigate"
+msgstr "الاتجاهات"
+
+msgid "Replace"
+msgstr "استبدال"
+
+msgid "Ride"
+msgstr "التنقل"
+
+msgid "Metro"
+msgstr "المترو"
+
+msgid "Remove activity"
+msgstr "حذف النشاط"
+
+msgid "Replacing…"
+msgstr "جارٍ الاستبدال…"
+
+msgid "Removing…"
+msgstr "جارٍ الحذف…"
+
+msgid "Maps"
+msgstr "الخريطة"
+
+msgid "Your Plan is Ready"
+msgstr "خطتك جاهزة"
+
+msgid "Create Your Personalized Journey"
+msgstr "خطّط لرحلة تشبهك"
+
+msgid "Tell us your interests and we will build your Riyadh itinerary."
+msgstr "حدّد اهتماماتك لنقترح خطة لرحلتك في الرياض."
+
+msgid "Generate My Plan"
+msgstr "أنشئ خطتي"
+
+msgid "View Plan"
+msgstr "عرض الخطة"
+
+msgid "No places found"
+msgstr "لم نعثر على أماكن"
+
+msgid "Try a different search, category, or area."
+msgstr "جرّب بحثًا أو تصنيفًا أو منطقة أخرى."
+
+msgid "Clear Filters"
+msgstr "مسح الفلاتر"
+
+msgid "No places in this filter yet."
+msgstr "لا توجد أماكن تطابق هذا الفلتر."
+
+msgid "Viewing Area"
+msgstr "المنطقة المحدّدة"
+
+msgid "View Places"
+msgstr "عرض الأماكن"
+
+msgid "Central Riyadh"
+msgstr "وسط الرياض"
+
+msgid "North Riyadh"
+msgstr "شمال الرياض"
+
+msgid "South Riyadh"
+msgstr "جنوب الرياض"
+
+msgid "East Riyadh"
+msgstr "شرق الرياض"
+
+msgid "West Riyadh"
+msgstr "غرب الرياض"
+
+msgid "Loading..."
+msgstr "جارٍ التحميل..."
+
+msgid "Loading…"
+msgstr "جارٍ التحميل…"
+
+msgid "Adding..."
+msgstr "جارٍ الإضافة..."
+
+msgid "Added"
+msgstr "تمت الإضافة"
+
+msgid "Free"
+msgstr "مجاني"
+
+msgid "Price unknown"
+msgstr "السعر غير معروف"
+
+msgid "App Configuration"
+msgstr "إعدادات التطبيق"
+
+msgid "Manage your app preferences"
+msgstr "اضبط التطبيق بما يناسبك"
+
+msgid "🌐 Language & Region"
+msgstr "اللغة والمنطقة"
+
+msgid "Display Language"
+msgstr "لغة العرض"
+
+msgid "App will reload to apply language change."
+msgstr "سيُعاد تحميل التطبيق لتطبيق اللغة."
+
+msgid "🎨 Appearance"
+msgstr "المظهر"
+
+msgid "Theme"
+msgstr "السمة"
+
+msgid "☀️ Light"
+msgstr "فاتح"
+
+msgid "🌙 Dark"
+msgstr "داكن"
+
+msgid "🌗 Auto"
+msgstr "تلقائي"
+
+msgid "Affects readability across all pages."
+msgstr "تُطبّق على جميع الصفحات."
+
+msgid "🔔 Notifications"
+msgstr "الإشعارات"
+
+msgid "Plan Reminders"
+msgstr "تذكير بالخطط"
+
+msgid "Daily plan notifications"
+msgstr "إشعارات خطتك اليومية"
+
+msgid "New Events"
+msgstr "فعاليات جديدة"
+
+msgid "App Updates"
+msgstr "تحديثات التطبيق"
+
+msgid "Be notified about new features"
+msgstr "إشعارات المزايا الجديدة"
+
+msgid "🔒 Privacy & Security"
+msgstr "الخصوصية والأمان"
+
+msgid "Location Sharing"
+msgstr "مشاركة الموقع"
+
+msgid "Allow location access for better recommendations"
+msgstr "السماح بالوصول للموقع لتحسين الاقتراحات"
+
+msgid "Public Profile"
+msgstr "حساب عام"
+
+msgid "Usage Analytics"
+msgstr "تحليلات الاستخدام"
+
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Current Password"
+msgstr "كلمة المرور الحالية"
+
+msgid "New Password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "Confirm New Password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "ℹ️ About"
+msgstr "عن التطبيق"
+
+msgid "App Version"
+msgstr "إصدار التطبيق"
+
+msgid "Terms of Service — unavailable"
+msgstr "شروط الاستخدام — غير متاحة"
+
+msgid "Privacy Policy — unavailable"
+msgstr "سياسة الخصوصية — غير متاحة"
+
+msgid "Help & Support — unavailable"
+msgstr "المساعدة والدعم — غير متاحين"
+
+msgid "Save Settings"
+msgstr "حفظ الإعدادات"
+
+msgid "Unavailable"
+msgstr "غير متاح"
+
+msgid "Saved"
+msgstr "محفوظ"
+
+msgid "Back to Events"
+msgstr "العودة للأماكن"
+
+msgid "← Back to Events"
+msgstr "→ العودة للأماكن"
+
+msgid "About this place"
+msgstr "عن المكان"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Category"
+msgstr "التصنيف"
+
+msgid "Rating"
+msgstr "التقييم"
+
+msgid "Price"
+msgstr "السعر"
+
+msgid "Available dates"
+msgstr "تواريخ الإتاحة"
+
+msgid "Open in Google Maps"
+msgstr "افتح في خرائط Google"
+
+msgid "Stay in Riyadh"
+msgstr "إقامتك في الرياض"
+
+msgid "Riyadh stay guide"
+msgstr "دليل الإقامة في الرياض"
+
+msgid "Central stays"
+msgstr "إقامة في قلب المدينة"
+
+msgid "Heritage nights"
+msgstr "أجواء تراثية"
+
+msgid "Business districts"
+msgstr "أحياء الأعمال"
+
+msgid "Recommended stay areas"
+msgstr "مناطق مقترحة للإقامة"
+
+msgid "Choose an area first. It shapes the whole trip more than the hotel brand."
+msgstr "اختر منطقة تناسب رحلتك، ثم ابحث عن إقامتك فيها."
+
+msgid "Pick the area that matches your trip style, then continue to a trusted booking platform."
+msgstr "اختر منطقة تناسب رحلتك، ثم تابع الحجز عبر منصة خارجية."
+
+msgid "Booking platforms"
+msgstr "منصات الحجز"
+
+msgid "Browse stays"
+msgstr "استعرض أماكن الإقامة"
+
+msgid "Booking note"
+msgstr "ملاحظة عن الحجز"
+
+msgid "Cars & Rides in Riyadh"
+msgstr "التنقل في الرياض"
+
+msgid "External provider links"
+msgstr "روابط لمقدّمي خدمات خارجيين"
+
+msgid "Airport pickup"
+msgstr "التنقل من المطار"
+
+msgid "Daily rentals"
+msgstr "تأجير يومي"
+
+msgid "City rides"
+msgstr "التنقل داخل المدينة"
+
+msgid "Car rental companies"
+msgstr "شركات تأجير السيارات"
+
+msgid "Ride-hailing apps"
+msgstr "تطبيقات التنقل"
+
+msgid "Compare rental companies, airport pickup options, and ride-hailing apps before moving around the city."
+msgstr "قارن شركات التأجير وخيارات التنقل من المطار وتطبيقات التوصيل قبل الانطلاق."
+
+msgid "Page Not Found"
+msgstr "الصفحة غير موجودة"
+
+msgid "Browse Events"
+msgstr "استعرض الأماكن"
+
+msgid "The page you're looking for doesn't exist or has been moved."
+msgstr "الصفحة التي تبحث عنها غير موجودة أو نُقلت."
+
+msgid "Let's get you back to exploring Riyadh."
+msgstr "لنعد إلى اكتشاف الرياض."
+
+msgid "Culture"
+msgstr "ثقافة"
+
+msgid "Nature"
+msgstr "طبيعة"
+
+msgid "Shopping"
+msgstr "تسوّق"
+
+msgid "Events"
+msgstr "فعاليات"
+
+msgid "Family"
+msgstr "عائلة"
+
+msgid "Entertainment"
+msgstr "ترفيه"
+
+msgid "🌿 Nature"
+msgstr "طبيعة"
+
+msgid "🍽️ Food"
+msgstr "مطاعم"
+
+msgid "🎡 Entertainment"
+msgstr "ترفيه"
+
+msgid "🎫 Events"
+msgstr "فعاليات"
+
+msgid "🏛️ Culture"
+msgstr "ثقافة"
+
+msgid "👨‍👩‍👧 Family"
+msgstr "عائلة"
+
+msgid "🕌 Heritage"
+msgstr "تراث"
+
+msgid "🛍️ Shopping"
+msgstr "تسوّق"
+
+msgid "Open menu"
+msgstr "فتح القائمة"
+
+msgid "Close menu"
+msgstr "إغلاق القائمة"
+
+msgid "Notifications unavailable"
+msgstr "الإشعارات غير متاحة"
+
+msgid "Back to Home"
+msgstr "العودة للرئيسية"
+
+msgid "Back to Login"
+msgstr "العودة لتسجيل الدخول"
+
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+msgid "Email Address"
+msgstr "البريد الإلكتروني"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+msgid "Create Account"
+msgstr "إنشاء حساب"
+
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+msgid "Forgot password?"
+msgstr "نسيت كلمة المرور؟"
+
+msgid "Continue as Guest"
+msgstr "المتابعة كزائر"
+
+msgid "Send Reset Link"
+msgstr "إرسال رابط الاستعادة"
+
+msgid "Sending..."
+msgstr "جارٍ الإرسال..."
+
+msgid "Reset Password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Create a new password"
+msgstr "إنشاء كلمة مرور جديدة"
+
+msgid "Password must be at least 8 characters"
+msgstr "يجب ألا تقل كلمة المرور عن 8 أحرف"
+
+msgid "Passwords do not match"
+msgstr "كلمتا المرور غير متطابقتين"
+
+msgid "Enter the email associated with your account and we'll send an email with instructions to reset your password."
+msgstr "أدخل البريد الإلكتروني المرتبط بحسابك، وسنرسل لك تعليمات استعادة كلمة المرور."
+
+msgid "Riyadh"
+msgstr "الرياض"
+
+msgid "Olaya"
+msgstr "العليا"
+
+msgid "Diriyah"
+msgstr "الدرعية"
+
+msgid "Diplomatic Quarter"
+msgstr "حي السفارات"
+
+msgid "Boulevard & Hittin"
+msgstr "البوليفارد وحطين"
+
+msgid "KAFD & Al Aqiq"
+msgstr "كافد والعقيق"
+
+msgid "Riyadh Front & Airport Area"
+msgstr "واجهة الرياض ومنطقة المطار"
+
+msgid "Business & luxury"
+msgstr "أعمال وإقامة فاخرة"
+
+msgid "Business trips"
+msgstr "رحلات الأعمال"
+
+msgid "Short stays"
+msgstr "إقامة قصيرة"
+
+msgid "Choose faster"
+msgstr "اختر بسهولة"
+
+msgid "Food & shopping"
+msgstr "مطاعم وتسوّق"
+
+msgid "Business"
+msgstr "أعمال"
+
+msgid "Quiet walks"
+msgstr "تنزّه هادئ"
+
+msgid "Where should I stay?"
+msgstr "أين أقيم؟"
+
+msgid "Central, convenient, and close to cafes, malls, towers, and everyday city attractions."
+msgstr "موقع مركزي قريب من المقاهي ومراكز التسوق والأبراج ومعالم المدينة."
+
+msgid "Ideal for At-Turaif, Bujairi Terrace, heritage walks, and historic Riyadh views."
+msgstr "بالقرب من الطريف ومطل البجيري، للتنزّه بين معالم الرياض التاريخية."
+
+msgid "Stay near lively zones, evening experiences, shows, restaurants, and popular attractions."
+msgstr "إقامة بالقرب من مناطق الترفيه والعروض والمطاعم والوجهات الحيوية."
+
+msgid "A polished high-rise area with luxury hotels, offices, restaurants, and easy metro access."
+msgstr "منطقة أبراج تضم فنادق ومكاتب ومطاعم، مع سهولة الوصول للمترو."
+
+msgid "A calm green area with plazas, restaurants, walking paths, and a quieter atmosphere."
+msgstr "منطقة هادئة تضم ساحات ومطاعم ومسارات للمشي ومساحات خضراء."
+
+msgid "Convenient for early flights, quick stays, events, and access to the airport side."
+msgstr "مناسبة للرحلات الجوية المبكرة والإقامة القصيرة، بالقرب من المطار."
+
+msgid "Best for first-time visitors, restaurants, and shopping"
+msgstr "للزيارة الأولى والمطاعم والتسوّق"
+
+msgid "Best for heritage, culture, and calm evenings"
+msgstr "للتراث والثقافة والأمسيات الهادئة"
+
+msgid "Best for Riyadh Season, entertainment, and restaurants"
+msgstr "لموسم الرياض والترفيه والمطاعم"
+
+msgid "Best for business, premium stays, and modern Riyadh"
+msgstr "للأعمال والإقامة الفاخرة والرياض الحديثة"
+
+msgid "Best for quiet stays, walking paths, and restaurants"
+msgstr "للإقامة الهادئة والمشي والمطاعم"
+
+msgid "Best for short trips, flights, and conferences"
+msgstr "للزيارات القصيرة والرحلات الجوية والمؤتمرات"
+
+msgid "Continue your booking on a trusted external platform."
+msgstr "تابع الحجز عبر منصة خارجية."
+
+msgid "Browse hotels and stay options."
+msgstr "تصفّح الفنادق وخيارات الإقامة."
+
+msgid "Compare hotel options externally."
+msgstr "قارن الفنادق عبر منصة خارجية."
+
+msgid "Compare locations and hotel details."
+msgstr "قارن المواقع وتفاصيل الفنادق."
+
+msgid "Search hotels and travel bundles."
+msgstr "ابحث عن الفنادق وباقات السفر."
+
+msgid "Search hotels"
+msgstr "ابحث عن فنادق"
+
+msgid "Open Google Hotels"
+msgstr "افتح Google Hotels"
+
+msgid "Search Trip.com"
+msgstr "ابحث في Trip.com"
+
+msgid "Tizahab does not process hotel bookings directly. Availability, prices, and reservations are handled by external platforms."
+msgstr "لا ينفّذ Tizahab حجوزات الفنادق مباشرة. تتولّى المنصات الخارجية تأكيد الإتاحة والأسعار والحجز."
+
+msgid "Tizahab does not process car rental or ride bookings directly. You will be redirected to external providers."
+msgstr "لا ينفّذ Tizahab حجوزات السيارات أو التنقل مباشرة. ستنتقل إلى موقع مقدّم الخدمة."
+
+msgid "Open official providers, then choose the car and pickup point that fits your trip."
+msgstr "افتح مواقع مقدّمي الخدمات واختر السيارة ونقطة الاستلام المناسبة لرحلتك."
+
+msgid "Don't want to drive? Use an app for instant city rides."
+msgstr "تفضّل التنقل دون قيادة؟ اختر من تطبيقات التوصيل داخل المدينة."
+
+msgid "Ride-hailing & taxi services"
+msgstr "تطبيقات التنقل وسيارات الأجرة"
+
+msgid "Open app"
+msgstr "افتح التطبيق"
+
+msgid "Open Website"
+msgstr "افتح الموقع"
+
+msgid "Find Branches"
+msgstr "ابحث عن الفروع"
+
+msgid "Long-term rentals"
+msgstr "تأجير طويل الأمد"
+
+msgid "Luxury cars"
+msgstr "سيارات فاخرة"
+
+msgid "Eco-friendly"
+msgstr "خيارات صديقة للبيئة"
+
+msgid "Premium fleet"
+msgstr "سيارات فاخرة"
+
+msgid "Branch network"
+msgstr "شبكة فروع"
+
+msgid "Local branches"
+msgstr "فروع محلية"
+
+msgid "Flexible booking"
+msgstr "حجز مرن"
+
+msgid "Premium cars"
+msgstr "سيارات فاخرة"
+
+msgid "No driving"
+msgstr "التنقل دون قيادة"
+
+msgid "Available 24/7 across Riyadh."
+msgstr "خدمة تنقل متاحة في الرياض."
+
+msgid "Popular regional ride service."
+msgstr "خدمة تنقل إقليمية."
+
+msgid "Alternative city ride option."
+msgstr "خيار آخر للتنقل داخل المدينة."
+
+msgid "Saudi-based ride app."
+msgstr "تطبيق تنقل سعودي."
+
+msgid "Premium ride service."
+msgstr "خدمة تنقل بسيارات فاخرة."
+
+msgid "Good for airport pickup and wide vehicle choices"
+msgstr "للاستلام من المطار وخيارات السيارات المتنوعة"
+
+msgid "Good for app-based hourly and daily rentals"
+msgstr "للتأجير بالساعات أو بالأيام عبر التطبيق"
+
+msgid "Good for branch access across Riyadh"
+msgstr "للوصول إلى فروع في أنحاء الرياض"
+
+msgid "Good for competitive and longer rental plans"
+msgstr "للتأجير طويل الأمد"
+
+msgid "Good for full-service business district rentals"
+msgstr "للتأجير في أحياء الأعمال"
+
+msgid "Good for luxury and airport-based rentals"
+msgstr "للسيارات الفاخرة والاستلام من المطار"
+
+msgid "Good for modern fleets and eco-conscious trips"
+msgstr "لسيارات حديثة وخيارات صديقة للبيئة"
+
+msgid "Good for premium and business-friendly rentals"
+msgstr "للسيارات الفاخرة ورحلات الأعمال"
+
+msgid "Saudi-based company with branches across Riyadh and options for visitors with international licenses."
+msgstr "شركة سعودية بفروع في الرياض وخيارات للزوار حاملي الرخص الدولية."
+
+msgid "Saudi car rental service with flexible booking options and city pickup locations."
+msgstr "شركة سعودية لتأجير السيارات بخيارات حجز مرنة ونقاط استلام في المدينة."
+
+msgid "Local provider with competitive rates and practical long-term rental options."
+msgstr "مقدّم خدمة محلي بخيارات للتأجير طويل الأمد."
+
+msgid "Global rental network with premium vehicles and business travel options."
+msgstr "شبكة تأجير عالمية بخيارات سيارات فاخرة ورحلات الأعمال."
+
+msgid "German rental brand offering luxury and sports cars at King Khalid Airport."
+msgstr "شركة تأجير ألمانية توفر سيارات فاخرة ورياضية في مطار الملك خالد."
+
+msgid "Electric vehicle rental specialist in Saudi Arabia with practical city-driving options."
+msgstr "شركة متخصصة في تأجير السيارات الكهربائية في السعودية."
+
+msgid "International brand with economy, family, and premium rental options in Riyadh."
+msgstr "شركة عالمية بخيارات سيارات اقتصادية وعائلية وفاخرة في الرياض."
+
+msgid "International provider with full-service branches for business and city travel."
+msgstr "مقدّم خدمة عالمي بفروع لرحلات الأعمال والتنقل داخل المدينة."
+
+msgid "Your Guide to Riyadh"
+msgstr "دليلك إلى الرياض"
+
+msgid "Essential information"
+msgstr "معلومات تهمك"
+
+msgid "Cultural insights and practical tips for a respectful, enjoyable visit"
+msgstr "معلومات ثقافية ونصائح عملية لزيارة ممتعة"
+
+msgid "Prayer Times & Etiquette"
+msgstr "أوقات الصلاة وآدابها"
+
+msgid "5 daily prayers — Fajr, Dhuhr, Asr, Maghrib, Isha"
+msgstr "الصلوات الخمس: الفجر والظهر والعصر والمغرب والعشاء"
+
+msgid "Prayer call (Adhan) heard citywide — a normal part of daily life"
+msgstr "الأذان جزء من الحياة اليومية في المدينة"
+
+msgid "Short shop closures during prayer times are expected"
+msgstr "قد تغلق بعض المتاجر لفترة قصيرة أثناء الصلاة"
+
+msgid "Mosque visits: remove shoes, dress modestly"
+msgstr "عند زيارة المسجد: اخلع حذاءك والتزم باللباس المحتشم"
+
+msgid "Non-Muslims welcome in most mosques outside prayer times"
+msgstr "تحقّق من سياسة دخول الزوار في المسجد قبل الزيارة"
+
+msgid "Dress Code & Modesty"
+msgstr "اللباس والاحتشام"
+
+msgid "Men"
+msgstr "الرجال"
+
+msgid "Women"
+msgstr "النساء"
+
+msgid "Cover shoulders and knees in public"
+msgstr "اختر ملابس محتشمة تغطي الكتفين والركبتين"
+
+msgid "Shorts OK in malls and gyms"
+msgstr "تحقّق من متطلبات اللباس في وجهتك"
+
+msgid "Casual Western clothing acceptable"
+msgstr "ملابس يومية محتشمة"
+
+msgid "Avoid tank tops in public spaces"
+msgstr "تجنّب القمصان دون أكمام في الأماكن العامة"
+
+msgid "Abaya not required for tourists"
+msgstr "اختر ملابس محتشمة ومناسبة للمكان"
+
+msgid "Headscarf optional; required in some mosques"
+msgstr "تحقّق من متطلبات تغطية الرأس عند زيارة المساجد"
+
+msgid "More conservative dress at all religious sites."
+msgstr "التزم باللباس المناسب في المواقع الدينية."
+
+msgid "Cultural Do's & Don'ts"
+msgstr "آداب وعادات محلية"
+
+msgid "Do"
+msgstr "افعل"
+
+msgid "Don't"
+msgstr "تجنّب"
+
+msgid "Use right hand for eating, greeting, giving"
+msgstr "استخدم اليد اليمنى عند الأكل والتحية والعطاء"
+
+msgid "Ask permission before photographing people"
+msgstr "استأذن قبل تصوير الأشخاص"
+
+msgid "Respect prayer times"
+msgstr "احترم أوقات الصلاة"
+
+msgid "Public displays of affection"
+msgstr "المبالغة في إظهار العواطف في الأماكن العامة"
+
+msgid "Photograph government buildings"
+msgstr "تصوير المباني الحكومية"
+
+msgid "Eat or drink in public during Ramadan daylight"
+msgstr "الأكل والشرب علنًا في نهار رمضان"
+
+msgid "Money & Tipping Culture"
+msgstr "العملة والدفع والإكراميات"
+
+msgid "Currency:"
+msgstr "العملة:"
+
+msgid "Saudi Riyal (SAR)"
+msgstr "الريال السعودي (ر.س)"
+
+msgid "Tipping:"
+msgstr "الإكراميات:"
+
+msgid "10–15% optional; service charge often included"
+msgstr "اختيارية؛ تحقّق من الفاتورة لمعرفة رسوم الخدمة"
+
+msgid "Cards widely accepted across malls and restaurants"
+msgstr "الدفع بالبطاقات متاح في معظم المراكز والمطاعم"
+
+msgid "Cash useful for small vendors and markets"
+msgstr "قد تحتاج إلى النقد لدى الباعة والأسواق الصغيرة"
+
+msgid "ATMs abundant with English interface available"
+msgstr "تتوفر أجهزة صراف بواجهة عربية وإنجليزية"
+
+msgid "Small tips: round up or SAR 5–10 for good service"
+msgstr "الإكرامية اختيار شخصي عند الرضا عن الخدمة"
+
+msgid "Ramadan Considerations"
+msgstr "زيارة الرياض في رمضان"
+
+msgid "Seasonal"
+msgstr "موسمي"
+
+msgid "Eating and drinking in public restricted during daylight hours"
+msgstr "راعِ آداب الصيام في الأماكن العامة نهارًا"
+
+msgid "Business hours are shorter across the city"
+msgstr "قد تتغير أوقات العمل في رمضان"
+
+msgid "Night activities thrive — Ramadan tents and events"
+msgstr "تنشط الأمسيات والخيام والفعاليات الرمضانية"
+
+msgid "Respect fasting locals in shared public spaces"
+msgstr "راعِ الصائمين في الأماكن المشتركة"
+
+msgid "Iftar (sunset meal): vibrant dining experiences"
+msgstr "الإفطار عند الغروب فرصة لتجارب طعام متنوعة"
+
+msgid "Check Islamic calendar for current year dates."
+msgstr "تحقّق من التقويم الهجري لمعرفة مواعيد رمضان."
+
+msgid "Health & Safety"
+msgstr "الصحة والسلامة"
+
+msgid "Ambulance (emergency)"
+msgstr "الإسعاف (طوارئ)"
+
+msgid "SIM cards:"
+msgstr "شرائح الاتصال:"
+
+msgid "Available at the airport arrivals hall from STC, Mobily, and Zain. Purchase on arrival for instant connectivity."
+msgstr "تتوفر شرائح اتصال من مقدّمي الخدمة في المطار. تحقّق من الشروط والتغطية قبل الشراء."
+
+msgid "Excellent medical care; English-speaking doctors available"
+msgstr "تتوفر مرافق طبية؛ تحقّق من مقدّم الخدمة عند الحاجة"
+
+msgid "Pharmacies: green cross sign, widely available"
+msgstr "تتوفر الصيدليات في أنحاء المدينة"
+
+msgid "Tap water safe — bottled water preferred"
+msgstr "احرص على شرب مياه من مصدر موثوق"
+
+msgid "Travel insurance strongly recommended"
+msgstr "تحقّق من تغطية تأمين السفر قبل الرحلة"
+
+msgid "Weather & Packing Tips"
+msgstr "الطقس وتجهيز الحقيبة"
+
+msgid "Oct – Mar · 15–25°C"
+msgstr "أكتوبر – مارس · طقس ألطف عادةً"
+
+msgid "Apr – Sep · 35–45°C"
+msgstr "أبريل – سبتمبر · طقس حار عادةً"
+
+msgid "Best"
+msgstr "معتدل"
+
+msgid "Hot"
+msgstr "حار"
+
+msgid "Pack"
+msgstr "جهّز معك"
+
+msgid "Comfortable walking shoes"
+msgstr "حذاء مريح للمشي"
+
+msgid "Sunscreen SPF 50+"
+msgstr "واقي شمس"
+
+msgid "Hat and sunglasses"
+msgstr "قبعة ونظارات شمسية"
+
+msgid "Light, breathable layers"
+msgstr "ملابس خفيفة ومريحة"
+
+msgid "Reusable water bottle"
+msgstr "زجاجة ماء قابلة لإعادة الاستخدام"
+
+msgid "Modest clothing options"
+msgstr "ملابس مناسبة للأماكن العامة"
+
+msgid "Sun protection essential in summer months"
+msgstr "احرص على الحماية من الشمس في الصيف"
+
+msgid "Essential Arabic Phrases"
+msgstr "عبارات عربية مفيدة"
+
+msgid "Hello"
+msgstr "مرحبًا"
+
+msgid "Thank you"
+msgstr "شكرًا"
+
+msgid "You're welcome"
+msgstr "عفوًا"
+
+msgid "Please (m)"
+msgstr "من فضلك (للمذكر)"
+
+msgid "Please (f)"
+msgstr "من فضلك (للمؤنث)"
+
+msgid "Where is...?"
+msgstr "أين…؟"
+
+msgid "How much?"
+msgstr "بكم؟"
+
+msgid "Yes / No"
+msgstr "نعم / لا"
+
+msgid "Goodbye"
+msgstr "مع السلامة"
+
+msgid "Afwan"
+msgstr "عفوًا"
+
+msgid "Shukran"
+msgstr "شكرًا"
+
+msgid "Marhaba"
+msgstr "مرحبًا"
+
+msgid "Min fadlak"
+msgstr "من فضلك"
+
+msgid "Min fadlik"
+msgstr "من فضلكِ"
+
+msgid "Ayna...?"
+msgstr "أين…؟"
+
+msgid "Kam?"
+msgstr "بكم؟"
+
+msgid "Ma'a salama"
+msgstr "مع السلامة"
+
+msgid "Ready to explore?"
+msgstr "مستعد للاكتشاف؟"
+
+msgid "Your personalized daily plan is waiting — curated places, restaurants, and activities for your trip."
+msgstr "أنشئ خطتك الخاصة واكتشف أماكن ومطاعم وأنشطة تناسب رحلتك."
+
+msgid "View Daily Plan →"
+msgstr "عرض الخطة اليومية ←"
+
+msgid "My Plan"
+msgstr "خطتي"
+
+msgid "Map & Navigation"
+msgstr "الخريطة والاتجاهات"
+
+msgid "Explore Riyadh by area and open directions when you're ready."
+msgstr "استكشف الرياض حسب المنطقة وافتح الاتجاهات عندما تكون مستعدًا."
+
+msgid "Make it yours."
+msgstr "على طريقتك."
+
+msgid "🔐 Security"
+msgstr "الأمان"
+
+msgid "🔒 Privacy & Data"
+msgstr "الخصوصية والبيانات"
+
+msgid "ℹ️ About & Legal"
+msgstr "عن التطبيق والمعلومات القانونية"
+
+msgid "Notification delivery is not available in this version."
+msgstr "الإشعارات غير متاحة في هذا الإصدار."
+
+msgid "These preference switches are unavailable. Location permission is requested by your browser when you use the map."
+msgstr "خيارات التفضيلات هذه غير متاحة. يطلب المتصفح إذن الموقع عند استخدام الخريطة."
+
+msgid "Help us improve Tizahab by sharing anonymous usage data"
+msgstr "المساعدة في تحسين Tizahab عبر بيانات استخدام مجهولة"
+
+msgid "Share Usage Data"
+msgstr "مشاركة بيانات الاستخدام"
+
+msgid "Location Services"
+msgstr "خدمات الموقع"
+
+msgid "Push Notifications"
+msgstr "إشعارات الجهاز"
+
+msgid "Receive alerts on your device"
+msgstr "تلقي تنبيهات على جهازك"
+
+msgid "New Places Alert"
+msgstr "تنبيه الأماكن الجديدة"
+
+msgid "Discover new places in your favorite areas"
+msgstr "اكتشف أماكن في مناطقك المفضلة"
+
+msgid "Newsletter"
+msgstr "النشرة البريدية"
+
+msgid "Weekly highlights from Riyadh"
+msgstr "مختارات أسبوعية من الرياض"
+
+msgid "Get reminded 1 day before your trip starts"
+msgstr "تذكير قبل بداية الرحلة بيوم"
+
+msgid "Update Password"
+msgstr "تحديث كلمة المرور"
+
+msgid "Password updated successfully!"
+msgstr "تم تحديث كلمة المرور."
+
+msgid "Open Source Licenses — unavailable"
+msgstr "تراخيص المصادر المفتوحة — غير متاحة"
+
+msgid "Contact Support — unavailable"
+msgstr "التواصل مع الدعم — غير متاح"
+
+msgid "SAR"
+msgstr "ر.س"
+
+msgid "Overview"
+msgstr "نظرة عامة"
+
+msgid "Plan your visit"
+msgstr "خطّط لزيارتك"
+
+msgid "Entry Fee"
+msgstr "سعر الدخول"
+
+msgid "Opening Hours"
+msgstr "أوقات العمل"
+
+msgid "Check dates before visiting"
+msgstr "تحقّق من المواعيد قبل الزيارة"
+
+msgid "Check before visiting"
+msgstr "تحقّق قبل الزيارة"
+
+msgid "No description available. Check the official source before visiting."
+msgstr "لا يتوفر وصف للمكان. تحقّق من المصدر الرسمي قبل الزيارة."
+
+msgid "Confirm opening times and entry requirements with the venue."
+msgstr "تحقّق من مواعيد العمل ومتطلبات الدخول لدى الجهة المسؤولة عن المكان."
+
+msgid "Official Info ↗"
+msgstr "المعلومات الرسمية ↖"
+
+msgid "Open in Google Maps ↗"
+msgstr "افتح في خرائط Google ↖"
+
+msgid "Prices may change. Unknown prices do not mean free entry."
+msgstr "قد تتغير الأسعار. السعر غير المعروف لا يعني أن الدخول مجاني."
+
+msgid "Invalid email or password."
+msgstr "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+
+msgid "Please select at least one interest."
+msgstr "اختر اهتمامًا واحدًا على الأقل."
+
+msgid "Please select both start and end dates."
+msgstr "حدّد تاريخي البداية والنهاية."
+
+msgid "End date must be on or after start date."
+msgstr "يجب ألا يسبق تاريخ النهاية تاريخ البداية."
+
+msgid "Please select at least one age group."
+msgstr "اختر فئة عمرية واحدة على الأقل."
+
+msgid "Saving…"
+msgstr "جارٍ الحفظ…"
+
+msgid "Preferences saved! Building your plan…"
+msgstr "حُفظت تفضيلاتك! جارٍ إنشاء خطتك…"
+
+msgid "Your plan is ready!"
+msgstr "خطتك جاهزة!"
+
+msgid "Could not generate your plan. Please try again."
+msgstr "تعذّر إنشاء الخطة. حاول مجددًا."
+
+msgid "Please log in to save your preferences."
+msgstr "سجّل الدخول لحفظ تفضيلاتك."
+
+msgid "Could not save preferences. Please log in again."
+msgstr "تعذّر حفظ التفضيلات. سجّل الدخول مجددًا."
+
+msgid "Please log in to save favorites."
+msgstr "سجّل الدخول لحفظ الأماكن في المفضلة."
+
+msgid "No favorites match these filters. Save a place or clear your filters."
+msgstr "لا توجد أماكن مفضلة تطابق الفلاتر. احفظ مكانًا أو امسح الفلاتر."
+
+msgid "Unable to load your itinerary. Please reload to try again."
+msgstr "تعذّر تحميل خطتك. أعد تحميل الصفحة للمحاولة مجددًا."
+
+msgid "Plan updated!"
+msgstr "تم تحديث الخطة!"
+
+msgid "Upcoming"
+msgstr "قادمة"
+
+msgid "Past"
+msgstr "سابقة"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Price per place"
+msgstr "السعر لكل مكان"
+
+msgid "Min rating"
+msgstr "أقل تقييم"
+
+msgid "Unable to load profile"
+msgstr "تعذّر تحميل الحساب"
+
+msgid "Please reload to try again."
+msgstr "أعد تحميل الصفحة للمحاولة مجددًا."
+
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ. حاول مرة أخرى."
+
+msgid "Admin"
+msgstr "الإدارة"
+
+msgid "Admin Panel"
+msgstr "لوحة الإدارة"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "All Categories"
+msgstr "جميع التصنيفات"
+
+msgid "All-time total"
+msgstr "الإجمالي"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Delete Selected"
+msgstr "حذف المحدّد"
+
+msgid "Confirm Delete"
+msgstr "تأكيد الحذف"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Event Name"
+msgstr "اسم المكان"
+
+msgid "Place Name"
+msgstr "اسم المكان"
+
+msgid "Edit Event"
+msgstr "تعديل المكان"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid "Users"
+msgstr "المستخدمون"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Joined"
+msgstr "تاريخ الانضمام"
+
+msgid "Last Updated"
+msgstr "آخر تحديث"
+
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+msgid "Total Users"
+msgstr "إجمالي المستخدمين"
+
+msgid "Total Events"
+msgstr "إجمالي الأماكن"
+
+msgid "Most Popular Category"
+msgstr "أكثر التصنيفات اختيارًا"
+
+msgid "Category Breakdown"
+msgstr "توزيع التصنيفات"
+
+msgid "Recent Activity"
+msgstr "النشاط الأخير"
+
+msgid "Latest registrations & plans"
+msgstr "أحدث الحسابات والخطط"
+
+msgid "Top 5 Places"
+msgstr "أبرز خمسة أماكن"
+
+msgid "Most added to daily plans"
+msgstr "الأكثر إضافة للخطط اليومية"
+
+msgid "Rank"
+msgstr "الترتيب"
+
+msgid "Times Added"
+msgstr "مرات الإضافة"
+
+msgid "Events per category"
+msgstr "الأماكن حسب التصنيف"
+
+msgid "Manage Users →"
+msgstr "إدارة المستخدمين ←"
+
+msgid "View All Events →"
+msgstr "عرض جميع الأماكن ←"
+
+msgid "← home"
+msgstr "→ الرئيسية"
+
+msgid "⬇ Export CSV"
+msgstr "تصدير CSV"
+
+msgid "＋ Add New Place"
+msgstr "إضافة مكان"
+
+msgid "👥 User Management"
+msgstr "إدارة المستخدمين"
+
+msgid "📊 View Events"
+msgstr "عرض الأماكن"
+
+msgid "🔄 Refresh Data"
+msgstr "تحديث البيانات"
+
+msgid "Clear Cache"
+msgstr "مسح البيانات المؤقتة"
+
+msgid "Free up space by clearing temporary data"
+msgstr "حذف البيانات المؤقتة لتوفير مساحة"
+
+msgid "Collapse ↑"
+msgstr "طيّ ↑"
+
+msgid "Event Details"
+msgstr "تفاصيل المكان"
+
+msgid "Staff"
+msgstr "مشرف"
+
+msgid "User"
+msgstr "مستخدم"
+
+msgid "Search users"
+msgstr "ابحث عن مستخدم"
+
+msgid "Search events"
+msgstr "ابحث عن مكان"
+
+msgid "Filter by category"
+msgstr "التصفية حسب التصنيف"
+
+msgid "No users found"
+msgstr "لم نعثر على مستخدمين"
+
+msgid "No events found"
+msgstr "لم نعثر على أماكن"
+
+msgid "No events"
+msgstr "لا توجد أماكن"
+
+msgid "Riyadh, Saudi Arabia"
+msgstr "الرياض، السعودية"
+
+msgid "just now"
+msgstr "الآن"
+
+msgid "← Prev"
+msgstr "→ السابق"
+
+msgid "Edit"
+msgstr "تعديل"
+
+msgid "registered"
+msgstr "سجّل حسابًا"
+
+msgid "created a plan for"
+msgstr "أنشأ خطة ليوم"
+
+msgid "times"
+msgstr "مرات"
+
+msgid "Statistics"
+msgstr "الإحصاءات"
+
+msgid "Quick actions"
+msgstr "إجراءات سريعة"
+
+msgid "Category breakdown"
+msgstr "توزيع التصنيفات"
+
+msgid "Recent activity"
+msgstr "النشاط الأخير"
+
+msgid "Top places by plan count"
+msgstr "أبرز الأماكن في الخطط"
+
+msgid "User management"
+msgstr "إدارة المستخدمين"
+
+msgid "Events management"
+msgstr "إدارة الأماكن"
+
+msgid "Select all events"
+msgstr "تحديد جميع الأماكن"
+
+msgid "Access unavailable"
+msgstr "الوصول غير متاح"
+
+msgid "This page requires permission or is temporarily restricted. If you have made several requests, wait a moment before trying again."
+msgstr "تحتاج هذه الصفحة إلى صلاحية، أو أن الوصول إليها مقيّد مؤقتًا. إذا أرسلت عدة طلبات، انتظر قليلًا ثم حاول مجددًا."
+
+msgid "This reset link is invalid or has expired."
+msgstr "رابط استعادة كلمة المرور غير صالح أو انتهت صلاحيته."
+
+msgid "Request a new reset link"
+msgstr "اطلب رابط استعادة جديدًا"
+
+msgid "Too many attempts. Please try again later."
+msgstr "محاولات كثيرة. حاول مرة أخرى لاحقًا."
+
+msgid "Password cannot be empty."
+msgstr "أدخل كلمة المرور."
+
+msgid "Suggested times only. Confirm opening hours before visiting."
+msgstr "الأوقات مقترحة للتخطيط. تحقّق من مواعيد العمل قبل الزيارة."

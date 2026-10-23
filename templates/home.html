@@ -1,0 +1,6 @@
+{% extends "index.html" %}
+{% load static i18n %}
+{% block journey %}
+<section class="landing-section"><div class="section-heading"><div><span class="eyebrow">{% if LANGUAGE_CODE == 'ar' %}رحلتك المحفوظة{% else %}Pick up where you left off{% endif %}</span><h2>{% if LANGUAGE_CODE == 'ar' %}محطتك القادمة{% else %}Your next chapter{% endif %}</h2></div><a class="text-link" href="{% url 'profile' %}">{% if LANGUAGE_CODE == 'ar' %}الخطط المحفوظة{% else %}Saved plans{% endif %} ↗</a></div><div id="planCard" data-heritage-image="{% static 'images/masmak.webp' %}" class="home-plan-card"><p role="status" class="p-8 card skeleton-pulse">{% trans "Loading your journey..." %}</p></div></section>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/discovery.js' %}"></script><script src="{% static 'js/home.js' %}"></script>{% endblock %}

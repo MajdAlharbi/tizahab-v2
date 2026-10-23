@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      DJANGO_SETTINGS_MODULE: config.settings
+      # Dummy key for CI — never used with real data
+      DJANGO_SECRET_KEY: ci-only-secret-key-not-used-in-production-replace-with-secret
+      DJANGO_DEBUG: "False"
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Lint with flake8
+      run: flake8 accounts events daily_plan core --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: Format check with black
+      run: black --check accounts events daily_plan core
+
+    - name: Run Django checks
+      run: python manage.py check
+
+    - name: Run migrations
+      run: python manage.py migrate --noinput
+
+    - name: Collect static files
+      run: python manage.py collectstatic --noinput
+
+    - name: Run tests with coverage
+      run: pytest --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        files: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+
+    - name: Security check with bandit
+      run: bandit -r accounts events daily_plan core -ll -f json -o bandit-report.json
+
+    - name: Upload test results
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: |
+          htmlcov/
+          bandit-report.json
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build Docker image
+      run: |
+        docker build -t tizahab:${{ github.sha }} .
+        docker tag tizahab:${{ github.sha }} tizahab:latest

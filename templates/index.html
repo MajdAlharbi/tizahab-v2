@@ -1,0 +1,48 @@
+{% extends "dashboard_base.html" %}
+{% load static i18n %}
+{% block title %}{% if LANGUAGE_CODE == 'ar' %}اكتشف الرياض على طريقتك{% else %}Discover Riyadh, your way{% endif %} | Tizahab{% endblock %}
+{% block content %}
+<section class="landing-hero tourism-landing">
+  <div class="page-width">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">{% if LANGUAGE_CODE == 'ar' %}رحلتك تبدأ من هنا{% else %}Your next discovery starts here{% endif %}</span>
+        <h1 id="heroGreeting">{% if LANGUAGE_CODE == 'ar' %}خطّط لزيارتك.<br><em>واكتشف الرياض.</em>{% else %}Plan your visit.<br><em>Discover Riyadh.</em>{% endif %}</h1>
+        <p>{% if LANGUAGE_CODE == 'ar' %}من حكايات الدرعية إلى أفق المدينة، اكتشف أماكن تناسب اهتماماتك، واجمعها في رحلة تستمتع بكل تفاصيلها.{% else %}From historic streets to a city reaching for the sky. Find places that speak to you, and turn them into a journey worth taking.{% endif %}</p>
+        <div class="hero-actions"><a class="btn-primary" href="{% url 'trips' %}">{% if LANGUAGE_CODE == 'ar' %}خطّط لرحلتك{% else %}Plan your trip{% endif %}</a><a class="btn-outline" href="{% url 'events-page' %}">{% if LANGUAGE_CODE == 'ar' %}اكتشف الأماكن{% else %}Explore places{% endif %}<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div>
+      </div>
+      <figure class="hero-photo"><img src="{% static 'images/riyadh-skyline.webp' %}" alt="{% if LANGUAGE_CODE == 'ar' %}أفق الرياض وبرج المملكة عند المساء{% else %}Riyadh skyline and Kingdom Centre at dusk{% endif %}" width="1280" height="720" fetchpriority="high"><figcaption><i data-lucide="map-pin" aria-hidden="true"></i>{% if LANGUAGE_CODE == 'ar' %}العليا، الرياض{% else %}Al Olaya, Riyadh{% endif %}</figcaption></figure>
+    </div>
+    <form action="{% url 'events-page' %}" method="get" role="search" class="hero-search"><i data-lucide="search" aria-hidden="true"></i><label class="sr-only" for="discoverySearch">{% trans "Search places" %}</label><input id="discoverySearch" name="search" type="search" placeholder="{% if LANGUAGE_CODE == 'ar' %}أي مكان تودّ اكتشافه؟{% else %}Where will curiosity take you?{% endif %}"><button type="submit" class="btn-primary">{% trans "Search" %}</button></form>
+  </div>
+</section>
+<div class="page-width">
+  <section class="landing-section">
+    <div class="section-heading"><div><span class="eyebrow">{% if LANGUAGE_CODE == 'ar' %}مساحة للاكتشاف{% else %}A city of possibilities{% endif %}</span><h2>{% if LANGUAGE_CODE == 'ar' %}ما الذي يلهم رحلتك؟{% else %}Follow what moves you{% endif %}</h2></div><a class="text-link" href="{% url 'events-page' %}">{% if LANGUAGE_CODE == 'ar' %}كل الأماكن{% else %}All places{% endif %} ↗</a></div>
+    <div class="discovery-grid">
+      <a class="discovery-tile" href="{% url 'events-page' %}?category=heritage"><i data-lucide="landmark" aria-hidden="true"></i><div><strong>{% trans "Heritage" %}</strong><span>{% if LANGUAGE_CODE == 'ar' %}حكايات من قلب نجد{% else %}Stories rooted in Najd{% endif %}</span></div></a>
+      <a class="discovery-tile" href="{% url 'events-page' %}?category=food"><i data-lucide="utensils" aria-hidden="true"></i><div><strong>{% trans "Food" %}</strong><span>{% if LANGUAGE_CODE == 'ar' %}نكهات تستحق التجربة{% else %}A taste of the city{% endif %}</span></div></a>
+      <a class="discovery-tile" href="{% url 'events-page' %}?category=nature"><i data-lucide="trees" aria-hidden="true"></i><div><strong>{% trans "Nature" %}</strong><span>{% if LANGUAGE_CODE == 'ar' %}فسحة في الهواء الطلق{% else %}Room to breathe{% endif %}</span></div></a>
+      <a class="discovery-tile" href="{% url 'events-page' %}?category=entertainment"><i data-lucide="sparkles" aria-hidden="true"></i><div><strong>{% trans "Entertainment" %}</strong><span>{% if LANGUAGE_CODE == 'ar' %}لحظات تضيف ليومك{% else %}Make a day of it{% endif %}</span></div></a>
+    </div>
+  </section>
+  {% block journey %}{% endblock %}
+  <section class="landing-section">
+    <div class="section-heading"><div><span class="eyebrow">{% if LANGUAGE_CODE == 'ar' %}أماكن تنتظر زيارتك{% else %}Find your next stop{% endif %}</span><h2>{% if LANGUAGE_CODE == 'ar' %}قليل من إلهام الرياض{% else %}A little Riyadh inspiration{% endif %}</h2><p>{% if LANGUAGE_CODE == 'ar' %}اقتراحات من دليل الأماكن، لتبدأ الاستكشاف.{% else %}A few ideas from our destination directory to get you started.{% endif %}</p></div><a class="text-link" href="{% url 'events-page' %}">{% trans "Explore" %} ↗</a></div>
+    <div id="recommendedPlaces" class="destination-grid" aria-live="polite"><div class="h-80 rounded-2xl skeleton-pulse"></div><div class="h-80 rounded-2xl skeleton-pulse hidden sm:block"></div><div class="h-80 rounded-2xl skeleton-pulse hidden md:block"></div></div>
+  </section>
+  <section class="landing-section">
+    <div class="planning-banner"><img src="{% static 'images/masmak.webp' %}" alt="{% if LANGUAGE_CODE == 'ar' %}قصر المصمك في الرياض{% else %}Al Masmak Palace, Riyadh{% endif %}" width="1280" height="851" loading="lazy"><div class="planning-banner-copy"><span class="eyebrow">{% if LANGUAGE_CODE == 'ar' %}رحلة تشبهك{% else %}The route is yours{% endif %}</span><h2>{% if LANGUAGE_CODE == 'ar' %}أقل وقتًا في التخطيط.<br>أكثر وقتًا للاكتشاف.{% else %}Less planning.<br>More being there.{% endif %}</h2><p>{% if LANGUAGE_CODE == 'ar' %}حدّد اهتماماتك ومواعيدك، واحصل على خطة يمكنك تعديلها، وحفظها، والعودة إليها وقتما تشاء.{% else %}Choose your interests and dates. Get a day-by-day itinerary you can adjust, save, and come back to whenever you need.{% endif %}</p><a class="btn-primary" href="{% url 'trips' %}">{% if LANGUAGE_CODE == 'ar' %}ابدأ التخطيط{% else %}Build my itinerary{% endif %}<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div></div>
+  </section>
+  <section class="landing-section">
+    <div class="section-heading"><div><span class="eyebrow">{% if LANGUAGE_CODE == 'ar' %}من الفكرة إلى الرحلة{% else %}From an idea to an itinerary{% endif %}</span><h2>{% if LANGUAGE_CODE == 'ar' %}رحلتك في ثلاث خطوات{% else %}Your journey, in three steps{% endif %}</h2></div></div>
+    <div class="how-grid"><div class="how-step"><span>01 / {% trans "Explore" %}</span><h3>{% if LANGUAGE_CODE == 'ar' %}ابحث عمّا تحب{% else %}Find your kind of place{% endif %}</h3><p>{% if LANGUAGE_CODE == 'ar' %}تصفّح الأماكن حسب اهتماماتك ومناطق الرياض.{% else %}Browse places by your interests and the areas you want to explore.{% endif %}</p></div><div class="how-step"><span>02 / {% if LANGUAGE_CODE == 'ar' %}احفظ{% else %}Save{% endif %}</span><h3>{% if LANGUAGE_CODE == 'ar' %}اجمع اختياراتك{% else %}Keep the ones you love{% endif %}</h3><p>{% if LANGUAGE_CODE == 'ar' %}أضف الأماكن إلى المفضلة أو إلى يوم في خطتك.{% else %}Save favorites, or add a place straight to a day in your plan.{% endif %}</p></div><div class="how-step"><span>03 / {% if LANGUAGE_CODE == 'ar' %}خطّط{% else %}Plan{% endif %}</span><h3>{% if LANGUAGE_CODE == 'ar' %}اصنع مسارك{% else %}Make the route your own{% endif %}</h3><p>{% if LANGUAGE_CODE == 'ar' %}أنشئ خطة ليوم أو لعدة أيام، وعدّلها حسب رغبتك.{% else %}Create a single-day or multi-day plan, then fine-tune it as you go.{% endif %}</p></div></div>
+  </section>
+  <section class="landing-section"><div class="section-heading"><h2>{% if LANGUAGE_CODE == 'ar' %}قبل أن تبدأ{% else %}Before you set off{% endif %}</h2><a class="text-link" href="{% url 'travel_guide' %}">{% trans "Travel Guide" %} ↗</a></div><div class="faq-list">
+    <details><summary>{% if LANGUAGE_CODE == 'ar' %}هل أحتاج إلى حساب؟{% else %}Do I need an account?{% endif %}</summary><p>{% if LANGUAGE_CODE == 'ar' %}يمكنك تصفّح الأماكن دون حساب. أنشئ رحلتك وعدّلها كضيف. سجّل الدخول لحفظ الرحلات والمفضلة فقط.{% else %}You can browse destinations as a guest. Generate and edit a trip as a guest. Sign in only to save trips or favorites.{% endif %}</p></details>
+    <details><summary>{% if LANGUAGE_CODE == 'ar' %}هل يمكنني تعديل الخطة؟{% else %}Can I change my itinerary?{% endif %}</summary><p>{% if LANGUAGE_CODE == 'ar' %}نعم، يمكنك إضافة الأنشطة أو حذفها أو استبدالها لكل يوم.{% else %}Yes. Add, remove, or replace activities on each day of your trip.{% endif %}</p></details>
+    <details><summary>{% if LANGUAGE_CODE == 'ar' %}هل الأسعار ومواعيد الزيارة مضمونة؟{% else %}Are prices and opening times guaranteed?{% endif %}</summary><p>{% if LANGUAGE_CODE == 'ar' %}الأسعار المتاحة إرشادية، والسعر غير المعروف لا يعني أن المكان مجاني. تحقّق من المصدر الرسمي قبل الزيارة.{% else %}Available prices are indicative. An unknown price does not mean free entry. Check the official source before visiting.{% endif %}</p></details>
+  </div></section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/discovery.js' %}"></script>{% endblock %}

@@ -1,0 +1,402 @@
+{% extends "dashboard_base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Travel Guide" %} | Tizahab{% endblock %}
+
+{% block head %}
+<style>
+  .guide-card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .guide-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 lg:px-6 py-10 pb-16 space-y-10">
+
+  <!-- ── Hero ── -->
+  <section class="guide-tourism-hero relative overflow-hidden rounded-2xl py-12 sm:py-16 text-center"
+    style="background:var(--tz-deep)">
+    <img class="guide-tourism-photo" src="{% static 'images/places/at-turaif-960.webp' %}" alt="" width="960" height="640">
+    <div class="relative px-4 space-y-4">
+      <span class="inline-flex items-center gap-1.5 bg-white/20 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full">
+        {% trans "Essential information" %}
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white" >
+        {% trans "Your Guide to Riyadh" %}
+      </h1>
+      <p class="text-white/75 text-sm sm:text-base max-w-xl mx-auto">
+        {% trans "Cultural insights and practical tips for a respectful, enjoyable visit" %}
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 8 Cards Grid ── -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+    <!-- 1. Prayer Times & Etiquette -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="landmark" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <h2 class="text-base font-semibold text-gray-900">{% trans "Prayer Times & Etiquette" %}</h2>
+        <ul class="text-sm text-gray-600 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "5 daily prayers — Fajr, Dhuhr, Asr, Maghrib, Isha" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Prayer call (Adhan) heard citywide — a normal part of daily life" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Short shop closures during prayer times are expected" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Mosque visits: remove shoes, dress modestly" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Non-Muslims welcome in most mosques outside prayer times" %}</span>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 2. Dress Code & Modesty -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="shirt" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <h2 class="text-base font-semibold text-gray-900">{% trans "Dress Code & Modesty" %}</h2>
+        <div class="space-y-2.5">
+          <p class="text-xs font-semibold text-violet-700 uppercase tracking-wide">{% trans "Men" %}</p>
+          <ul class="text-sm text-gray-600 space-y-1.5">
+            <li class="flex items-start gap-2">
+              <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+              <span>{% trans "Casual Western clothing acceptable" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+              <span>{% trans "Shorts OK in malls and gyms" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+              <span>{% trans "Avoid tank tops in public spaces" %}</span>
+            </li>
+          </ul>
+          <p class="text-xs font-semibold text-violet-700 uppercase tracking-wide pt-1">{% trans "Women" %}</p>
+          <ul class="text-sm text-gray-600 space-y-1.5">
+            <li class="flex items-start gap-2">
+              <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+              <span>{% trans "Abaya not required for tourists" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+              <span>{% trans "Cover shoulders and knees in public" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+              <span>{% trans "Headscarf optional; required in some mosques" %}</span>
+            </li>
+          </ul>
+          <p class="text-xs text-gray-400 pt-1">{% trans "More conservative dress at all religious sites." %}</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Cultural Do's & Don'ts -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="handshake" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <h2 class="text-base font-semibold text-gray-900">{% trans "Cultural Do's & Don'ts" %}</h2>
+        <div class="space-y-2.5">
+          <p class="text-xs font-semibold text-green-700 uppercase tracking-wide">{% trans "Do" %}</p>
+          <ul class="text-sm text-gray-600 space-y-1.5">
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 shrink-0 mt-0.5 font-bold">✓</span>
+              <span>{% trans 'Greet with "As-salamu alaikum"' %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 shrink-0 mt-0.5 font-bold">✓</span>
+              <span>{% trans "Use right hand for eating, greeting, giving" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 shrink-0 mt-0.5 font-bold">✓</span>
+              <span>{% trans "Ask permission before photographing people" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 shrink-0 mt-0.5 font-bold">✓</span>
+              <span>{% trans "Respect prayer times" %}</span>
+            </li>
+          </ul>
+          <p class="text-xs font-semibold text-red-600 uppercase tracking-wide pt-1">{% trans "Don't" %}</p>
+          <ul class="text-sm text-gray-600 space-y-1.5">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 shrink-0 mt-0.5 font-bold">✕</span>
+              <span>{% trans "Public displays of affection" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 shrink-0 mt-0.5 font-bold">✕</span>
+              <span>{% trans "Photograph government buildings" %}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 shrink-0 mt-0.5 font-bold">✕</span>
+              <span>{% trans "Eat or drink in public during Ramadan daylight" %}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Essential Arabic Phrases -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="languages" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <h2 class="text-base font-semibold text-gray-900">{% trans "Essential Arabic Phrases" %}</h2>
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">{% trans "Marhaba" %}</span>
+            <span class="text-sm text-gray-500">{% trans "Hello" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">{% trans "Shukran" %}</span>
+            <span class="text-sm text-gray-500">{% trans "Thank you" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">{% trans "Min fadlak" %}</span>
+            <span class="text-sm text-gray-500">{% trans "Please (m)" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">{% trans "Min fadlik" %}</span>
+            <span class="text-sm text-gray-500">{% trans "Please (f)" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">{% trans "Ayna...?" %}</span>
+            <span class="text-sm text-gray-500">{% trans "Where is...?" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">{% trans "Kam?" %}</span>
+            <span class="text-sm text-gray-500">{% trans "How much?" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">Na'am / La</span>
+            <span class="text-sm text-gray-500">{% trans "Yes / No" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-gray-50">
+            <span class="text-sm font-medium text-violet-700">{% trans "Ma'a salama" %}</span>
+            <span class="text-sm text-gray-500">{% trans "Goodbye" %}</span>
+          </div>
+          <div class="flex items-center justify-between py-1">
+            <span class="text-sm font-medium text-violet-700">{% trans "Afwan" %}</span>
+            <span class="text-sm text-gray-500">{% trans "You're welcome" %}</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Money & Tipping -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="coins" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <h2 class="text-base font-semibold text-gray-900">{% trans "Money & Tipping Culture" %}</h2>
+        <ul class="text-sm text-gray-600 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>
+              <span class="font-medium text-gray-800">{% trans "Currency:" %}</span>
+              {% trans "Saudi Riyal (SAR)" %}
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>
+              <span class="font-medium text-gray-800">{% trans "Tipping:" %}</span>
+              {% trans "10–15% optional; service charge often included" %}
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Small tips: round up or SAR 5–10 for good service" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Cash useful for small vendors and markets" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Cards widely accepted across malls and restaurants" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "ATMs abundant with English interface available" %}</span>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 6. Weather & Packing -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="cloud-sun" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <h2 class="text-base font-semibold text-gray-900">{% trans "Weather & Packing Tips" %}</h2>
+        <div class="space-y-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-semibold shrink-0">{% trans "Best" %}</span>
+            <span class="text-sm text-gray-600">{% trans "Oct – Mar · 15–25°C" %}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-semibold shrink-0">{% trans "Hot" %}</span>
+            <span class="text-sm text-gray-600">{% trans "Apr – Sep · 35–45°C" %}</span>
+          </div>
+        </div>
+        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide">{% trans "Pack" %}</p>
+        <ul class="text-sm text-gray-600 space-y-1.5">
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Sunscreen SPF 50+" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Hat and sunglasses" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Light, breathable layers" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Modest clothing options" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Comfortable walking shoes" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Reusable water bottle" %}</span>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 7. Health & Safety -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="heart-pulse" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <h2 class="text-base font-semibold text-gray-900">{% trans "Health & Safety" %}</h2>
+        <ul class="text-sm text-gray-600 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Pharmacies: green cross sign, widely available" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Tap water safe — bottled water preferred" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Sun protection essential in summer months" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Excellent medical care; English-speaking doctors available" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Travel insurance strongly recommended" %}</span>
+          </li>
+        </ul>
+        <div class="flex items-center gap-3 bg-red-50 border border-red-100 rounded-xl px-3 py-2 mt-1">
+          <span class="text-red-600 font-bold text-lg leading-none">997</span>
+          <span class="text-xs text-red-700 font-medium">{% trans "Ambulance (emergency)" %}</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8. Ramadan Considerations -->
+    <article class="guide-card bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+      <div class="h-20 flex items-center justify-center shrink-0"
+        style="background:var(--color-primary-bg)">
+        <i data-lucide="moon" class="guide-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-5 space-y-3 flex-1">
+        <div class="flex items-start justify-between gap-2">
+          <h2 class="text-base font-semibold text-gray-900">{% trans "Ramadan Considerations" %}</h2>
+          <span class="inline-flex items-center text-xs bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full font-medium shrink-0 whitespace-nowrap">
+            {% trans "Seasonal" %}
+          </span>
+        </div>
+        <ul class="text-sm text-gray-600 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Eating and drinking in public restricted during daylight hours" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Business hours are shorter across the city" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Iftar (sunset meal): vibrant dining experiences" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Night activities thrive — Ramadan tents and events" %}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gray-300 shrink-0 mt-0.5">•</span>
+            <span>{% trans "Respect fasting locals in shared public spaces" %}</span>
+          </li>
+        </ul>
+        <p class="text-xs text-gray-400 pt-1">{% trans "Check Islamic calendar for current year dates." %}</p>
+      </div>
+    </article>
+
+  </div><!-- /cards grid -->
+
+  <!-- SIM Cards note -->
+  <aside class="bg-violet-50 rounded-2xl border border-violet-100 p-5">
+    <p class="text-sm text-violet-800 leading-relaxed">
+      <span class="font-semibold">{% trans "SIM cards:" %}</span>
+      {% trans "Available at the airport arrivals hall from STC, Mobily, and Zain. Purchase on arrival for instant connectivity." %}
+    </p>
+  </aside>
+
+  <!-- Bottom CTA -->
+  <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10 text-center space-y-4">
+    <div class="text-5xl" aria-hidden="true">📍</div>
+    <h2 class="text-xl sm:text-2xl font-bold text-gray-900" >
+      {% trans "Ready to explore?" %}
+    </h2>
+    <p class="text-sm text-gray-500 max-w-sm mx-auto">
+      {% trans "Your personalized daily plan is waiting — curated places, restaurants, and activities for your trip." %}
+    </p>
+    <a href="{% url 'trips' %}"
+      class="inline-flex items-center justify-center px-6 h-11 rounded-xl text-white text-sm font-semibold transition hover:opacity-90"
+      style="background-color:var(--tz-violet)">
+      {% if LANGUAGE_CODE == 'ar' %}خطّط لزيارتك ←{% else %}Plan My Visit →{% endif %}
+    </a>
+  </section>
+
+</div><!-- /container -->
+{% endblock %}

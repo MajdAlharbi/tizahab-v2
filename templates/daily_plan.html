@@ -1,0 +1,56 @@
+{% extends "dashboard_base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Daily Plan" %} | Tizahab{% endblock %}
+{% block content %}
+<div class="app-page pb-8">
+  <header class="page-intro"><span class="eyebrow">{% trans "The route is yours" %}</span><h1>{% trans "Your Riyadh Journey" %}</h1><p>{% trans "A little structure. Plenty of room to explore." %}</p><div class="flex flex-wrap gap-3 items-center mt-5"><span id="heroDate" class="text-sm text-gray-600"></span><span id="dayBadge" class="hidden text-xs font-semibold px-3 py-1.5 rounded-full bg-violet-50 text-violet-700"></span><span id="activityCount" class="text-sm text-gray-500"></span></div></header>
+  <div class="plan-layout"><div class="space-y-7 min-w-0">
+    <p class="text-sm text-gray-500 mb-4">{% trans "Suggested times only. Confirm opening hours before visiting." %}</p>
+<div id="dayTabs" class="flex gap-3 overflow-x-auto pb-3" aria-label="{% trans 'Trip days' %}"></div>
+    <p id="plan-message" role="status" aria-live="polite" class="hidden text-sm text-center rounded-xl p-3"></p>
+    <div id="skeleton" aria-label="{% trans 'Loading itinerary' %}" class="space-y-5"><div class="h-44 rounded-2xl skeleton-pulse"></div><div class="h-44 rounded-2xl skeleton-pulse"></div></div>
+    <div id="timeline" class="hidden space-y-7"></div>
+    <div id="emptyState" class="hidden text-center space-y-3"><i data-lucide="calendar-plus" class="mx-auto text-violet-600" aria-hidden="true"></i><h2 class="text-xl font-semibold">{% trans "No plan for this day yet" %}</h2><p class="text-sm text-gray-500">{% trans "Generate a personalized itinerary or add activities manually." %}</p><a class="text-link" href="{% url 'onboarding' %}">{% trans "Set your preferences" %} ↗</a></div>
+    <section id="mapSection" class="hidden"><div id="dailyPlanMap"></div></section>
+    <section id="routeNavigationCard" class="hidden card p-5 sm:p-6"><div class="flex flex-col sm:flex-row justify-between gap-4"><div><h2 class="text-base font-semibold">{% trans "Your route, ready to go" %}</h2><p class="text-sm text-gray-500 mt-1">{% trans "Directions open in Google Maps." %}</p></div><button id="openRouteBtn" type="button" class="btn-teal"><i data-lucide="navigation" aria-hidden="true"></i>{% trans "Open route" %}</button></div></section>
+  </div>
+  <aside class="plan-aside"><span class="eyebrow">{% trans "Make it your own" %}</span><h2>{% trans "A plan that fits you" %}</h2><p>{% trans "Add a stop, swap an activity, or start fresh for the selected day." %}</p><button id="generate-plan-btn" type="button" class="btn-primary w-full"><i data-lucide="refresh-cw" aria-hidden="true"></i><span id="generate-plan-btn-label">{% trans "Regenerate Day" %}</span></button><button id="add-activity-btn" type="button" class="btn-outline"><i data-lucide="plus" aria-hidden="true"></i>{% trans "Add Activity" %}</button><a class="btn-outline" href="{% url 'onboarding' %}"><i data-lucide="sliders-horizontal" aria-hidden="true"></i>{% trans "Edit Preferences" %}</a><details class="border-t mt-6 pt-5"><summary class="text-xs font-semibold cursor-pointer">{% trans "About your recommendations" %}</summary><p class="mb-0">{% if LANGUAGE_CODE == 'ar' %}قد تشمل الخطة وجبات ومعالم خارج اهتماماتك لتنويع اليوم. نراعي حدود السعر المعروف والتقييم؛ السعر غير المعروف لا يضمن الالتزام بالميزانية.{% else %}Plans may include meals and attractions outside your interests. Known price and rating limits still apply; unknown prices are not a budget guarantee.{% endif %}</p></details></aside>
+  </div>
+</div>
+<div id="addActivityModal" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/40" id="addActivityOverlay"></div>
+  <div class="absolute inset-x-0 bottom-0 sm:inset-0 flex items-end sm:items-center justify-center sm:p-4">
+    <div class="bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl w-full sm:max-w-md max-h-[80vh] flex flex-col">
+
+      <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <div>
+          <h3 class="text-base font-semibold text-gray-900">{% trans "Add Activity" %}</h3>
+          <p id="addActivityContextLabel" class="text-xs text-gray-400 mt-0.5">{% trans "Choose a place for your plan" %}</p>
+        </div>
+        <button id="closeAddActivity"
+          class="text-gray-400 hover:text-gray-600 transition rounded-lg p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="px-4 py-3">
+        <div class="flex items-center gap-2 h-10 rounded-xl border border-gray-200 px-3 bg-gray-50 focus-within:border-violet-400 transition">
+          <i data-lucide="search" class="w-4 h-4 text-gray-400 shrink-0"></i>
+          <input id="activitySearchInput"
+            class="flex-1 outline-none text-sm bg-transparent placeholder-gray-400"
+            placeholder="Search places…"
+            autocomplete="off">
+        </div>
+      </div>
+
+      <div id="activitySearchResults"
+        class="flex-1 overflow-y-auto px-4 pb-5 space-y-2 min-h-[200px]">
+        <p class="text-sm text-gray-400 text-center py-8">{% trans "Type to search for places" %}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/map.js' %}"></script><script src="{% static 'js/daily_plan_integration.js' %}"></script>{% endblock %}

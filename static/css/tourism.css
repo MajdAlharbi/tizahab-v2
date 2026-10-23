@@ -1,0 +1,162 @@
+/* Consumer travel experience. Brand values stay in design-system.css. Mobile first. */
+.tourism-experience { --travel-header: 68px; }
+.tourism-experience .header-inner { height:var(--travel-header); gap:12px; }
+.tourism-experience .brand-logo { width:140px; }
+.tourism-experience .page-width,.tourism-experience .app-page { width:min(calc(100% - 32px),var(--tz-content-max)); }
+.tourism-experience .header-actions { gap:8px; }
+.tourism-experience .header-actions .icon-button { width:44px; height:44px; }
+.tourism-experience .header-actions .avatar-button { display:none; }
+.tourism-experience .header-actions .header-signin,.tourism-experience #themeToggleBtn { display:none; }
+.tourism-experience .header-actions .language-form select { max-width:82px; padding-inline:4px; }
+.tourism-experience .icon-button { border-radius:50%; }
+.tourism-experience .utility-strip { display:none; }
+.mobile-travel-nav { position:fixed; inset-inline:0; bottom:0; z-index:40; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); padding:8px 8px max(8px,env(safe-area-inset-bottom)); border-top:1px solid var(--border-color); background:var(--card-bg); box-shadow:0 -4px 24px #39235108; }
+.mobile-travel-nav .nav-item { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:3px; min-height:48px; font-size:11px; }
+.mobile-travel-nav svg { width:22px; height:22px; }
+.mobile-travel-nav .travel-nav-plan svg { background:var(--tz-violet); color:white; padding:7px; width:36px; height:36px; margin-top:-10px; border-radius:12px; }
+.tourism-experience { padding-bottom:76px; }
+.tourism-experience .site-footer { margin-top:48px; }
+.tourism-experience .footer-top { align-items:flex-start; }
+.tourism-experience .page-intro h1 { font-size:clamp(30px,5vw,46px); }
+.tourism-experience .page-intro p { max-width:620px; }
+.tourism-experience .landing-section { padding-block:32px; }
+.tourism-experience .section-heading { gap:16px; margin-bottom:20px; align-items:center; }
+.tourism-experience .section-heading h2 { font-size:clamp(24px,3vw,34px); }
+.tourism-experience .eyebrow { font-size:11px; letter-spacing:.1em; }
+.tourism-landing { position:relative; overflow:hidden; background:var(--tz-deep); padding:0!important; }
+.tourism-landing .hero-grid { min-height:540px; display:flex; align-items:center; position:relative; padding-block:48px 100px; }
+.tourism-landing .hero-photo { position:absolute; inset-block:0; inset-inline:calc((100vw - 100%)/-2); height:auto; border-radius:0!important; }
+.tourism-landing .hero-photo img { object-position:60% center; }
+.tourism-landing .hero-photo::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#201b2ada,#201b2a60); }
+.tourism-landing .hero-copy { z-index:1; position:relative; max-width:580px; }
+.tourism-landing .hero-copy h1,.tourism-landing .hero-copy h1 em { color:white; font-size:clamp(40px,6vw,68px); }
+.tourism-landing .hero-copy>p { color:#FAF9FC; font-size:15px; max-width:450px; margin-block:20px 24px; }
+.tourism-landing .eyebrow { color:#FAF9FC; }
+.tourism-landing .hero-actions .btn-outline { background:var(--tz-paper); color:var(--tz-deep); }
+.tourism-landing .hero-photo figcaption { z-index:1; inset-inline:auto 16px; bottom:90px; background:#201b2acc; font-size:11px; }
+.tourism-landing .hero-search { position:relative; z-index:2; margin:-35px auto 20px; box-shadow:none; }
+.tourism-landing .hero-search .btn-primary { min-width:0; padding-inline:18px; }
+.tourism-landing .hero-search input { font-size:14px; }
+.tourism-experience .discovery-grid { gap:10px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.tourism-experience .discovery-tile { padding:16px 12px; gap:10px; }
+.tourism-experience .discovery-tile>svg { width:40px; height:40px; padding:10px; }
+.tourism-experience .discovery-tile span { display:none; }
+.tourism-experience .destination-card { border-radius:20px; }
+.tourism-experience .destination-card img { height:240px; }
+.tourism-experience .destination-card-content { padding:20px; }
+.tourism-experience .destination-card h3 { font-size:21px; }
+.tourism-experience .destination-image-fallback { position:relative; min-height:210px; background:var(--color-primary-bg); color:var(--tz-violet); }
+.tourism-experience .destination-image-fallback::after { content:""; position:absolute; width:100px; height:100px; border:1px solid var(--tz-lavender); border-radius:50%; opacity:.6; }
+.tourism-experience .destination-image-fallback svg { width:38px; height:38px; z-index:1; }
+.tourism-experience .planning-banner { border-radius:24px; }
+.tourism-experience .planning-banner img { height:250px; }
+.tourism-experience .planning-banner-copy { padding:28px; }
+.tourism-experience .planning-banner h2 { font-size:30px; }
+.tourism-experience .how-grid { gap:24px; }
+.explore-intro { position:relative; overflow:hidden; border-radius:24px; background:var(--tz-deep); padding:32px 24px; margin-bottom:24px; color:white; }
+.explore-intro>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 65%; }
+.explore-intro::after { content:""; position:absolute; inset:0; background:#201b2a99; }
+.explore-intro>div { position:relative; z-index:1; max-width:650px; }
+.explore-intro .eyebrow,.explore-intro h1,.explore-intro p { color:white!important; }
+.tourism-experience .explore-search { border-radius:14px; margin-block:24px 0; background:var(--card-bg); }
+.explore-filters { padding:0 0 8px; }
+.explore-filters .category-row { display:flex; flex-wrap:nowrap; overflow-x:auto; margin-inline:0; padding:4px 0 12px; scrollbar-width:thin; }
+.explore-filters .cat-pill { min-height:44px; white-space:nowrap; flex-shrink:0; }
+.tourism-experience .event-card { border-radius:20px!important; box-shadow:none; }
+.tourism-experience .event-card>div:first-child { height:230px!important; }
+.tourism-experience .event-card h3 { font-size:21px!important; line-height:1.4!important; }
+.tourism-experience .event-card>.p-4 { padding:20px; }
+.tourism-experience .event-card .text-xs { font-size:13px; }
+.tourism-experience .event-card .fav-btn { width:44px; height:44px; inset-inline-end:14px; top:14px; right:auto; }
+.tourism-experience .event-card .add-to-plan-btn,.tourism-experience .event-card .maps-link { min-height:46px; font-size:13px; }
+.discovery-error { grid-column:1/-1; display:grid; gap:16px; justify-items:start; padding:32px; border-radius:20px; background:var(--bg-secondary); }
+.discovery-error h3 { font-size:23px; font-weight:650; }
+#discoveryHighlights { padding-top:0; }
+#discoveryHighlights h2 { font-size:24px; }
+#trendingRow { scrollbar-width:thin; }
+#trendingRow>article { width:280px; min-width:280px; height:310px; }
+#trendingRow .fav-btn { width:44px; height:44px; color:var(--tz-deep); }
+#trendingRow .add-to-plan-btn,#trendingRow .maps-link { min-height:44px; }
+.featured-photo-shade { position:absolute; inset:0; background:linear-gradient(0deg,#201b2af2,#201b2ab8 45%,#201b2a00 82%); pointer-events:none; }
+.tourism-experience .detail-page { max-width:1200px; padding-inline:16px; }
+.tourism-experience .detail-photo { width:100%; height:300px; object-fit:cover; }
+.tourism-experience .detail-hero { border-radius:24px; }
+.tourism-experience .detail-hero h1 { font-size:clamp(29px,4vw,46px); font-weight:700; }
+.detail-photo-wrap { position:relative; background:var(--color-primary-bg); }
+.detail-photo-wrap .destination-image-fallback { min-height:270px; }
+.detail-columns { display:grid; gap:20px; margin-top:24px; }
+.detail-body { display:grid; gap:20px; }
+.detail-information { padding:24px; }
+.detail-information h2 { font-size:22px; font-weight:700; margin-bottom:18px; }
+.detail-information p { font-size:15px; line-height:1.9; }
+.detail-facts { display:grid; gap:22px; grid-template-columns:1fr 1fr; }
+.detail-facts dt { color:var(--text-secondary); font-size:13px; margin-bottom:5px; }
+.detail-facts dd { font-weight:600; font-size:14px; }
+.detail-bookmark { padding:24px; display:grid; gap:16px; background:var(--tz-sand); border-radius:20px; align-self:start; order:-1; }
+[data-theme=dark] .detail-bookmark { background:var(--bg-secondary); }
+.detail-bookmark .entry-price { font-size:27px; font-weight:700; }
+.detail-source-note { display:flex; gap:10px; color:var(--text-secondary); font-size:13px; margin-top:20px; padding-top:18px; border-top:1px solid var(--border-color); }
+.tourism-experience .profile-hero { background:var(--tz-sand); border:0; }
+[data-theme=dark] .tourism-experience .profile-hero { background:var(--bg-secondary); }
+.tourism-experience .profile-stats { gap:10px; }
+.tourism-experience .profile-stats>div { padding:16px 8px; box-shadow:none; }
+.tourism-experience .profile-stats .text-3xl:first-child { font-size:22px; }
+.tourism-experience .profile-stats .text-sm { font-size:12px; }
+.saved-trip-gallery { display:grid; gap:16px; grid-template-columns:1fr; }
+.saved-trip-card { position:relative; display:block; width:100%; border-radius:20px; overflow:hidden; border:1px solid var(--border-color); background:var(--card-bg); text-align:start; }
+.saved-trip-cover { height:145px; width:100%; object-fit:cover; }
+.saved-trip-copy { display:block; padding:18px; }
+.saved-trip-copy strong { display:block; font-size:19px; overflow-wrap:anywhere; }
+.saved-trip-copy span { display:block; color:var(--text-secondary); font-size:13px; margin-top:6px; }
+.saved-trip-card[aria-current=true] { border-color:var(--tz-violet); box-shadow:0 0 0 1px var(--tz-violet); }
+.auth-shell .auth-layout { min-height:100dvh; }
+.auth-shell .auth-toolbar { padding:20px; }
+.auth-shell .auth-main { padding:16px 24px 40px; }
+.auth-shell .auth-card { max-width:440px; }
+.auth-shell .auth-card h1 { font-size:32px; }
+.auth-mobile-scene { width:100%; height:120px; object-fit:cover; border-radius:18px; margin-bottom:24px; }
+.auth-shell .auth-input { min-height:52px; border-radius:12px; }
+.auth-shell .auth-card .btn-primary,.auth-shell .auth-card .btn-outline { min-height:52px; }
+.tourism-experience .preference-page { padding-top:24px; }
+.tourism-experience .preference-page .interest-card { min-height:110px; }
+.tourism-experience .guide-card { box-shadow:none; }
+.tourism-experience .guide-card:hover { transform:none; }
+.guide-tourism-hero { isolation:isolate; }
+.guide-tourism-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.4; }
+.profile-favorite-photo { height:210px; }
+.tourism-experience #favsGrid .profile-card { border-radius:20px; }
+.tourism-experience #favsGrid .profile-card button,.tourism-experience #favsGrid .profile-card a.h-9 { min-height:44px; min-width:44px; }
+.tourism-experience .photo-credits { font-size:11px; }
+.tourism-experience .photo-credits a { white-space:normal; }
+@media(min-width:640px) {
+  .saved-trip-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .explore-intro { padding:48px 36px; }
+  .tourism-experience .detail-photo { height:400px; }
+  .auth-mobile-scene { height:150px; }
+}
+@media(min-width:900px) {
+  .tourism-experience { --travel-header:80px; padding-bottom:0; }
+  .tourism-experience .header-actions .header-signin,.tourism-experience #themeToggleBtn { display:inline-flex; }
+  .tourism-experience .header-actions .avatar-button { display:flex; }
+  .tourism-experience .brand-logo { width:164px; }
+  .tourism-experience .page-width,.tourism-experience .app-page { width:min(calc(100% - 64px),var(--tz-content-max)); }
+  .mobile-travel-nav { display:none; }
+  .tourism-experience .desktop-nav { gap:24px; }
+  .tourism-experience .desktop-nav .nav-item[aria-current=page]::after { inset-block-end:-28px; }
+  .tourism-landing .hero-grid { min-height:590px; padding-block:70px 100px; }
+  .tourism-landing .hero-photo figcaption { bottom:18px; }
+  .tourism-landing:dir(rtl) .hero-photo::after { background:linear-gradient(-90deg,#201b2ada,#201b2a50); }
+  .tourism-experience .discovery-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .tourism-experience .discovery-tile { padding:22px; }
+  .tourism-experience .discovery-tile span { display:block; }
+  .tourism-experience .landing-section { padding-block:48px; }
+  .tourism-experience .planning-banner img { height:380px; }
+  .detail-columns { grid-template-columns:minmax(0,1fr) 320px; gap:28px; }
+  .detail-bookmark { position:sticky; top:104px; order:0; }
+  .auth-mobile-scene { display:none; }
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .tourism-experience .destination-card img,.tourism-experience .event-card img { transition:transform .2s ease; }
+  .tourism-experience .destination-card:hover img,.tourism-experience .event-card:hover img { transform:scale(1.025); }
+}
+@media(prefers-reduced-motion:reduce) { .tourism-experience * { animation:none!important; scroll-behavior:auto!important; } }

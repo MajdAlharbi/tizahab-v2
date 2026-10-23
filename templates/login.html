@@ -1,0 +1,74 @@
+{% extends "base_auth.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Login" %} | Tizahab{% endblock %}
+{% block content %}
+<div class="auth-tabs"><span aria-current="page" data-i18n="login">{% trans "Login" %}</span><a href="{% url 'signup' %}" data-i18n="createAccount">{% trans "Create Account" %}</a></div>
+<h1>{% if LANGUAGE_CODE == 'ar' %}أهلًا بعودتك.{% else %}Good to have you back.{% endif %}</h1><p class="auth-intro">{% if LANGUAGE_CODE == 'ar' %}أماكنك المفضلة ورحلاتك تنتظرك.{% else %}Your saved places and next adventures are waiting.{% endif %}</p>
+<form id="login-form" method="post" class="space-y-5">
+  {% csrf_token %}
+  <div><label for="login-email" class="block text-sm mb-2" data-i18n="emailAddress">{% trans "Email Address" %}</label><input id="login-email" class="auth-input" type="email" name="email" placeholder="your@email.com" autocomplete="email" required></div>
+  <div><label for="login-password" class="block text-sm mb-2" data-i18n="password">{% trans "Password" %}</label><input id="login-password" class="auth-input" type="password" name="password" autocomplete="current-password" required><div class="mt-3 text-end"><a class="text-link" href="{% url 'forgot_password' %}" data-i18n="forgotPassword">{% trans "Forgot password?" %}</a></div></div>
+  <p id="login-error" role="alert" aria-live="polite" class="hidden"></p>
+  <button id="login-btn" type="submit" class="btn-primary"><span id="login-btn-text" data-i18n="login">{% trans "Login" %}</span><span id="login-btn-spinner" class="hidden" data-i18n="loading">{% trans "Loading..." %}</span></button>
+  {% include "includes/social_login.html" %}
+  <a href="{% url 'index' %}" class="btn-outline w-full" data-i18n="continueGuest">{% trans "Continue as Guest" %}</a>
+</form>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/api.js' %}"></script>
+<script>
+  const form      = document.getElementById("login-form");
+  const errorBox  = document.getElementById("login-error");
+  const btn       = document.getElementById("login-btn");
+  const btnText   = document.getElementById("login-btn-text");
+  const btnSpinner = document.getElementById("login-btn-spinner");
+  const rawNextParam = new URLSearchParams(window.location.search).get("next");
+  const nextParam = safeInternalRedirect(rawNextParam);
+
+  function getLoginErrorMessage(err) {
+    const fromResponse =
+      typeof extractApiErrorMessage === "function"
+        ? extractApiErrorMessage(err?.responseData, "")
+        : "";
+    const fromError = typeof err?.message === "string" ? err.message.trim() : "";
+    if (fromResponse) return fromResponse;
+    if (fromError && !/^API error \d+$/i.test(fromError)) return fromError;
+    return "Something went wrong. Please try again.";
+  }
+
+  function setLoading(loading) {
+    if (btn) btn.disabled = loading;
+    if (btnText)    btnText.classList.toggle("hidden", loading);
+    if (btnSpinner) btnSpinner.classList.toggle("hidden", !loading);
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    errorBox.classList.add("hidden");
+    errorBox.textContent = "";
+    setLoading(true);
+
+    const email    = form.querySelector("input[name='email']").value;
+    const password = form.querySelector("input[name='password']").value;
+
+    try {
+      const data = await apiPost("/api/auth/login/", { email, password });
+      localStorage.setItem("access", data.access);
+      localStorage.setItem("refresh", data.refresh);
+
+      let isAdmin = false;
+      try { const user = await apiGet("/api/auth/me/"); isAdmin = user.can_manage_content || user.is_superuser; } catch { isAdmin = false; }
+
+      if (nextParam)      window.location.href = nextParam;
+      else if (isAdmin)   window.location.href = (document.documentElement.lang === "ar" ? "/ar" : "") + "/admin-panel/";
+      else                window.location.href = (document.documentElement.lang === "ar" ? "/ar" : "") + "/home/";
+    } catch (err) {
+      errorBox.textContent = getLoginErrorMessage(err);
+      errorBox.classList.remove("hidden");
+      setLoading(false);
+    }
+  });
+</script>
+{% endblock %}

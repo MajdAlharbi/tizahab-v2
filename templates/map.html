@@ -1,0 +1,104 @@
+{% extends "dashboard_base.html" %}
+{% load static i18n %}
+
+{% block title %}Map & Navigation | Tizahab{% endblock %}
+
+{% block head %}
+<style>
+  .map-mode-btn.active {
+    background: var(--tz-violet);
+    color: #fff;
+    border-color: var(--tz-violet);
+  }
+  .map-cat-pill.active {
+    background: var(--tz-violet) !important;
+    border-color: var(--tz-violet) !important;
+    color: #fff !important;
+  }
+  .map-area-card.active {
+    border-color: var(--tz-violet);
+    box-shadow: 0 8px 22px rgba(124, 58, 237, 0.12);
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="mapPageRoot" class="max-w-[1100px] mx-auto px-4 lg:px-6 py-8 pb-16 space-y-8">
+
+  <header class="space-y-2">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900" >
+      Map &amp; Navigation
+    </h1>
+    <p class="text-sm sm:text-base text-gray-500">
+      {% trans "Explore Riyadh by area and open directions when you're ready." %}
+    </p>
+  </header>
+
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-1 flex gap-1 max-w-md">
+    <button id="mapExploreTab" type="button"
+      class="map-mode-btn active flex-1 h-10 rounded-xl border border-transparent text-sm font-semibold transition">
+      {% trans "Explore Places" %}
+    </button>
+    <button id="mapPlanTab" type="button"
+      class="map-mode-btn flex-1 h-10 rounded-xl border border-transparent text-sm font-semibold text-gray-600 transition">
+      {% trans "My Plan" %}
+    </button>
+  </div>
+
+  <section id="mapExploreMode" class="space-y-7">
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-5 space-y-4">
+      <div class="flex items-center gap-3 h-11 rounded-xl border border-gray-200 bg-gray-50 px-3 focus-within:border-violet-400 transition">
+        <i data-lucide="search" class="w-4 h-4 text-gray-400 shrink-0"></i>
+        <input id="mapSearchInput" type="text"
+          class="flex-1 min-w-0 bg-transparent outline-none text-sm text-gray-800 placeholder-gray-400"
+          placeholder="Search places or areas..."
+          autocomplete="off">
+        <button id="mapClearSearchBtn" type="button"
+          class="hidden text-gray-400 hover:text-gray-600 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="overflow-x-auto no-scrollbar -mx-1 px-1">
+        <div id="mapCategoryPills" class="flex gap-2 w-max pb-1"></div>
+      </div>
+    </div>
+
+    <section class="space-y-4">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="text-xl font-bold text-gray-900" >
+          Riyadh Areas
+        </h2>
+        <span id="mapAreaCount" class="text-sm text-gray-400"></span>
+      </div>
+      <div id="mapAreasGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <section class="space-y-4">
+      <div class="flex items-center justify-between gap-3">
+        <h2 id="mapPlacesTitle" class="text-xl font-bold text-gray-900" >
+          {% trans "Places" %}
+        </h2>
+        <span id="mapPlacesCount" class="text-sm text-gray-400"></span>
+      </div>
+      <div id="mapPlacesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+    </section>
+  </section>
+
+  <section id="mapPlanMode" class="hidden space-y-6">
+    <div class="overflow-x-auto no-scrollbar -mx-4 px-4">
+      <div id="mapPlanDayTabs" class="flex gap-2 w-max min-w-full pb-1"></div>
+    </div>
+
+    <div id="mapPlanRoute" class="space-y-4"></div>
+    <div id="mapPlanActions" class="hidden"></div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/map.js' %}"></script>
+{% endblock %}

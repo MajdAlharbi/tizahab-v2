@@ -1,0 +1,9 @@
+{% load i18n %}
+<form action="{% url 'set_language' %}" method="post" class="language-form">
+  {% csrf_token %}<input type="hidden" name="next" value="{{ language_switch_next }}">
+  <label class="sr-only" for="siteLanguage">{% trans "Language" %}</label>
+  <select id="siteLanguage" name="language" aria-label="{% trans 'Language' %}" onchange="this.form.submit()">
+    <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+    <option value="ar" {% if LANGUAGE_CODE == 'ar' %}selected{% endif %}>العربية</option>
+  </select>
+</form>

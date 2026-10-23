@@ -1,0 +1,41 @@
+{% extends "base_auth.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Create Account" %} | Tizahab{% endblock %}
+{% block content %}
+<div class="auth-tabs"><a href="{% url 'login' %}" data-i18n="login">{% trans "Login" %}</a><span aria-current="page" data-i18n="createAccount">{% trans "Create Account" %}</span></div>
+<h1>{% if LANGUAGE_CODE == 'ar' %}الرياض بانتظارك.{% else %}Your Riyadh story starts here.{% endif %}</h1><p class="auth-intro">{% if LANGUAGE_CODE == 'ar' %}أنشئ حسابك واحفظ كل ما يلهم رحلتك.{% else %}Create an account to keep your discoveries in one place.{% endif %}</p>
+<form id="signup-form" method="post" class="space-y-4">
+  {% csrf_token %}
+  <div><label for="signup-name" class="block text-sm mb-2" data-i18n="fullName">{% trans "Full Name" %}</label><input id="signup-name" class="auth-input" type="text" name="full_name" autocomplete="name" required></div>
+  <div><label for="signup-email" class="block text-sm mb-2" data-i18n="emailAddress">{% trans "Email Address" %}</label><input id="signup-email" class="auth-input" type="email" name="email" placeholder="your@email.com" autocomplete="email" required></div>
+  <div><label for="signup-password" class="block text-sm mb-2" data-i18n="password">{% trans "Password" %}</label><input id="signup-password" class="auth-input" type="password" name="password" autocomplete="new-password" minlength="8" required><p class="text-xs auth-muted mt-2" data-i18n="passwordHelp">{% trans "Password must be at least 8 characters" %}</p></div>
+  <div><label for="signup-confirm" class="block text-sm mb-2" data-i18n="confirmPassword">{% trans "Confirm Password" %}</label><input id="signup-confirm" class="auth-input" type="password" name="password2" autocomplete="new-password" required><p id="confirm-mismatch" class="hidden mt-2 text-sm text-red-600" data-i18n="passwordMismatch">{% trans "Passwords do not match" %}</p></div>
+  <p id="signup-error" role="alert" aria-live="polite" class="hidden"></p>
+  <button id="signup-btn" type="submit" class="btn-primary"><span id="signup-btn-text" data-i18n="createAccount">{% trans "Create Account" %}</span><span id="signup-btn-spinner" class="hidden" data-i18n="loading">{% trans "Loading..." %}</span></button>
+  {% include "includes/social_login.html" %}
+  <a href="{% url 'index' %}" class="btn-outline w-full" data-i18n="continueGuest">{% trans "Continue as Guest" %}</a>
+</form>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/api.js' %}"></script>
+<script src="{% static 'js/auth.js' %}"></script>
+<script>
+  const pwdInput  = document.getElementById("signup-password");
+  const confInput = document.getElementById("signup-confirm");
+  const confMsg   = document.getElementById("confirm-mismatch");
+
+  if (confInput && pwdInput) {
+    confInput.addEventListener("input", function () {
+      const mismatch = this.value && this.value !== pwdInput.value;
+      this.style.borderColor = mismatch ? "#ef4444" : "";
+      if (confMsg) confMsg.classList.toggle("hidden", !mismatch);
+    });
+    pwdInput.addEventListener("input", function () {
+      if (!confInput.value) return;
+      const mismatch = confInput.value !== this.value;
+      confInput.style.borderColor = mismatch ? "#ef4444" : "";
+      if (confMsg) confMsg.classList.toggle("hidden", !mismatch);
+    });
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,3 @@
+{% extends "base_auth.html" %}{% load i18n %}
+{% block title %}{% trans "Page Not Found" %} | Tizahab{% endblock %}
+{% block content %}<span class="eyebrow">404</span><h1>{% trans "Page Not Found" %}</h1><p class="auth-intro">{% trans "The page you're looking for doesn't exist or has been moved." %} {% trans "Let's get you back to exploring Riyadh." %}</p><a class="btn-primary" href="{% url 'events-page' %}">{% trans "Browse Events" %}</a>{% endblock %}

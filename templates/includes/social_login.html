@@ -1,0 +1,8 @@
+{% load i18n %}
+{% if social_google_enabled or social_facebook_enabled %}
+<p class="text-xs auth-muted text-center pt-2">{% trans "Or continue with" %}</p>
+<div class="auth-social">
+  {% if social_google_enabled %}<a class="btn-outline" href="{% url 'social:begin' 'google-oauth2' %}">Google</a>{% endif %}
+  {% if social_facebook_enabled %}<a class="btn-outline" href="{% url 'social:begin' 'facebook' %}">Facebook</a>{% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,3 @@
+{% extends "base_auth.html" %}{% load i18n %}
+{% block title %}{% trans "Access unavailable" %} | Tizahab{% endblock %}
+{% block content %}<span class="eyebrow">403</span><h1>{% trans "Access unavailable" %}</h1><p class="auth-intro" role="alert">{% trans "This page requires permission or is temporarily restricted. If you have made several requests, wait a moment before trying again." %}</p><a class="btn-primary" href="{% url 'events-page' %}">{% trans "Browse Events" %}</a>{% endblock %}

@@ -1,0 +1,94 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# ========================
+# Virtual environments
+# ========================
+.venv/
+venv/
+
+# ========================
+# Environment variables
+# ========================
+.env
+.env.*
+!.env.example
+
+# ========================
+# Django
+# ========================
+db.sqlite3
+media/
+staticfiles/
+*.sqlite3
+*.journal
+*.sqlite3-journal
+*.sqlite
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+*.db-*
+*.dump
+*.backup
+
+# Private key material; public asset/font licenses remain tracked.
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ========================
+# Testing & coverage
+# ========================
+htmlcov/
+coverage.xml
+*.cover
+.coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+bandit-report.json
+
+# ========================
+# Tool / IDE folders
+# ========================
+.gemini/
+.vscode/
+.idea/
+.tmp-node/
+.claude/
+logs/
+
+# ========================
+# OS files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# Temp files
+# ========================
+*.tmp
+*.swp
+*.log
+
+tests/e2e_artifacts/
+
+# Disposable verification runtimes, database clusters, and browser artifacts.
+.verification/
+
+# Local reviews and handoff notes are not product documentation.
+/docs/review/
+/FINAL_HANDOFF.md
+/UAT_REPORT.md
+.backups/
+node_modules/

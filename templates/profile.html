@@ -1,0 +1,400 @@
+{% extends "dashboard_base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Profile" %} | Tizahab{% endblock %}
+
+{% block head %}
+<style>
+  .profile-card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .profile-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="app-page pb-8 space-y-8">
+
+  <header class="page-intro"><span class="eyebrow">{% trans "Your travel collection" %}</span><h1>{% trans "Saved for your next adventure" %}</h1></header>
+  <section class="profile-hero rounded-2xl"><div class="profile-info"><div id="profileAvatar" class="rounded-full flex items-center justify-center text-white font-bold shrink-0">TZ</div><div><h2 id="profileName" data-user-content class="text-2xl font-semibold">{% trans "Loading..." %}</h2><p id="profileEmail" data-user-content class="text-sm mt-1">{% trans "Loading profile…" %}</p></div><div class="profile-actions"><a href="{% url 'onboarding' %}" class="btn-outline">{% trans "Edit Preferences" %}</a><button id="logoutBtn" type="button" class="btn-outline">{% trans "Logout" %}</button></div></div></section>
+
+  <!-- ── Stats ── -->
+  <div class="profile-stats grid grid-cols-3 gap-5">
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center space-y-2">
+      <div class="text-3xl" aria-hidden="true">📅</div>
+      <p id="statPlans" class="text-3xl font-bold text-gray-900">—</p>
+      <p class="text-sm text-gray-500">{% if LANGUAGE_CODE == 'ar' %}رحلات محفوظة{% else %}Saved trips{% endif %}</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center space-y-2">
+      <div class="text-3xl" aria-hidden="true">❤️</div>
+      <p id="statFavs" class="text-3xl font-bold text-gray-900">0</p>
+      <p class="text-sm text-gray-500">{% trans "Saved Places" %}</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center space-y-2">
+      <div class="text-3xl" aria-hidden="true">🎯</div>
+      <p id="statCategories" class="text-3xl font-bold text-gray-900">—</p>
+      <p class="text-sm text-gray-500">{% trans "Interests" %}</p>
+    </div>
+  </div>
+
+  <!-- ── My Preferences ── -->
+  <section class="space-y-4">
+    <h2 class="text-xl font-bold text-gray-900" >{% trans "My Preferences" %}</h2>
+    <div id="prefChips" class="flex flex-wrap gap-2">
+      <span class="text-sm text-gray-400">{% trans "Loading preferences…" %}</span>
+    </div>
+  </section>
+
+  <section class="space-y-4"><div class="section-heading"><h2>{% if LANGUAGE_CODE == 'ar' %}رحلاتي المحفوظة{% else %}My saved trips{% endif %}</h2><a class="text-link" href="{% url 'trips' %}?view=saved">{% if LANGUAGE_CODE == 'ar' %}كل الرحلات ↗{% else %}All trips ↗{% endif %}</a></div><div id="namedTripsGrid" class="saved-trip-gallery" aria-live="polite"><p class="trip-note">{% trans "Loading..." %}</p></div></section>
+  <!-- ── Plans ── -->
+  <section class="space-y-4">
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-bold text-gray-900" >{% if LANGUAGE_CODE == 'ar' %}الخطط اليومية السابقة{% else %}Previous daily plans{% endif %}</h2>
+      <a href="{% url 'daily_plan' %}" class="text-sm text-violet-600 font-medium hover:underline">{% if LANGUAGE_CODE == 'ar' %}المخطط السابق ↗{% else %}Classic planner ↗{% endif %}</a>
+    </div>
+    <div id="pastPlansGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="h-44 rounded-2xl bg-white border border-gray-100 animate-pulse"></div>
+      <div class="h-44 rounded-2xl bg-white border border-gray-100 animate-pulse hidden sm:block"></div>
+      <div class="h-44 rounded-2xl bg-white border border-gray-100 animate-pulse hidden lg:block"></div>
+    </div>
+    <div id="plansLoadMoreWrap" class="hidden pt-2 text-center">
+      <button id="plansLoadMoreBtn" type="button"
+        class="h-11 px-8 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+        {% trans "Load More Plans" %}
+      </button>
+    </div>
+  </section>
+
+  <!-- ── My Favorites ── -->
+  <section class="space-y-4">
+    <h2 class="text-xl font-bold text-gray-900" >{% trans "My Favorites" %}</h2>
+    <div id="favsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <p id="favsEmpty" class="text-sm text-gray-400 col-span-full">
+        {% trans "No favorites yet." %}
+        <a href="/events/page/" class="text-violet-600 hover:underline">{% trans "Explore places to save them →" %}</a>
+      </p>
+    </div>
+    <div id="favsLoadMoreWrap" class="hidden pt-2 text-center">
+      <button id="favsLoadMoreBtn" type="button"
+        class="h-11 px-8 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+        {% trans "Load More Favorites" %}
+      </button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const CAT_META = {
+    culture:       { emoji: "🏛️", label: "Culture",       gradient: "var(--color-primary-bg)" },
+    heritage:      { emoji: "🕌", label: "Heritage",      gradient: "var(--color-primary-bg)" },
+    food:          { emoji: "🍽️", label: "Food",           gradient: "var(--color-primary-bg)" },
+    nature:        { emoji: "🌳", label: "Nature",         gradient: "var(--color-primary-bg)" },
+    shopping:      { emoji: "🛍️", label: "Shopping",      gradient: "var(--color-primary-bg)" },
+    events:        { emoji: "🎫", label: "Events",         gradient: "var(--color-primary-bg)" },
+    family:        { emoji: "👨‍👩‍👧", label: "Family",       gradient: "var(--color-primary-bg)" },
+    entertainment: { emoji: "🎭", label: "Entertainment", gradient: "var(--color-primary-bg)" },
+  };
+
+  function escapeHtml(v) {
+    return String(v ?? "")
+      .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+  }
+
+  function redirectToLogin() { window.location.href = "/login/"; }
+
+  /* ── User ── */
+  async function loadMe() {
+    if (!isLoggedIn()) { redirectToLogin(); return; }
+    try {
+      const data = await apiGet("/api/auth/me/");
+      if (!data) return;
+      const displayName =
+        data.full_name || (data.username && data.username !== data.email
+          ? data.username
+          : data.email ? data.email.split("@")[0] : "User");
+      const initials = Array.from(displayName.replace(/\s/g, "")).slice(0,2).join("").toUpperCase() || "TZ";
+      document.getElementById("profileName").textContent = displayName;
+      document.getElementById("profileEmail").textContent = "📧 " + (data.email || "");
+      document.getElementById("profileAvatar").textContent = initials;
+    } catch {
+      document.getElementById("profileName").textContent = "Unable to load profile";
+      document.getElementById("profileEmail").textContent = "Please reload to try again.";
+    }
+  }
+
+  /* ── Preferences ── */
+  async function loadPrefs() {
+    if (!isLoggedIn()) { redirectToLogin(); return; }
+    try {
+      const data = await apiGet("/api/auth/preferences/");
+      if (!data) return;
+      const chips = document.getElementById("prefChips");
+      const stat = document.getElementById("statCategories");
+      const interests = Array.isArray(data.interests) ? data.interests : [];
+
+      if (stat) stat.textContent = interests.length;
+
+      if (!interests.length) {
+        chips.innerHTML =
+          '<span class="text-sm text-gray-400">No preferences set. <a href="/onboarding/" class="text-violet-600 hover:underline">Set them now →</a></span>';
+        return;
+      }
+      chips.innerHTML = "";
+      interests.forEach((cat) => {
+        const m = CAT_META[cat] || { emoji: "🎯", label: cat, gradient: "var(--color-primary-bg)" };
+        const chip = document.createElement("span");
+        chip.className = "inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-gray-700";
+        chip.style.background = m.gradient;
+        chip.innerHTML = `<span class="select-none">${m.emoji}</span>${escapeHtml(m.label)}`;
+        chips.appendChild(chip);
+      });
+    } catch {
+      document.getElementById("prefChips").textContent = "Unable to load preferences. Please reload to try again.";
+    }
+  }
+
+  /* ── Plans ── */
+  let _allPlans = [], _plansShown = 0;
+  const PLANS_PAGE_SIZE = 6;
+
+  function buildPlanCard(plan) {
+    const evCount = Array.isArray(plan.events) ? plan.events.length : 0;
+    const today = new Date().toISOString().slice(0, 10);
+    const isUpcoming = plan.date && plan.date >= today;
+    const headerGradient = isUpcoming
+      ? "var(--color-primary-bg)"
+      : "var(--color-primary-bg)";
+    const badgeBg    = isUpcoming ? "var(--color-primary-bg)" : "#f9fafb";
+    const badgeColor = isUpcoming ? "var(--tz-violet)"  : "#6b7280";
+    const statusLabel = isUpcoming ? "Upcoming" : "Past";
+    const statusClass = isUpcoming ? "text-green-600" : "text-gray-400";
+    const preview = evCount
+      ? plan.events.slice(0, 2).map(e => escapeHtml(e.title || "Activity")).join(" · ") + (evCount > 2 ? " …" : "")
+      : "No activities";
+
+    const card = document.createElement("a");
+    card.href = "{% url 'daily_plan' %}?date=" + encodeURIComponent(plan.date);
+    card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition flex flex-col overflow-hidden profile-card";
+    card.innerHTML = `
+      <div class="h-2 shrink-0" style="background:${headerGradient}"></div>
+      <div class="p-5 flex flex-col gap-3 flex-1">
+        <div class="flex items-center justify-between gap-2">
+          <span class="inline-flex items-center h-7 px-3 rounded-full text-xs font-semibold shrink-0"
+            style="background:${badgeBg};color:${badgeColor}">
+            📅 ${escapeHtml(plan.date || "Plan")}
+          </span>
+          <span class="text-xs font-medium shrink-0 ${statusClass}">${statusLabel}</span>
+        </div>
+        <div class="flex-1">
+          <p class="text-sm font-semibold text-gray-800">${evCount} ${evCount === 1 ? "activity" : "activities"}</p>
+          <p class="text-xs text-gray-400 mt-0.5 truncate">${preview}</p>
+        </div>
+        <span class="h-9 w-full rounded-xl text-white text-sm font-semibold inline-flex items-center justify-center"
+          style="background-color:var(--tz-violet)">
+          View Plan
+        </span>
+      </div>
+    `;
+    return card;
+  }
+
+  function renderPlanCards(plans, append) {
+    const grid = document.getElementById("pastPlansGrid");
+    if (!grid) return;
+    if (!append) grid.innerHTML = "";
+    plans.forEach(p => grid.appendChild(buildPlanCard(p)));
+  }
+
+  function updatePlansLoadMore() {
+    const wrap = document.getElementById("plansLoadMoreWrap");
+    if (wrap) wrap.classList.toggle("hidden", _plansShown >= _allPlans.length);
+  }
+
+  async function loadNamedTrips() {
+    const grid=document.getElementById("namedTripsGrid"),ar=document.documentElement.lang==="ar",prefix=ar?"/ar":"";
+    try {
+      const trips=await apiGet("/api/trips/");document.getElementById("statPlans").textContent=trips.length;grid.replaceChildren();
+      if(!trips.length){const note=document.createElement("p");note.className="trip-note";note.textContent=ar?"رحلتك الأولى بانتظارك.":"Your first journey is waiting.";grid.append(note);}
+      for(const item of trips.slice(0,3)){
+        const card=document.createElement("a");card.href=`${prefix}/trips/?trip=${encodeURIComponent(item.id)}`;card.className="saved-trip-card";
+        const image=document.createElement("img");image.src=new URL("../riyadh-skyline.webp",TizahabPhotos.photo({title:"At-Turaif UNESCO Site"}).src).href;image.alt=ar?"أفق الرياض":"Riyadh skyline";image.className="saved-trip-cover";image.loading="lazy";image.width=640;image.height=360;
+        const copy=document.createElement("span");copy.className="saved-trip-copy";const title=document.createElement("strong");title.textContent=item.name;title.dataset.userContent="";title.dir="auto";const dates=document.createElement("span");dates.textContent=`${item.start_date} · ${formatTripDuration(item.duration)}`;copy.append(title,dates);card.append(image,copy);grid.append(card);hydrateTripCover(image,item);
+      }
+      if(!trips.length){const link=document.createElement("a");link.className="btn-primary";link.href=prefix+"/trips/";link.textContent=ar?"خطّط لرحلتك":"Plan your trip";grid.append(link);}
+    }catch{grid.textContent=ar?"تعذر تحميل الرحلات. أعد تحميل الصفحة للمحاولة مجددًا.":"Could not load trips. Reload to try again.";}
+  }
+
+  async function loadPlans() {
+    if (!isLoggedIn()) { redirectToLogin(); return; }
+    try {
+      const data = await apiGet("/api/daily-plan/");
+      if (!data) return;
+      _allPlans = Array.isArray(data) ? data : data.results || [];
+      const statEl = document.getElementById("statPlans");
+
+
+      if (!_allPlans.length) {
+        document.getElementById("pastPlansGrid").innerHTML =
+          '<p class="text-sm text-gray-400 col-span-full">No plans yet. <a href="{% url "daily_plan" %}" class="text-violet-600 hover:underline">Create your first plan →</a></p>';
+        return;
+      }
+      _plansShown = 0;
+      const first = _allPlans.slice(0, PLANS_PAGE_SIZE);
+      _plansShown = first.length;
+      renderPlanCards(first, false);
+      updatePlansLoadMore();
+    } catch {
+      document.getElementById("pastPlansGrid").innerHTML =
+        '<p role="alert" class="text-sm text-red-600 col-span-full">Unable to load plans. Please reload to try again.</p>';
+    }
+  }
+
+  function loadMorePlans() {
+    const next = _allPlans.slice(_plansShown, _plansShown + PLANS_PAGE_SIZE);
+    _plansShown += next.length;
+    renderPlanCards(next, true);
+    updatePlansLoadMore();
+  }
+
+  /* ── Favorites ── */
+  let _allFavs = [], _favsShown = 0;
+  const FAVS_PAGE_SIZE = 6;
+
+  function buildFavCard(fav) {
+    const ev = fav.event || fav;
+    const cat = ev.category || "events";
+    const m = CAT_META[cat] || { emoji: "🎯", label: cat, gradient: "var(--color-primary-bg)" };
+    const price = formatEventPrice(ev.price);
+    const rating = ev.rating ? "★ " + parseFloat(ev.rating).toFixed(1) : "";
+    const evId   = ev.id ?? "";
+
+    const card = document.createElement("div");
+    card.className = "bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col profile-card";
+    card.innerHTML = `
+      <div class="profile-favorite-photo flex items-center justify-center shrink-0" style="background:${m.gradient}">
+        ${getPlaceImage(ev,true) ? `<img src="${escapeHtml(getPlaceImage(ev,true))}" ${window.TizahabPhotos?.photo(ev) ? `srcset="${escapeHtml(TizahabPhotos.photo(ev).srcset)}" sizes="(min-width:900px) 32vw, (min-width:640px) 48vw, 100vw"` : ""} width="960" height="640" decoding="async" alt="${escapeHtml(ev.title || '')}" class="w-full h-full object-cover" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span hidden class="text-4xl">${m.emoji}</span>` : `<span class="text-4xl select-none">${m.emoji}</span>`}
+      </div>
+      <div class="p-4 flex flex-col gap-3 flex-1">
+        <div class="flex-1">
+          <a href="/events/page/${escapeHtml(String(evId))}/"
+            class="text-sm font-semibold text-gray-900 hover:text-violet-600 line-clamp-2 block leading-snug">
+            ${escapeHtml(ev.title || "Untitled")}
+          </a>
+          <div class="flex items-center gap-2 mt-1.5 flex-wrap">
+            <span class="text-xs px-2 py-0.5 rounded-full font-medium text-gray-600"
+              style="background:${m.gradient}">${escapeHtml(m.label)}</span>
+            ${rating ? `<span class="text-xs text-amber-500 font-medium">${escapeHtml(rating)}</span>` : ""}
+            <span class="text-xs text-gray-400">${escapeHtml(price)}</span>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-auto">
+          <a href="/events/page/${escapeHtml(String(evId))}/"
+            class="flex-1 h-9 rounded-xl bg-violet-600 text-white text-xs font-semibold hover:bg-violet-700 transition inline-flex items-center justify-center">
+            View Details
+          </a>
+          <button type="button" aria-label="Remove favorite" data-fav-remove="${escapeHtml(String(evId))}"
+            class="h-9 w-9 rounded-xl border border-red-100 text-red-400 text-sm hover:bg-red-50 hover:text-red-600 transition inline-flex items-center justify-center shrink-0">
+            ✕
+          </button>
+        </div>
+      </div>
+    `;
+    if (ev.is_active === false) {
+      const notice=document.createElement("p");notice.textContent=document.documentElement.lang === "ar" ? "المكان غير منشور حاليًا" : "No longer published";
+      card.querySelector(".p-4").prepend(notice);
+      card.querySelectorAll("a").forEach(link=>{link.removeAttribute("href");link.setAttribute("aria-disabled","true");});
+      const details=card.querySelector(".flex-1.h-9");if(details){details.textContent=document.documentElement.lang === "ar" ? "غير متاح" : "Unavailable";details.style.opacity="0.55";}
+    }
+    return card;
+  }
+
+  function renderFavCards(favs, append) {
+    const grid = document.getElementById("favsGrid");
+    if (!grid) return;
+    if (!append) grid.innerHTML = "";
+    favs.forEach(f => grid.appendChild(buildFavCard(f)));
+  }
+
+  function updateFavsLoadMore() {
+    const wrap = document.getElementById("favsLoadMoreWrap");
+    if (wrap) wrap.classList.toggle("hidden", _favsShown >= _allFavs.length);
+  }
+
+  async function loadFavs() {
+    if (!isLoggedIn()) { redirectToLogin(); return; }
+    const stat = document.getElementById("statFavs");
+    try {
+      const rows = await apiGet("/api/events/favorites/");
+      if (!rows) { if (stat) stat.textContent = "0"; return; }
+      _allFavs = Array.isArray(rows) ? rows : [];
+      if (stat) stat.textContent = _allFavs.length;
+
+      if (!_allFavs.length) {
+        document.getElementById("favsGrid").innerHTML =
+          '<p id="favsEmpty" class="text-sm text-gray-400 col-span-full">No favorites yet. <a href="/events/page/" class="text-violet-600 hover:underline">Explore places to save them →</a></p>';
+        return;
+      }
+      _favsShown = 0;
+      const first = _allFavs.slice(0, FAVS_PAGE_SIZE);
+      _favsShown = first.length;
+      renderFavCards(first, false);
+      updateFavsLoadMore();
+    } catch {
+      if (stat) stat.textContent = "—";
+      document.getElementById("favsGrid").innerHTML =
+        '<p role="alert" class="text-sm text-red-600 col-span-full">Unable to load favorites. Please reload to try again.</p>';
+    }
+  }
+
+  function loadMoreFavs() {
+    const next = _allFavs.slice(_favsShown, _favsShown + FAVS_PAGE_SIZE);
+    _favsShown += next.length;
+    renderFavCards(next, true);
+    updateFavsLoadMore();
+  }
+
+  /* ── Init ── */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!isLoggedIn()) { redirectToLogin(); return; }
+
+    loadMe();
+    loadPrefs();
+    loadPlans();
+    loadNamedTrips();
+    loadFavs();
+
+    document.getElementById("plansLoadMoreBtn")?.addEventListener("click", loadMorePlans);
+    document.getElementById("favsLoadMoreBtn")?.addEventListener("click", loadMoreFavs);
+
+    document.getElementById("logoutBtn")?.addEventListener("click", () => logout());
+
+    document.getElementById("favsGrid")?.addEventListener("click", async e => {
+      const btn = e.target.closest("[data-fav-remove]");
+      if (!btn) return;
+      const favId = btn.dataset.favRemove;
+      if (!favId) return;
+      btn.disabled = true;
+      btn.textContent = "…";
+      try {
+        await apiDelete(`/api/events/favorites/${favId}/`);
+        _allFavs = _allFavs.filter(f => String((f.event || f).id) !== String(favId));
+        _favsShown = Math.max(0, _favsShown - 1);
+        btn.closest(".profile-card")?.remove();
+        const stat = document.getElementById("statFavs");
+        if (stat) stat.textContent = _allFavs.length;
+        if (_favsShown === 0 && _allFavs.length) loadMoreFavs();
+        if (!document.querySelectorAll("#favsGrid .profile-card").length) {
+          document.getElementById("favsGrid").innerHTML =
+            '<p id="favsEmpty" class="text-sm text-gray-400 col-span-full">No favorites yet. <a href="/events/page/" class="text-violet-600 hover:underline">Explore places to save them →</a></p>';
+        }
+        updateFavsLoadMore();
+      } catch (error) {
+        btn.disabled = false;
+        btn.textContent = "✕";
+        window.alert(error.message || "Unable to remove favorite. Please try again.");
+      }
+    });
+  });
+</script>
+
+{% endblock %}

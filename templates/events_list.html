@@ -1,0 +1,59 @@
+{% extends "dashboard_base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Explore Riyadh" %} | Tizahab{% endblock %}
+{% block content %}
+<div class="app-page space-y-8 pb-8">
+  <section class="page-intro explore-intro"><img src="{% static 'images/riyadh-skyline.webp' %}" alt="" width="1280" height="720"><div><span class="eyebrow">{% if LANGUAGE_CODE == 'ar' %}قريب من فضولك{% else %}A city worth getting to know{% endif %}</span><h1>{% trans "Explore Riyadh" %}</h1><p>{% if LANGUAGE_CODE == 'ar' %}أزقّة تحمل الحكايات، ومساحات تتنفس فيها. أي مكان سيكون محطتك القادمة؟{% else %}Historic corners, open skies, and a little room for the unexpected. Where will your next stop be?{% endif %}</p><div class="explore-search" role="search"><i data-lucide="search" aria-hidden="true"></i><label class="sr-only" for="searchInput">{% trans "Search places" %}</label><input id="searchInput" type="search" placeholder="{% trans 'Search places, events...' %}" autocomplete="off"><button id="clearSearchBtn" type="button" class="hidden icon-button" aria-label="{% trans 'Clear search' %}">&times;</button></div></div></section>
+  <section class="explore-filters" aria-label="{% if LANGUAGE_CODE == 'ar' %}خيارات الاستكشاف{% else %}Discovery filters{% endif %}">
+    <div class="category-row" aria-label="{% trans 'Categories' %}">
+      <button type="button" data-cat="" aria-pressed="true" class="cat-pill active">{% trans "All Places" %}</button>
+      <button type="button" data-cat="culture" aria-pressed="false" class="cat-pill">{% trans "Culture" %}</button>
+      <button type="button" data-cat="heritage" aria-pressed="false" class="cat-pill">{% trans "Heritage" %}</button>
+      <button type="button" data-cat="food" aria-pressed="false" class="cat-pill">{% trans "Food" %}</button>
+      <button type="button" data-cat="nature" aria-pressed="false" class="cat-pill">{% trans "Nature" %}</button>
+      <button type="button" data-cat="shopping" aria-pressed="false" class="cat-pill">{% trans "Shopping" %}</button>
+      <button type="button" data-cat="events" aria-pressed="false" class="cat-pill">{% trans "Events" %}</button>
+      <button type="button" data-cat="family" aria-pressed="false" class="cat-pill">{% trans "Family" %}</button>
+      <button type="button" data-cat="entertainment" aria-pressed="false" class="cat-pill">{% trans "Entertainment" %}</button>
+    </div>
+    <div id="activeFilterBar" class="hidden filter-summary"><p id="activeFilterText"></p><button type="button" onclick="clearFilter()" class="text-link">{% trans "Clear all" %}</button></div>
+  </section>
+  <section id="discoveryHighlights" class="space-y-5 pt-8"><div class="flex justify-between gap-3 items-center"><div><span class="eyebrow">{% trans "More inspiration" %}</span><h2 class="text-2xl font-semibold">{% trans "Featured Places" %}</h2></div><div class="flex gap-2"><button id="trendPrev" class="icon-button" type="button" aria-label="{% trans 'Previous places' %}"><i data-lucide="chevron-left"></i></button><button id="trendNext" class="icon-button" type="button" aria-label="{% trans 'Next places' %}"><i data-lucide="chevron-right"></i></button></div></div><div id="trendingRow" class="flex gap-5 overflow-x-auto scroll-smooth pb-3"><div class="w-72 h-72 skeleton-pulse rounded-2xl"></div></div></section>
+  <details class="card p-5">
+    <summary class="font-semibold cursor-pointer">{% trans "Browse by area" %}</summary>
+    <div class="flex justify-between items-center gap-4 mt-4 mb-4"><p class="text-sm text-gray-500">{% trans "Find places across the city." %}</p><button id="clearAreaBtn" type="button" class="hidden btn-outline">{% trans "Clear Area" %}</button></div>
+    <div id="eventsAreasGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"><div class="h-48 rounded-2xl skeleton-pulse"></div></div>
+  </details>
+  <section id="allEventsSection" class="space-y-6" style="scroll-margin-top:110px">
+    <div class="flex items-center justify-between flex-wrap gap-4"><div><h2 id="placesHeading" class="text-2xl font-semibold">{% trans "Places" %}</h2><span id="countText" role="status" class="text-sm text-gray-500"></span></div><button id="prefBtn" type="button" aria-pressed="false" class="btn-outline"><span aria-hidden="true">♡</span>{% trans "Favorites only" %}</button></div>
+    <section id="favoritesSection" class="hidden space-y-4"><div class="flex justify-between"><h3 class="font-semibold">{% trans "Your Favorites" %}</h3><span id="favoritesCount" class="text-sm text-gray-500"></span></div><div id="favoritesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div></section>
+    <div id="eventsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite"><div class="h-80 skeleton-pulse rounded-2xl"></div><div class="h-80 skeleton-pulse rounded-2xl hidden sm:block"></div><div class="h-80 skeleton-pulse rounded-2xl hidden lg:block"></div></div>
+    <div id="loadMoreWrap" class="hidden text-center pt-3"><button id="loadMoreBtn" type="button" class="btn-primary">{% trans "Load More" %}</button></div>
+  </section>
+
+</div>
+<div id="planDayModal" class="fixed inset-0 z-50 hidden">
+  <div id="planDayOverlay" class="absolute inset-0 bg-black/40"></div>
+  <div class="absolute inset-x-0 bottom-0 sm:inset-0 flex items-end sm:items-center justify-center sm:p-4">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl w-full sm:max-w-md max-h-[82vh] overflow-hidden">
+      <div class="flex items-start justify-between gap-4 px-5 py-4 border-b border-gray-100">
+        <div>
+          <h3 class="text-base font-semibold text-gray-900">{% trans "Add to Plan" %}</h3>
+          <p id="planDayEventTitle" class="text-sm text-gray-500 mt-1 line-clamp-1">{% trans "Choose a day" %}</p>
+        </div>
+        <button id="closePlanDayModal" type="button"
+          class="text-gray-400 hover:text-gray-600 transition rounded-lg p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-4">
+        <p class="text-sm font-medium text-gray-700">{% trans "Which day should this place be added to?" %}</p>
+        <div id="planDayChoices" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+        <p id="planDayMessage" class="hidden text-sm rounded-xl px-4 py-3"></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/events.js' %}"></script>{% endblock %}

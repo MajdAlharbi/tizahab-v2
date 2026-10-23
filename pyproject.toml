@@ -1,0 +1,3 @@
+[tool.black]
+# Historical migrations remain frozen; new migrations should be formatted on creation.
+extend-exclude = '/migrations/'

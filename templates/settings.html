@@ -1,0 +1,435 @@
+{% extends "dashboard_base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Settings" %} | Tizahab{% endblock %}
+
+{% block head %}
+<style>
+  .tog {
+    width: 48px; height: 24px;
+    background: #e5e7eb;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.25s;
+    flex-shrink: 0;
+  }
+  .tog[aria-disabled="true"] { cursor: not-allowed; opacity: .4; }
+  .tog.on { background: var(--tz-violet); }
+  .tog::after {
+    content: '';
+    width: 20px; height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px; left: 2px;
+    transition: left 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .tog.on::after { left: 26px; }
+  .seg-btn { transition: all 0.18s ease; }
+  .seg-btn.active {
+    background: var(--tz-violet) !important;
+    color: white !important;
+    border-color: var(--tz-violet) !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<form id="settingsLanguageForm" action="{% url 'set_language' %}" method="post" hidden>
+  {% csrf_token %}
+  <input name="language" value="{{ LANGUAGE_CODE }}">
+  <input name="next" value="{{ language_switch_next }}">
+</form>
+<div class="max-w-3xl mx-auto px-4 lg:px-6 py-10 pb-28 space-y-6">
+
+  <!-- ── Hero ── -->
+  <section class="relative overflow-hidden rounded-2xl py-12 px-6 text-center"
+    style="background:var(--tz-deep)">
+    <div class="relative space-y-3">
+      <span class="inline-flex items-center bg-white/20 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full">
+        {% trans "App Configuration" %}
+      </span>
+      <h1 class="text-3xl font-bold text-white" >{% trans "Settings" %}</h1>
+      <p class="text-white/75 text-sm">{% trans "Manage your app preferences" %}</p>
+    </div>
+  </section>
+
+  <!-- ── Language & Region ── -->
+  <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
+    <h2 class="text-xl font-semibold text-gray-900">🌐 Language &amp; Region</h2>
+    <div class="space-y-2.5">
+      <p class="text-sm font-medium text-gray-700">{% trans "Display Language" %}</p>
+      <div class="flex gap-3">
+        <button type="button" id="langEn"
+          class="seg-btn flex-1 h-12 rounded-xl border-2 border-violet-600 text-sm font-semibold hover:bg-violet-50 transition">
+          English
+        </button>
+        <button type="button" id="langAr"
+          class="seg-btn flex-1 h-12 rounded-xl border-2 border-violet-600 text-sm font-semibold hover:bg-violet-50 transition">
+          العربية
+        </button>
+      </div>
+      <p class="text-xs text-gray-400">{% trans "App will reload to apply language change." %}</p>
+    </div>
+  </section>
+
+  <!-- ── Appearance ── -->
+  <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
+    <h2 class="text-xl font-semibold text-gray-900">{% trans "🎨 Appearance" %}</h2>
+    <div class="space-y-2.5">
+      <p class="text-sm font-medium text-gray-700">{% trans "Theme" %}</p>
+      <div class="flex gap-2.5">
+        <button type="button" id="themeLight"
+          class="seg-btn flex-1 h-11 rounded-xl border-2 border-violet-600 text-sm font-semibold hover:bg-violet-50 transition">
+          {% trans "☀️ Light" %}
+        </button>
+        <button type="button" id="themeDark"
+          class="seg-btn flex-1 h-11 rounded-xl border-2 border-violet-600 text-sm font-semibold hover:bg-violet-50 transition">
+          {% trans "🌙 Dark" %}
+        </button>
+        <button type="button" id="themeAuto"
+          class="seg-btn flex-1 h-11 rounded-xl border-2 border-violet-600 text-sm font-semibold hover:bg-violet-50 transition">
+          {% trans "🌗 Auto" %}
+        </button>
+      </div>
+      <p class="text-xs text-gray-400">{% trans "Affects readability across all pages." %}</p>
+    </div>
+  </section>
+
+  <!-- ── Notifications ── -->
+  <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <div class="px-6 py-5 border-b border-gray-100">
+      <h2 class="text-xl font-semibold text-gray-900">{% trans "🔔 Notifications" %}</h2>
+      <p class="text-sm text-gray-500 mt-0.5">{% trans "Notification delivery is not available in this version." %}</p>
+    </div>
+    <div class="divide-y divide-gray-100">
+
+      <div class="px-6 py-4 flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-800">{% trans "Push Notifications" %}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{% trans "Receive alerts on your device" %}</p>
+        </div>
+        <div class="tog" id="togPush" aria-label="{% trans 'Push Notifications' %}" data-key="notif_push" role="switch" aria-checked="false" aria-disabled="true"></div>
+      </div>
+
+      <div class="px-6 py-4 flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-800">{% trans "Plan Reminders" %}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{% trans "Get reminded 1 day before your trip starts" %}</p>
+        </div>
+        <div class="tog" id="togReminders" aria-label="{% trans 'Plan Reminders' %}" data-key="notif_reminders" role="switch" aria-checked="false" aria-disabled="true"></div>
+      </div>
+
+      <div class="px-6 py-4 flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-800">{% trans "New Places Alert" %}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{% trans "Discover new places in your favorite areas" %}</p>
+        </div>
+        <div class="tog" id="togNewPlaces" aria-label="{% trans 'New Places Alert' %}" data-key="notif_newplaces" role="switch" aria-checked="false" aria-disabled="true"></div>
+      </div>
+
+      <div class="px-6 py-4 flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-800">{% trans "App Updates" %}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{% trans "Be notified about new features" %}</p>
+        </div>
+        <div class="tog" id="togUpdates" aria-label="{% trans 'App Updates' %}" data-key="notif_updates" role="switch" aria-checked="false" aria-disabled="true"></div>
+      </div>
+
+      <div class="px-6 py-4 flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-800">{% trans "Newsletter" %}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{% trans "Weekly highlights from Riyadh" %}</p>
+        </div>
+        <div class="tog" id="togNewsletter" aria-label="{% trans 'Newsletter' %}" data-key="notif_newsletter" role="switch" aria-checked="false" aria-disabled="true"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Privacy & Data ── -->
+  <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <div class="px-6 py-5 border-b border-gray-100">
+      <h2 class="text-xl font-semibold text-gray-900">🔒 Privacy &amp; Data</h2>
+      <p class="text-sm text-gray-500 mt-0.5">{% trans "These preference switches are unavailable. Location permission is requested by your browser when you use the map." %}</p>
+    </div>
+    <div class="divide-y divide-gray-100">
+
+      <div class="px-6 py-4 flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-800">{% trans "Share Usage Data" %}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{% trans "Help us improve Tizahab by sharing anonymous usage data" %}</p>
+        </div>
+        <div class="tog" id="togUsage" aria-label="{% trans 'Share Usage Data' %}" data-key="privacy_usage" role="switch" aria-checked="false" aria-disabled="true"></div>
+      </div>
+
+      <div class="px-6 py-4 flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-800">{% trans "Location Services" %}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{% trans "Allow location access for better recommendations" %}</p>
+        </div>
+        <div class="tog" id="togLocation" aria-label="{% trans 'Location Services' %}" data-key="privacy_location" role="switch" aria-checked="false" aria-disabled="true"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Security ── -->
+  <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <div class="px-6 py-5 border-b border-gray-100">
+      <h2 class="text-xl font-semibold text-gray-900">{% trans "🔐 Security" %}</h2>
+    </div>
+    <div class="p-6 space-y-4">
+      <button type="button" id="togglePwdForm"
+        class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+        <span>{% trans "Change Password" %}</span>
+        <span id="pwdChevron" class="text-gray-400 transition-transform">▾</span>
+      </button>
+
+      <div id="pwdForm" class="hidden space-y-3">
+        <label for="currentPwd" class="block text-sm font-medium">{% trans "Current Password" %}</label>
+        <input id="currentPwd" autocomplete="current-password" type="password" placeholder="Current password"
+          class="w-full h-11 rounded-xl border border-gray-200 px-4 text-sm focus:outline-none focus:border-violet-400 transition bg-gray-50">
+        <label for="newPwd" class="block text-sm font-medium">{% trans "New Password" %}</label>
+        <input id="newPwd" autocomplete="new-password" type="password" placeholder="New password"
+          class="w-full h-11 rounded-xl border border-gray-200 px-4 text-sm focus:outline-none focus:border-violet-400 transition bg-gray-50">
+        <label for="confirmPwd" class="block text-sm font-medium">{% trans "Confirm New Password" %}</label>
+        <input id="confirmPwd" autocomplete="new-password" type="password" placeholder="Confirm new password"
+          class="w-full h-11 rounded-xl border border-gray-200 px-4 text-sm focus:outline-none focus:border-violet-400 transition bg-gray-50">
+        <p id="pwdError" class="hidden text-xs text-red-600 font-medium"></p>
+        <p id="pwdSuccess" class="hidden text-xs text-green-600 font-medium">{% trans "Password updated successfully!" %}</p>
+        <button type="button" id="submitPwd"
+          class="w-full h-11 rounded-xl text-white text-sm font-semibold transition hover:opacity-90"
+          style="background-color:var(--tz-violet)">
+          {% trans "Update Password" %}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About & Legal ── -->
+  <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-5">
+    <h2 class="text-xl font-semibold text-gray-900">ℹ️ About &amp; Legal</h2>
+
+    <div class="space-y-2 text-sm">
+      <div class="flex items-center justify-between py-2 border-b border-gray-50">
+        <span class="text-gray-500">{% trans "App Version" %}</span>
+        <span class="font-medium text-gray-800">V2 development</span>
+      </div>
+      <div class="flex items-center justify-between py-2 border-b border-gray-50">
+        <span class="text-gray-500">{% trans "Last Updated" %}</span>
+        <span class="font-medium text-gray-800">Development workspace</span>
+      </div>
+    </div>
+
+    <div class="space-y-1">
+      <a aria-disabled="true" title="Unavailable in this version"
+        class="flex items-center gap-2 py-2.5 text-sm text-violet-600 hover:text-violet-800 hover:underline transition">
+        <span>→</span> {% trans "Terms of Service — unavailable" %}
+      </a>
+      <a aria-disabled="true" title="Unavailable in this version"
+        class="flex items-center gap-2 py-2.5 text-sm text-violet-600 hover:text-violet-800 hover:underline transition">
+        <span>→</span> {% trans "Privacy Policy — unavailable" %}
+      </a>
+      <a aria-disabled="true" title="Unavailable in this version"
+        class="flex items-center gap-2 py-2.5 text-sm text-violet-600 hover:text-violet-800 hover:underline transition">
+        <span>→</span> {% trans "Open Source Licenses — unavailable" %}
+      </a>
+      <a aria-disabled="true" title="Unavailable in this version"
+        class="flex items-center gap-2 py-2.5 text-sm text-violet-600 hover:text-violet-800 hover:underline transition">
+        <span>→</span> {% trans "Contact Support — unavailable" %}
+      </a>
+    </div>
+
+    <p class="text-xs text-gray-400 pt-1">© 2025 Tizahab. Built for tourists in Riyadh.</p>
+  </section>
+
+  <div class="pb-8">
+    <button id="saveSettingsBtn" type="button" disabled
+      class="w-full h-12 rounded-xl text-white text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition"
+      style="background-color:var(--tz-violet)"
+      onmouseover="if(!this.disabled)this.style.backgroundColor='var(--tz-deep)'"
+      onmouseout="this.style.backgroundColor='var(--tz-violet)'">
+      {% trans "Save Settings" %}
+    </button>
+  </div>
+
+</div>
+<script>
+  let selectedLanguage = "{{ LANGUAGE_CODE|escapejs }}";
+
+  /* ── Dirty-state tracking ── */
+  let _savedState = null;
+  let _currentState = null;
+
+  function serializeState() {
+    const lang = selectedLanguage;
+    const theme = localStorage.getItem("tz_theme") || "light";
+    return JSON.stringify({ lang, theme });
+  }
+
+  function markDirty() {
+    _currentState = serializeState();
+    const btn = document.getElementById("saveSettingsBtn");
+    if (btn) {
+      const isDirty = _currentState !== _savedState;
+      btn.disabled = !isDirty;
+    }
+  }
+
+  /* ── Toast ── */
+  function showToast(msg, type) {
+    const t = document.createElement("div");
+    const bg = type === "error" ? "#ef4444" : "#22c55e";
+    t.style.cssText = `position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);
+      background:${bg};color:white;padding:10px 20px;border-radius:12px;
+      font-size:14px;font-weight:600;z-index:9999;opacity:0;transition:all .3s ease;
+      white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.15)`;
+    t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(() => { t.style.opacity = "1"; t.style.transform = "translateX(-50%) translateY(0)"; });
+    setTimeout(() => {
+      t.style.opacity = "0"; t.style.transform = "translateX(-50%) translateY(10px)";
+      setTimeout(() => t.remove(), 300);
+    }, 2500);
+  }
+
+  /* ── Language ── */
+  function setLang(lang) {
+    selectedLanguage = lang;
+    document.querySelectorAll("#langEn, #langAr").forEach(b => b.classList.remove("active"));
+    document.getElementById(lang === "en" ? "langEn" : "langAr")?.classList.add("active");
+    markDirty();
+  }
+
+  /* ── Theme ── */
+  function applyTheme(theme) {
+    let resolved = theme;
+    if (theme === "auto") {
+      resolved = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", resolved);
+    localStorage.setItem("tz_theme", theme);
+    ["themeLight", "themeDark", "themeAuto"].forEach(id => {
+      document.getElementById(id)?.classList.remove("active");
+    });
+    const map = { light: "themeLight", dark: "themeDark", auto: "themeAuto" };
+    document.getElementById(map[theme])?.classList.add("active");
+    markDirty();
+  }
+
+  /* ── Change Password ── */
+  function parseApiError(payload) {
+    if (!payload) return "Failed to update password.";
+    if (typeof payload.detail === "string") return payload.detail;
+    const first = Object.keys(payload)[0];
+    if (!first) return "Failed to update password.";
+    const val = payload[first];
+    return Array.isArray(val) ? String(val[0]) : typeof val === "string" ? val : "Failed to update password.";
+  }
+
+  /* ── Init ── */
+  document.addEventListener("DOMContentLoaded", () => {
+
+    /* Language buttons */
+    const savedLang = localStorage.getItem("tz_lang") || "en";
+    document.getElementById(savedLang === "en" ? "langEn" : "langAr")?.classList.add("active");
+    document.getElementById("langEn")?.addEventListener("click", () => setLang("en"));
+    document.getElementById("langAr")?.addEventListener("click", () => setLang("ar"));
+
+    /* Theme buttons */
+    const savedTheme = localStorage.getItem("tz_theme") || "light";
+    applyTheme(savedTheme);
+    document.getElementById("themeLight")?.addEventListener("click", () => applyTheme("light"));
+    document.getElementById("themeDark")?.addEventListener("click", () => applyTheme("dark"));
+    document.getElementById("themeAuto")?.addEventListener("click", () => applyTheme("auto"));
+
+    /* Change Password toggle */
+    document.getElementById("togglePwdForm")?.addEventListener("click", () => {
+      const form = document.getElementById("pwdForm");
+      const chevron = document.getElementById("pwdChevron");
+      form?.classList.toggle("hidden");
+      if (chevron) chevron.style.transform = form?.classList.contains("hidden") ? "" : "rotate(180deg)";
+    });
+
+    /* Change Password submit */
+    document.getElementById("submitPwd")?.addEventListener("click", async () => {
+      const current = document.getElementById("currentPwd").value;
+      const next    = document.getElementById("newPwd").value;
+      const confirm = document.getElementById("confirmPwd").value;
+      const errEl   = document.getElementById("pwdError");
+      const okEl    = document.getElementById("pwdSuccess");
+      errEl.classList.add("hidden");
+      okEl.classList.add("hidden");
+
+      if (!current || !next || !confirm) {
+        errEl.textContent = "Please fill in all password fields.";
+        errEl.classList.remove("hidden");
+        return;
+      }
+      if (next !== confirm) {
+        errEl.textContent = "New passwords do not match.";
+        errEl.classList.remove("hidden");
+        return;
+      }
+      if (!isLoggedIn()) { window.location.href = "/login/"; return; }
+
+      const btn = document.getElementById("submitPwd");
+      btn.disabled = true;
+      btn.textContent = "Updating…";
+      try {
+        await apiPost("/api/auth/change-password/", { current_password: current, new_password: next });
+        okEl.classList.remove("hidden");
+        document.getElementById("currentPwd").value = "";
+        document.getElementById("newPwd").value = "";
+        document.getElementById("confirmPwd").value = "";
+        setTimeout(() => document.getElementById("pwdForm")?.classList.add("hidden"), 2000);
+      } catch (err) {
+        errEl.textContent = parseApiError(err?.responseData);
+        errEl.classList.remove("hidden");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Update Password";
+      }
+    });
+
+    /* Save button */
+    _savedState = serializeState();
+    _currentState = _savedState;
+
+    document.getElementById("saveSettingsBtn")?.addEventListener("click", async () => {
+      const btn = document.getElementById("saveSettingsBtn");
+      btn.disabled = true;
+      btn.textContent = "Saving…";
+
+      try {
+        if (isLoggedIn()) {
+          const saved = await apiPut("/api/auth/preferences/", { preferred_language: selectedLanguage });
+          if (!saved) throw new Error("Unable to save settings. Please log in again.");
+        }
+      } catch (error) {
+        btn.disabled = false;
+        btn.textContent = "Save Settings";
+        showToast(error.message || "Unable to save settings. Please try again.", "error");
+        return;
+      }
+      if (selectedLanguage !== document.documentElement.lang) {
+        const form = document.getElementById("settingsLanguageForm");
+        form.elements.language.value = selectedLanguage;
+        form.submit();
+        return;
+      }
+
+      _savedState = serializeState();
+      _currentState = _savedState;
+      btn.disabled = true;
+      btn.textContent = "Save Settings";
+      showToast("Settings saved!", "success");
+    });
+
+  });
+</script>
+
+{% endblock %}

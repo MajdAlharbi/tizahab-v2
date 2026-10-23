@@ -1,0 +1,1057 @@
+{% extends "dashboard_base.html" %}{% load static i18n %}
+{% block title %}{% trans "Admin Panel" %} | Tizahab{% endblock %}
+{% block head %}<style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* Stat cards */
+    .stat-card {
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, .13);
+    }
+
+    /* Tables */
+    .adm-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .adm-table th {
+      background: var(--bg-secondary);
+      padding: 10px 14px;
+      text-align: start;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .adm-table td {
+      padding: 9px 14px;
+      font-size: 13px;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--bg-secondary);
+      vertical-align: middle;
+    }
+
+    .adm-table tbody tr:hover {
+      background: var(--bg-secondary);
+    }
+
+    /* Category badge */
+    .cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 7px 12px;
+      min-height: 36px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Action buttons */
+    .btn-edit {
+      padding: 7px 12px;
+      min-height: 36px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--color-primary-bg);
+      color: var(--tz-violet);
+      border: none;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-edit:hover {
+      background: var(--color-primary-bg);
+    }
+
+    .btn-del {
+      padding: 7px 12px;
+      min-height: 36px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      background: #fef2f2;
+      color: #dc2626;
+      border: none;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-del:hover {
+      background: #fee2e2;
+    }
+
+    /* Skeleton shimmer */
+    .shimmer {
+      background: linear-gradient(90deg, var(--border-color) 25%, var(--bg-secondary) 50%, var(--border-color) 75%);
+      background-size: 400% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: -100% 50%
+      }
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      min-width: 220px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      display: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+    }
+
+    #toast.success {
+      background: var(--bg-secondary);
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    #toast.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    /* Modals */
+    .modal-wrap {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .45);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-wrap.open {
+      display: flex;
+    }
+
+    /* Quick action buttons */
+    .quick-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: opacity .15s, transform .15s;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .quick-btn:hover {
+      opacity: .88;
+      transform: translateY(-1px);
+    }
+
+    /* Pagination */
+    .pg-btn {
+      padding: 5px 11px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .pg-btn:hover:not(:disabled) {
+      background: var(--bg-secondary);
+      border-color: var(--tz-violet);
+      color: var(--tz-violet);
+    }
+
+    .pg-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    .pg-btn.active {
+      background: var(--tz-violet);
+      color: white;
+      border-color: var(--tz-violet);
+    }
+
+    /* Table scroll wrapper */
+    .tbl-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>{% endblock %}
+{% block content %}
+  <div class="app-page space-y-6 pb-8">
+    <header class="page-intro flex flex-wrap justify-between gap-4"><div><span class="eyebrow">Tizahab</span><h1>{% trans "Admin Panel" %}</h1></div><div class="text-end text-sm text-gray-500"><div id="hdr-time"></div><div id="hdr-date"></div></div></header>
+
+    <!-- ── STATS ROW ─────────────────────────────────── -->
+    <section aria-label="Statistics">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <!-- Total Events -->
+        <div class="stat-card bg-white rounded-2xl p-6 shadow-sm border border-violet-100 relative overflow-hidden">
+          <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-[.07]"
+            style="background:radial-gradient(circle,var(--tz-violet),transparent)"></div>
+          <div class="text-3xl mb-2">📊</div>
+          <div id="stat-events" class="text-4xl font-bold text-violet-700 tabular-nums">--</div>
+          <div class="text-sm font-semibold text-gray-400 mt-1 mb-3">{% trans "Total Events" %}</div>
+          <a href="#events-section" class="text-xs font-semibold text-violet-600 hover:text-violet-800 transition">
+            {% trans "View All Events →" %}
+          </a>
+        </div>
+
+        <!-- Total Users -->
+        <div class="stat-card bg-white rounded-2xl p-6 shadow-sm border border-violet-100 relative overflow-hidden">
+          <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-[.07]"
+            style="background:radial-gradient(circle,var(--tz-violet),transparent)"></div>
+          <div class="text-3xl mb-2">👥</div>
+          <div id="stat-users" class="text-4xl font-bold text-violet-700 tabular-nums">--</div>
+          <div class="text-sm font-semibold text-gray-400 mt-1 mb-3">{% if request.user.is_superuser %}{% trans "Total Users" %}{% else %}{% if LANGUAGE_CODE == 'ar' %}بانتظار المراجعة{% else %}Pending reviews{% endif %}{% endif %}</div>
+          <a href="{% if request.user.is_superuser %}#users-section{% else %}#catalog-review{% endif %}" class="text-xs font-semibold text-violet-600 hover:text-violet-800 transition">
+            {% if request.user.is_superuser %}{% trans "Manage Users →" %}{% else %}{% if LANGUAGE_CODE == 'ar' %}مراجعة المحتوى ←{% else %}Review content →{% endif %}{% endif %}
+          </a>
+        </div>
+
+        <!-- Plans Created -->
+        <div class="stat-card bg-white rounded-2xl p-6 shadow-sm border border-emerald-100 relative overflow-hidden">
+          <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-[.07]"
+            style="background:radial-gradient(circle,var(--tz-teal),transparent)"></div>
+          <div class="text-3xl mb-2">📅</div>
+          <div id="stat-plans" class="text-4xl font-bold text-emerald-700 tabular-nums">--</div>
+          <div class="text-sm font-semibold text-gray-400 mt-1 mb-3">{% if LANGUAGE_CODE == 'ar' %}رحلات محفوظة{% else %}Saved trips{% endif %}</div>
+          <span class="text-xs font-semibold text-emerald-600">{% trans "All-time total" %}</span>
+        </div>
+
+        <!-- Popular Category -->
+        <div class="stat-card bg-white rounded-2xl p-6 shadow-sm border border-violet-100 relative overflow-hidden">
+          <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-[.07]"
+            style="background:radial-gradient(circle,var(--tz-violet),transparent)"></div>
+          <div id="pop-emoji" class="text-3xl mb-2">⭐</div>
+          <div id="pop-name" class="text-2xl font-bold text-violet-700">--</div>
+          <div class="text-sm font-semibold text-gray-400 mt-1 mb-1">{% if LANGUAGE_CODE == 'ar' %}أكبر تصنيف في الدليل{% else %}Largest catalogue category{% endif %}</div>
+          <div id="pop-pct" class="text-xs font-semibold text-violet-500">--% of events</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── QUICK ACTIONS ─────────────────────────────── -->
+    <section aria-label="Quick actions">
+      <div class="flex flex-wrap gap-3">
+        <a href="{% url 'admin:events_event_add' %}" class="quick-btn" style="background:var(--tz-violet);color:white;">
+          {% trans "＋ Add New Place" %}
+        </a>
+        <button onclick="scrollTo('events-section')" class="quick-btn" style="background:var(--color-primary-bg);color:var(--tz-violet);">
+          {% trans "📊 View Events" %}
+        </button>
+        {% if request.user.is_superuser %}<button onclick="scrollTo('users-section')" class="quick-btn" style="background:var(--bg-secondary);color:var(--tz-teal);">
+          {% trans "👥 User Management" %}
+        </button>{% endif %}
+        <button onclick="refreshAll()" id="refresh-btn" class="quick-btn"
+          style="background:#f8fafc;color:#475569;border:1px solid #e2e8f0;">
+          {% trans "🔄 Refresh Data" %}
+        </button>
+        <button onclick="exportCSV()" class="quick-btn"
+          style="background:var(--tz-sand);color:var(--tz-deep);border:1px solid var(--border-color);">
+          {% trans "⬇ Export CSV" %}
+        </button>
+      </div>
+    </section>
+
+    <!-- ── CATEGORY BREAKDOWN + RECENT ACTIVITY ──────── -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- Category Breakdown -->
+      <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100" aria-label="Category breakdown">
+        <h2 class="font-cantata text-lg text-slate-800 mb-1">{% trans "Category Breakdown" %}</h2>
+        <p class="text-xs text-gray-400 mb-4">{% trans "Events per category" %}</p>
+        <div id="cat-pills" class="flex flex-wrap gap-2">
+          <div class="shimmer h-8 w-32 rounded-full"></div>
+          <div class="shimmer h-8 w-28 rounded-full"></div>
+          <div class="shimmer h-8 w-24 rounded-full"></div>
+          <div class="shimmer h-8 w-36 rounded-full"></div>
+        </div>
+      </section>
+
+      <!-- Recent Activity -->
+      <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100" aria-label="Recent activity">
+        <h2 class="font-cantata text-lg text-slate-800 mb-1">{% trans "Recent Activity" %}</h2>
+        <p class="text-xs text-gray-400 mb-4">Latest registrations &amp; plans</p>
+        <div id="activity-list" class="space-y-2">
+          <div class="shimmer h-12 rounded-xl"></div>
+          <div class="shimmer h-12 rounded-xl"></div>
+          <div class="shimmer h-12 rounded-xl"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ── TOP 5 PLACES ───────────────────────────────── -->
+    <section class="bg-white rounded-2xl shadow-sm border border-gray-100" aria-label="Top places by plan count">
+      <div class="p-6 pb-3 flex items-center justify-between">
+        <div>
+          <h2 class="font-cantata text-lg text-slate-800">{% trans "Top 5 Places" %}</h2>
+          <p class="text-xs text-gray-400 mt-0.5">{% trans "Most added to daily plans" %}</p>
+        </div>
+      </div>
+      <div class="tbl-wrap px-4 pb-5">
+        <table class="adm-table">
+          <thead>
+            <tr>
+              <th class="w-12">{% trans "Rank" %}</th>
+              <th>{% trans "Place Name" %}</th>
+              <th>{% trans "Category" %}</th>
+              <th>{% trans "Times Added" %}</th>
+            </tr>
+          </thead>
+          <tbody id="top-places-body">
+            <tr>
+              <td colspan="4" class="text-center text-gray-400 py-6">{% trans "Loading…" %}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── USERS TABLE ────────────────────────────────── -->
+    {% if request.user.is_superuser %}<section id="users-section" class="bg-white rounded-2xl shadow-sm border border-gray-100"
+      aria-label="User management">
+      <div class="p-6 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="font-cantata text-lg text-slate-800">{% trans "Users" %}</h2>
+          <p id="users-meta" class="text-xs text-gray-400 mt-0.5">{% trans "Loading…" %}</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <input id="user-search" type="search" placeholder="Search users…" aria-label="Search users" class="h-9 rounded-xl border border-gray-200 px-3 text-sm focus:outline-none
+                      focus:border-violet-400 w-48">
+          <button onclick="toggleUsers()" id="users-toggle" class="text-sm font-semibold text-violet-600 hover:text-violet-800 transition
+                       whitespace-nowrap">
+            {% trans "Collapse ↑" %}
+          </button>
+        </div>
+      </div>
+      <div id="users-body">
+        <div class="tbl-wrap px-4">
+          <table class="adm-table">
+            <thead>
+              <tr>
+                <th>{% trans "Email" %}</th>
+                <th>{% trans "Username" %}</th>
+                <th>{% trans "Joined" %}</th>
+                <th>{% trans "Plans" %}</th>
+                <th>{% trans "Role" %}</th>
+                <th>{% trans "Actions" %}</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <tr>
+                <td colspan="6" class="text-center text-gray-400 py-6">{% trans "Loading…" %}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="users-pg" class="flex items-center justify-between px-6 py-3"></div>
+      </div>
+    </section>
+
+    {% endif %}
+    <section class="card p-6 space-y-5" id="catalog-review">
+      <h2>{% if LANGUAGE_CODE == 'ar' %}مراجعة المحتوى والمصادر{% else %}Content review and sources{% endif %}</h2>
+      <p>{% if LANGUAGE_CODE == 'ar' %}لا تنشر المزامنة تغييرات المحتوى تلقائيًا. راجع المصدر والحقائق قبل الموافقة. القيم المجهولة من المصدر لا تمحو المعلومات المعروفة؛ مسحها يتطلب تحريرًا يدويًا.{% else %}Sync does not automatically publish content changes. Check sources and facts before approval. Unknown source fields preserve existing known values; clear them through manual editing.{% endif %}</p>
+      <p id="catalogStatus" role="status" aria-live="polite"></p>
+      <div id="catalogSources" class="grid gap-4 sm:grid-cols-2"></div>
+      <h3 id="reviewCount"></h3><div id="reviewQueue" class="space-y-4"></div>
+      <details><summary>{% if LANGUAGE_CODE == 'ar' %}سجل تغييرات المحتوى{% else %}Content audit log{% endif %}</summary><div id="contentAudit" class="py-4"></div></details>
+    </section>
+    <dialog id="catalogDecision" class="card p-6" style="max-width:520px;width:calc(100% - 2rem)"><form method="dialog"><p id="catalogDecisionText" class="mb-5"></p><div class="flex gap-3"><button class="btn-outline" value="cancel">{% if LANGUAGE_CODE == 'ar' %}إلغاء{% else %}Cancel{% endif %}</button><button class="btn-primary" value="confirm">{% if LANGUAGE_CODE == 'ar' %}تأكيد{% else %}Confirm{% endif %}</button></div></form></dialog>
+    <!-- ── EVENTS TABLE ───────────────────────────────── -->
+    <section id="events-section" class="bg-white rounded-2xl shadow-sm border border-gray-100"
+      aria-label="Events management">
+      <div class="p-6 pb-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="font-cantata text-lg text-slate-800">{% trans "Places" %}</h2>
+            <p id="events-meta" class="text-xs text-gray-400 mt-0.5">{% trans "Loading…" %}</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <input id="ev-search" type="search" placeholder="Search events…" aria-label="Search events" class="h-9 rounded-xl border border-gray-200 px-3 text-sm focus:outline-none
+                        focus:border-violet-400 w-44">
+            <select id="ev-cat" aria-label="Filter by category" class="h-9 rounded-xl border border-gray-200 px-3 text-sm focus:outline-none
+                         focus:border-violet-400 bg-white">
+              <option value="">{% trans "All Categories" %}</option>
+              <option value="culture">{% trans "🏛️ Culture" %}</option>
+              <option value="heritage">{% trans "🕌 Heritage" %}</option>
+              <option value="food">{% trans "🍽️ Food" %}</option>
+              <option value="nature">{% trans "🌿 Nature" %}</option>
+              <option value="shopping">{% trans "🛍️ Shopping" %}</option>
+              <option value="events">{% trans "🎫 Events" %}</option>
+              <option value="family">{% trans "👨‍👩‍👧 Family" %}</option>
+              <option value="entertainment">{% trans "🎡 Entertainment" %}</option>
+            </select>
+            <label class="flex items-center gap-1.5 text-xs font-semibold text-gray-500 cursor-pointer select-none">
+              <input type="checkbox" id="bulk-all" class="w-4 h-4 rounded accent-violet-600"
+                aria-label="Select all events">
+              {% trans "All" %}
+            </label>
+            <button onclick="bulkDelete()" class="btn-del text-xs px-2 py-1.5">
+              {% if LANGUAGE_CODE == 'ar' %}تعطيل المحدد{% else %}Deactivate selected{% endif %}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="tbl-wrap px-4">
+        <table class="adm-table">
+          <thead>
+            <tr>
+              <th class="w-9"></th>
+              <th>{% trans "Event Name" %}</th>
+              <th>{% trans "Category" %}</th>
+              <th>{% trans "Location" %}</th>
+              <th>{% trans "Rating" %}</th>
+              <th>{% trans "Price" %}</th>
+              <th>{% trans "Actions" %}</th>
+            </tr>
+          </thead>
+          <tbody id="ev-tbody">
+            <tr>
+              <td colspan="7" class="text-center text-gray-400 py-6">{% trans "Loading…" %}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="ev-pg" class="flex items-center justify-between px-6 py-3"></div>
+    </section>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+     DELETE CONFIRM MODAL
+═══════════════════════════════════════════════════════ -->
+  <div id="del-modal" class="modal-wrap" role="dialog" aria-modal="true" aria-labelledby="del-modal-title">
+    <div class="bg-white rounded-2xl shadow-xl p-7 mx-4 w-full max-w-sm">
+      <div class="text-5xl text-center mb-3">🗑️</div>
+      <h3 id="del-modal-title" class="font-cantata text-lg text-slate-800 text-center mb-1">
+        {% if LANGUAGE_CODE == 'ar' %}تأكيد التعطيل{% else %}Confirm deactivation{% endif %}
+      </h3>
+      <p id="del-modal-body" class="text-sm text-gray-500 text-center mb-6">
+        Are you sure? This cannot be undone.
+      </p>
+      <div class="flex gap-3">
+        <button onclick="closeDelModal()" class="flex-1 h-10 rounded-xl border border-gray-200 text-sm font-semibold
+                     text-gray-600 hover:bg-gray-50 transition">
+          {% trans "Cancel" %}
+        </button>
+        <button id="del-confirm-btn" class="flex-1 h-10 rounded-xl bg-red-600 text-white text-sm font-semibold
+                     hover:bg-red-700 transition">
+          {% if LANGUAGE_CODE == 'ar' %}تعطيل{% else %}Deactivate{% endif %}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+     EDIT EVENT MODAL
+═══════════════════════════════════════════════════════ -->
+  <div id="edit-modal" class="modal-wrap" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
+    <div class="bg-white rounded-2xl shadow-xl p-7 mx-4 w-full max-w-md">
+      <h3 id="edit-modal-title" class="font-cantata text-lg text-slate-800 mb-5">{% trans "Edit Event" %}</h3>
+      <div class="space-y-4">
+        <div>
+          <label for="edit-title" class="block text-sm font-semibold text-gray-700 mb-1">
+            {% trans "Title" %}
+          </label>
+          <input id="edit-title" type="text" class="w-full h-10 rounded-xl border border-gray-200 px-3 text-sm
+                      focus:outline-none focus:border-violet-400">
+        </div>
+        <div>
+          <label for="edit-location" class="block text-sm font-semibold text-gray-700 mb-1">
+            {% trans "Location" %}
+          </label>
+          <input id="edit-location" type="text" class="w-full h-10 rounded-xl border border-gray-200 px-3 text-sm
+                      focus:outline-none focus:border-violet-400">
+        </div>
+      </div>
+      <div class="flex gap-3 mt-6">
+        <button onclick="closeEditModal()" class="flex-1 h-10 rounded-xl border border-gray-200 text-sm font-semibold
+                     text-gray-600 hover:bg-gray-50 transition">
+          {% trans "Cancel" %}
+        </button>
+        <button onclick="saveEdit()" class="flex-1 h-10 rounded-xl bg-violet-600 text-white text-sm font-semibold
+                     hover:bg-violet-700 transition">
+          {% trans "Save Changes" %}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+     TOAST
+═══════════════════════════════════════════════════════ -->
+  <div id="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════ -->
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'js/catalog_admin.js' %}"></script>
+  <script>
+    // ── Constants ────────────────────────────────────────────
+    const STATS_API = "/api/events/admin/stats/";
+    const EVENTS_API = "/api/events/admin/events/";
+    const USERS_API = "/api/auth/admin/users/";
+    const EV_PAGE_SZ = 20;
+    const USR_PAGE_SZ = 15;
+
+    const CAT_META = {
+      culture: { emoji: "🏛️", grad: "var(--color-primary-bg)", text: "#5b21b6" },
+      heritage: { emoji: "🕌", grad: "var(--color-primary-bg)", text: "#92400e" },
+      food: { emoji: "🍽️", grad: "var(--color-primary-bg)", text: "#9a3412" },
+      nature: { emoji: "🌿", grad: "var(--color-primary-bg)", text: "var(--tz-teal)" },
+      shopping: { emoji: "🛍️", grad: "var(--color-primary-bg)", text: "#1e40af" },
+      events: { emoji: "🎫", grad: "var(--color-primary-bg)", text: "#991b1b" },
+      family: { emoji: "👨‍👩‍👧", grad: "var(--color-primary-bg)", text: "var(--tz-deep)" },
+      entertainment: { emoji: "🎡", grad: "var(--color-primary-bg)", text: "#9d174d" },
+    };
+
+    // ── State ────────────────────────────────────────────────
+    let _allUsers = [];
+    let _evPage = 1;
+    let _evTotal = 0;
+    let _evSearch = "";
+    let _evCat = "";
+    let _usrPage = 1;
+    let _usrSearch = "";
+    let _pendingDel = null;   // { type, id }
+    let _pendingEdit = null;   // event id
+
+    const IS_SUPER_ADMIN = {{ request.user.is_superuser|yesno:"true,false" }};
+    // ── Utilities ────────────────────────────────────────────
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-delete-kind]");
+      if (button) confirmDelete(button.dataset.deleteKind, Number(button.dataset.deleteId), button.dataset.deleteName);
+    });
+
+    function esc(v) {
+      return String(v ?? "")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return "—";
+      return new Date(iso).toLocaleDateString(document.documentElement.lang === "ar" ? "ar-SA-u-ca-gregory" : "en-US",
+        { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    function timeAgo(iso) {
+      if (!iso) return "";
+      const m = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+      if (m < 1) return "just now";
+      if (m < 60) return `${m}m ago`;
+      const h = Math.floor(m / 60);
+      if (h < 24) return `${h}h ago`;
+      return `${Math.floor(h / 24)}d ago`;
+    }
+
+    function catBadge(cat) {
+      const m = CAT_META[cat] || { emoji: "📍", grad: "var(--color-primary-bg)", text: "#475569" };
+      return `<span class="cat-badge" style="background:${m.grad};color:var(--tz-violet)">${m.emoji} ${esc(catLabel(cat) || "—")}</span>`;
+    }
+
+    function showToast(msg, type = "success") {
+      const el = document.getElementById("toast");
+      el.className = type;
+      el.textContent = msg;
+      el.style.display = "block";
+      clearTimeout(el._tid);
+      el._tid = setTimeout(() => { el.style.display = "none"; }, 3200);
+    }
+
+    function scrollTo(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function debounce(fn, ms) {
+      let t;
+      return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+    }
+
+    function buildPages(cur, total) {
+      if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+      if (cur <= 4) return [1, 2, 3, 4, 5, "…", total];
+      if (cur >= total - 3) return [1, "…", total - 4, total - 3, total - 2, total - 1, total];
+      return [1, "…", cur - 1, cur, cur + 1, "…", total];
+    }
+
+    // ── Clock ────────────────────────────────────────────────
+    function tick() {
+      const n = new Date();
+      document.getElementById("hdr-time").textContent =
+        n.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+      document.getElementById("hdr-date").textContent =
+        n.toLocaleDateString(document.documentElement.lang === "ar" ? "ar-SA-u-ca-gregory" : "en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+    }
+    tick();
+    setInterval(tick, 10000);
+
+    // ── Logout ───────────────────────────────────────────────
+    async function doLogout() {
+      return logout();
+    }
+
+    // ── Stats ────────────────────────────────────────────────
+    async function loadStats() {
+      try {
+        const d = await apiGet(STATS_API);
+        if (!d) return;
+
+        document.getElementById("stat-events").textContent = (d.total_events ?? 0).toLocaleString();
+        document.getElementById("stat-users").textContent = (IS_SUPER_ADMIN ? d.total_users ?? 0 : d.pending_reviews ?? 0).toLocaleString();
+        document.getElementById("stat-plans").textContent = (d.total_plans ?? 0).toLocaleString();
+
+        if (d.popular_category) {
+          const pc = d.popular_category;
+          const m = CAT_META[pc.name] || {};
+          document.getElementById("pop-emoji").textContent = m.emoji || "⭐";
+          document.getElementById("pop-name").textContent =
+            pc.name ? pc.name.charAt(0).toUpperCase() + pc.name.slice(1) : "--";
+          document.getElementById("pop-pct").textContent = `${pc.percentage}% of events`;
+        }
+
+        if (d.category_breakdown) {
+          const pills = document.getElementById("cat-pills");
+          const rows = Object.entries(d.category_breakdown).sort((a, b) => b[1] - a[1]);
+          pills.innerHTML = rows.map(([cat, cnt]) => {
+            const m = CAT_META[cat] || { emoji: "📍", grad: "var(--color-primary-bg)", text: "#475569" };
+            const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+            return `<span class="cat-badge" style="background:${m.grad};color:var(--tz-violet);
+                font-size:13px;padding:6px 14px;gap:5px;">
+          ${m.emoji} ${esc(label)}: <strong>${cnt}</strong>
+        </span>`;
+          }).join("");
+        }
+
+        if (d.top_places !== undefined) renderTopPlaces(d.top_places);
+        if (d.recent_activity !== undefined) renderActivity(d.recent_activity);
+
+      } catch (e) {
+        console.error("[Admin] Stats:", e.message);
+      }
+    }
+
+    function renderTopPlaces(places) {
+      const body = document.getElementById("top-places-body");
+      if (!places.length) {
+        body.innerHTML = `<tr><td colspan="4" class="text-center text-gray-400 py-6 text-sm">
+      No plan data yet — events will appear here once added to daily plans.
+    </td></tr>`;
+        return;
+      }
+      const medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"];
+      body.innerHTML = places.map((p, i) => `
+    <tr>
+      <td class="text-center text-lg w-12">${medals[i] ?? (i + 1)}</td>
+      <td class="font-semibold">${esc(p.title)}</td>
+      <td>${catBadge(p.category)}</td>
+      <td>
+        <span class="font-bold text-violet-700">${p.plan_count}</span>
+        <span class="text-gray-400 text-xs ml-1">times</span>
+      </td>
+    </tr>
+  `).join("");
+    }
+
+    function renderActivity(items) {
+      const el = document.getElementById("activity-list");
+      if (!items.length) {
+        el.innerHTML = `<p class="text-sm text-gray-400">No recent activity yet.</p>`;
+        return;
+      }
+      el.innerHTML = items.map(item => {
+        const isReg = item.type === "registration";
+        const icon = isReg ? "👤" : "📅";
+        const bg = isReg ? "var(--color-primary-bg)" : "var(--bg-secondary)";
+        const desc = isReg
+          ? `<span class="font-semibold" data-user-content>${esc(item.email || item.username)}</span> registered`
+          : `<span class="font-semibold" data-user-content>${esc(item.email)}</span> created a plan for <em>${esc(item.date)}</em>`;
+        return `
+      <div class="flex items-center gap-3 px-3 py-2.5 rounded-xl" style="background:${bg}">
+        <span class="text-xl shrink-0">${icon}</span>
+        <p class="text-sm text-gray-700 flex-1 truncate">${desc}</p>
+        <span class="text-xs text-gray-400 shrink-0">${timeAgo(item.timestamp)}</span>
+      </div>
+    `;
+      }).join("");
+    }
+
+    // ── Events table ─────────────────────────────────────────
+    async function loadEvents(page = 1, search = "", cat = "") {
+      _evPage = page;
+      _evSearch = search;
+      _evCat = cat;
+
+      const tbody = document.getElementById("ev-tbody");
+      tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-400 text-sm">Loading…</td></tr>`;
+
+      try {
+        let url = `${EVENTS_API}?page=${page}&page_size=${EV_PAGE_SZ}`;
+        if (search) url += `&search=${encodeURIComponent(search)}`;
+        if (cat) url += `&category=${encodeURIComponent(cat)}`;
+
+        const data = await apiGet(url);
+        if (!data) return;
+
+        const items = Array.isArray(data) ? data : (data.results || []);
+        _evTotal = data.count ?? items.length;
+        const from = (_evPage - 1) * EV_PAGE_SZ + 1;
+        const to = Math.min(_evPage * EV_PAGE_SZ, _evTotal);
+        document.getElementById("events-meta").textContent =
+          _evTotal ? `Showing ${from}–${to} of ${_evTotal} events` : "No events";
+
+        if (!items.length) {
+          tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-400 text-sm">No events found</td></tr>`;
+          document.getElementById("ev-pg").innerHTML = "";
+          return;
+        }
+
+        tbody.innerHTML = items.map(e => `
+      <tr data-id="${e.id}"
+          data-title="${esc(e.title)}"
+          data-location="${esc(e.location || '')}">
+        <td>
+          <input type="checkbox" class="ev-cb w-4 h-4 rounded accent-violet-600"
+                 data-id="${e.id}" aria-label="Select ${esc(e.title)}">
+        </td>
+        <td data-user-content class="font-medium max-w-[200px] truncate" title="${esc(e.title)}">
+          ${esc(e.title)}<span class="block text-xs text-gray-500">${e.is_active ? "Published" : "Inactive"} · ${esc(e.source || "Source unknown")} · ${e.last_verified_at ? fmtDate(e.last_verified_at) : "Not yet reviewed"}</span>
+        </td>
+        <td>${catBadge(e.category)}</td>
+        <td class="text-gray-500 max-w-[160px] truncate" title="${esc(e.location)}">
+          ${esc(e.location || "—")}
+        </td>
+        <td>
+          ${e.rating != null
+            ? `<span class="font-semibold text-violet-500">★ ${parseFloat(e.rating).toFixed(1)}</span>`
+            : `<span class="text-gray-300 text-xs">—</span>`}
+        </td>
+        <td>
+          <span class="font-medium">${formatEventPrice(e.price)}</span>
+        </td>
+        <td>
+          <div class="flex gap-2">
+            <button class="btn-edit" onclick="openEditModal(${e.id})"
+                    aria-label="Quick edit ${esc(e.title)}">Quick edit</button>
+            <a class="btn-edit" href="{% url 'admin:events_event_changelist' %}${e.id}/change/">Full details</a>
+            <button class="btn-del" data-delete-kind="event" data-delete-id="${e.id}" data-delete-name="${esc(e.title)}"
+                    aria-label="Deactivate ${esc(e.title)}">Deactivate</button>
+          </div>
+        </td>
+      </tr>
+    `).join("");
+
+        renderEvPagination();
+
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-red-500 text-sm">
+      Error loading events: ${esc(err.message)}
+    </td></tr>`;
+        console.error("[Admin] Events:", err.message);
+      }
+    }
+
+    function renderEvPagination() {
+      const total = Math.ceil(_evTotal / EV_PAGE_SZ);
+      const el = document.getElementById("ev-pg");
+      if (total <= 1) { el.innerHTML = ""; return; }
+      const pages = buildPages(_evPage, total);
+      el.innerHTML = `
+    <span class="text-xs text-gray-400">Page ${_evPage} of ${total}</span>
+    <div class="flex gap-1 flex-wrap">
+      <button class="pg-btn" onclick="loadEvents(${_evPage - 1},_evSearch,_evCat)"
+              ${_evPage <= 1 ? "disabled" : ""}>← Prev</button>
+      ${pages.map(p => p === "…"
+        ? `<span class="pg-btn" style="cursor:default;pointer-events:none">…</span>`
+        : `<button class="pg-btn${p === _evPage ? " active" : ""}"
+                   onclick="loadEvents(${p},_evSearch,_evCat)">${p}</button>`
+      ).join("")}
+      <button class="pg-btn" onclick="loadEvents(${_evPage + 1},_evSearch,_evCat)"
+              ${_evPage >= total ? "disabled" : ""}>Next →</button>
+    </div>
+  `;
+    }
+
+    // ── Users table ──────────────────────────────────────────
+    async function loadUsers() {
+      if (!IS_SUPER_ADMIN) return;
+      try {
+        const data = await apiGet(USERS_API);
+        if (!data) return;
+        _allUsers = Array.isArray(data) ? data : (data.results || []);
+        renderUsers();
+      } catch (err) {
+        document.getElementById("users-tbody").innerHTML =
+          `<tr><td colspan="6" class="py-6 text-center text-red-500 text-sm">
+        Error loading users: ${esc(err.message)}
+      </td></tr>`;
+        console.error("[Admin] Users:", err.message);
+      }
+    }
+
+    function renderUsers() {
+      const q = _usrSearch.toLowerCase();
+      const filtered = _allUsers.filter(u =>
+        !q || (u.email || "").toLowerCase().includes(q) || (u.username || "").toLowerCase().includes(q)
+      );
+
+      document.getElementById("users-meta").textContent =
+        `${filtered.length} of ${_allUsers.length} users`;
+
+      const totalPg = Math.ceil(filtered.length / USR_PAGE_SZ);
+      if (_usrPage > totalPg) _usrPage = Math.max(1, totalPg);
+
+      const slice = filtered.slice((_usrPage - 1) * USR_PAGE_SZ, _usrPage * USR_PAGE_SZ);
+      const tbody = document.getElementById("users-tbody");
+
+      if (!slice.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-gray-400 text-sm">No users found</td></tr>`;
+        document.getElementById("users-pg").innerHTML = "";
+        return;
+      }
+
+      tbody.innerHTML = slice.map(u => `
+    <tr>
+      <td data-user-content class="font-medium">${esc(u.email)}</td>
+      <td data-user-content class="text-gray-500">${esc(u.username)}</td>
+      <td class="text-gray-400 text-xs whitespace-nowrap">${fmtDate(u.date_joined)}</td>
+      <td class="font-bold text-violet-700 text-center">${u.plan_count ?? "—"}</td>
+      <td>
+        ${u.is_staff
+          ? `<span class="cat-badge" style="background:#ede9fe;color:#5b21b6;">${esc(u.role || "Content Manager")}</span>`
+          : `<span class="cat-badge" style="background:#f1f5f9;color:#475569;">${esc(u.role || "User")}</span>`}
+      </td>
+      <td>
+        <button class="btn-del" data-delete-kind="user" data-delete-id="${u.id}" data-delete-name="${esc(u.email)}"
+                aria-label="Deactivate user ${esc(u.email)}">Deactivate</button>
+      </td>
+    </tr>
+  `).join("");
+
+      const pgEl = document.getElementById("users-pg");
+      if (totalPg <= 1) { pgEl.innerHTML = ""; return; }
+      pgEl.innerHTML = `
+    <span class="text-xs text-gray-400">Page ${_usrPage} of ${totalPg}</span>
+    <div class="flex gap-1">
+      <button class="pg-btn" onclick="setUsrPage(${_usrPage - 1})" ${_usrPage <= 1 ? "disabled" : ""}>← Prev</button>
+      <button class="pg-btn" onclick="setUsrPage(${_usrPage + 1})" ${_usrPage >= totalPg ? "disabled" : ""}>Next →</button>
+    </div>
+  `;
+    }
+
+    function setUsrPage(p) { _usrPage = p; renderUsers(); }
+
+    // ── Delete ───────────────────────────────────────────────
+    function confirmDelete(type, id, name) {
+      _pendingDel = { type, id };
+      document.getElementById("del-modal-body").textContent =
+        `Deactivate "${name}"? Saved trips, favorites and records will be preserved.`;
+      document.getElementById("del-modal").classList.add("open");
+      document.getElementById("del-confirm-btn").focus();
+    }
+    function closeDelModal() {
+      _pendingDel = null;
+      document.getElementById("del-modal").classList.remove("open");
+    }
+
+    document.getElementById("del-confirm-btn").addEventListener("click", async () => {
+      if (!_pendingDel) return;
+      const { type, id } = _pendingDel;
+      closeDelModal();
+      try {
+        const url = type === "event" ? `${EVENTS_API}${id}/` : `${USERS_API}${id}/`;
+        await apiDelete(url);
+        showToast(type === "event" ? "Place deactivated" : "Account deactivated");
+        if (type === "event") {
+          await Promise.all([loadStats(), loadEvents(_evPage, _evSearch, _evCat)]);
+        } else {
+          await Promise.all([loadStats(), loadUsers()]);
+        }
+      } catch (err) {
+        showToast("Delete failed: " + err.message, "error");
+      }
+    });
+
+    // ── Bulk delete ──────────────────────────────────────────
+    async function bulkDelete() {
+      const checked = [...document.querySelectorAll(".ev-cb:checked")];
+      if (!checked.length) { showToast("No events selected", "error"); return; }
+      if (!await window.confirmContentAction(`Deactivate ${checked.length} place(s)? Saved selections will be preserved.`)) return;
+      let ok = 0;
+      let failed = 0;
+      for (const cb of checked) {
+        try { await apiDelete(`${EVENTS_API}${cb.dataset.id}/`); ok++; }
+        catch (_) { failed++; }
+      }
+      showToast(`Deactivated ${ok}; failed ${failed}`, failed ? "error" : "success");
+      await Promise.all([loadStats(), loadEvents(_evPage, _evSearch, _evCat)]);
+    }
+
+    document.getElementById("bulk-all").addEventListener("change", function () {
+      document.querySelectorAll(".ev-cb").forEach(cb => { cb.checked = this.checked; });
+    });
+
+    // ── Edit ─────────────────────────────────────────────────
+    function openEditModal(id) {
+      const row = document.querySelector(`#ev-tbody tr[data-id="${id}"]`);
+      if (!row) return;
+      _pendingEdit = id;
+      document.getElementById("edit-title").value = row.dataset.title || "";
+      document.getElementById("edit-location").value = row.dataset.location || "";
+      document.getElementById("edit-modal").classList.add("open");
+      document.getElementById("edit-title").focus();
+    }
+    function closeEditModal() {
+      _pendingEdit = null;
+      document.getElementById("edit-modal").classList.remove("open");
+    }
+    async function saveEdit() {
+      if (!_pendingEdit) return;
+      const title = document.getElementById("edit-title").value.trim();
+      const location = document.getElementById("edit-location").value.trim();
+      if (!title) { showToast("Title cannot be empty", "error"); return; }
+      try {
+        await apiPatch(`${EVENTS_API}${_pendingEdit}/`, { title, location });
+        showToast("Event updated");
+        closeEditModal();
+        await loadEvents(_evPage, _evSearch, _evCat);
+      } catch (err) {
+        showToast("Update failed: " + err.message, "error");
+      }
+    }
+
+    // ── Section toggle ───────────────────────────────────────
+    let _usersCollapsed = false;
+    function toggleUsers() {
+      const body = document.getElementById("users-body");
+      const btn = document.getElementById("users-toggle");
+      _usersCollapsed = !_usersCollapsed;
+      body.style.display = _usersCollapsed ? "none" : "";
+      btn.textContent = _usersCollapsed ? "Expand ↓" : "Collapse ↑";
+    }
+
+    // ── Refresh ──────────────────────────────────────────────
+    async function refreshAll() {
+      const btn = document.getElementById("refresh-btn");
+      btn.textContent = "🔄 Refreshing…";
+      btn.disabled = true;
+      await Promise.all([
+        loadStats(),
+        loadEvents(1, _evSearch, _evCat),
+        loadUsers(),
+      ]);
+      btn.textContent = "🔄 Refresh Data";
+      btn.disabled = false;
+      showToast("Data refreshed");
+    }
+
+    function csvCell(value) {
+      let text=String(value ?? "");
+      if (/^[=+\-@\t\r]/.test(text)) text="\'"+text;
+      return `"${text.replace(/"/g, '""')}"`;
+    }
+
+    // ── Export CSV ───────────────────────────────────────────
+    async function exportCSV() {
+      try {
+        let next = `${EVENTS_API}?page_size=100`;
+        const items = [];
+        while (next) {
+          const data = await apiGet(next);
+          items.push(...(Array.isArray(data) ? data : data.results || []));
+          next = data.next || null;
+        }
+        const rows = [["ID", "Title", "Category", "Location", "Rating", "Price"]];
+        items.forEach(e => rows.push([
+          e.id,
+          csvCell(e.title),
+          e.category || "",
+          csvCell(e.location),
+          e.rating ?? "",
+          e.price ?? "",
+        ]));
+        const csv = rows.map(r => r.join(",")).join("\n");
+        const link = document.createElement("a");
+        link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
+        link.download = `tizahab-events-${new Date().toISOString().slice(0, 10)}.csv`;
+        link.click();
+        showToast("CSV exported (" + items.length + " events)");
+      } catch (err) {
+        showToast("Export failed", "error");
+      }
+    }
+
+    // ── Search & filter (debounced) ──────────────────────────
+    document.getElementById("ev-search").addEventListener("input", debounce(e => {
+      loadEvents(1, e.target.value, _evCat);
+    }, 380));
+
+    document.getElementById("ev-cat").addEventListener("change", e => {
+      loadEvents(1, _evSearch, e.target.value);
+    });
+
+    document.getElementById("user-search")?.addEventListener("input", debounce(e => {
+      _usrSearch = e.target.value;
+      _usrPage = 1;
+      renderUsers();
+    }, 280));
+
+    // ── Modal close on backdrop / Escape ────────────────────
+    document.getElementById("del-modal").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeDelModal();
+    });
+    document.getElementById("edit-modal").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeEditModal();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") { closeDelModal(); closeEditModal(); }
+    });
+
+    // ── Bootstrap ────────────────────────────────────────────
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!isLoggedIn()) { window.location.href = "/login/"; return; }
+      loadStats();
+      loadEvents();
+      loadUsers();
+      setInterval(loadStats, 30000);   // refresh stats every 30 s
+    });
+  </script>
+{% endblock %}

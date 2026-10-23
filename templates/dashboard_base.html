@@ -1,0 +1,76 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" id="htmlRoot" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Tizahab{% endblock %}</title>
+  {% if request.resolver_match.url_name != "index" %}<meta name="robots" content="noindex, nofollow">{% endif %}
+  <script>
+    (function () {
+      var t = localStorage.getItem("tz_theme") || "light";
+      var l = "{{ LANGUAGE_CODE|escapejs }}";
+      localStorage.setItem("tz_lang", l);
+      if (t === "auto") t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+    window.DEBUG = false;
+    window.TZ_SESSION_AUTHENTICATED = {{ request.user.is_authenticated|yesno:"true,false" }};
+  </script>
+  {% include "includes/ui_head.html" %}
+  {% block head %}{% endblock %}
+</head>
+<body class="app-shell antialiased {% if request.resolver_match.url_name == 'admin_panel' %}admin-experience{% else %}tourism-experience{% endif %} page-{{ request.resolver_match.url_name }}">
+  <a class="skip-link" href="#main-content">{% trans "Skip to content" %}</a>
+  <header class="site-header">
+    <div class="page-width header-inner">
+      <a href="{% url 'index' %}" aria-label="Tizahab"><img class="brand-logo" src="{% static 'brand/logo.svg' %}" alt="Tizahab" width="180" height="52"><img class="brand-logo brand-logo-dark" src="{% static 'brand/logo-reverse.svg' %}" alt="Tizahab" width="180" height="52"></a>
+      <nav class="desktop-nav" aria-label="{% trans 'Main navigation' %}">
+        <a class="nav-item" href="{% if request.user.is_authenticated %}{% url 'home' %}{% else %}{% url 'index' %}{% endif %}">{% trans "Home" %}</a><a class="nav-item" href="{% url 'events-page' %}">{% trans "Explore" %}</a><a class="nav-item" href="{% url 'trips' %}">{% if LANGUAGE_CODE == 'ar' %}خطّط لزيارتك{% else %}Plan My Visit{% endif %}</a><a class="nav-item" href="{% url 'travel_guide' %}">{% trans "Travel Guide" %}</a>
+      </nav>
+      <div class="header-actions">
+        {% include "includes/language_switch.html" %}
+        <button id="themeToggleBtn" class="icon-button" type="button" aria-label="{% trans 'Toggle theme' %}" onclick="toggleTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark')"><i data-lucide="sun-moon" aria-hidden="true"></i></button>
+        {% if request.user.is_authenticated %}<a href="{% url 'profile' %}" id="avatarBtn" class="avatar-button" aria-label="{% trans 'Profile' %}"><span id="avatarInitials">{{ request.user.username|slice:':2'|upper }}</span></a>{% else %}<a class="btn-primary header-signin" href="{% url 'login' %}">{% trans "Login" %}</a>{% endif %}
+        <button id="mobileMenuBtn" class="icon-button" type="button" aria-label="{% trans 'Open menu' %}" aria-controls="sidebar" aria-expanded="false"><i data-lucide="menu" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+  <div id="sidebarOverlay" class="hidden drawer-overlay"></div>
+  <aside id="sidebar" class="site-drawer start-0" aria-label="{% trans 'Navigation menu' %}" inert>
+    <div class="drawer-heading"><span><img class="brand-logo brand-logo-light" src="{% static 'brand/logo.svg' %}" alt="Tizahab" width="180" height="52"><img class="brand-logo brand-logo-dark" src="{% static 'brand/logo-reverse.svg' %}" alt="Tizahab" width="180" height="52"></span><button id="closeSidebarBtn" class="icon-button" type="button" aria-label="{% trans 'Close menu' %}"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <nav aria-label="{% trans 'All pages' %}">
+      <a class="nav-item" href="{% if request.user.is_authenticated %}{% url 'home' %}{% else %}{% url 'index' %}{% endif %}"><i data-lucide="house"></i>{% trans "Home" %}</a>
+      <a class="nav-item" href="{% url 'events-page' %}"><i data-lucide="compass"></i>{% trans "Explore" %}</a>
+      <a class="nav-item" href="{% url 'trips' %}"><i data-lucide="route"></i>{% if LANGUAGE_CODE == 'ar' %}خطّط لزيارتك{% else %}Plan My Visit{% endif %}</a>
+      <a class="nav-item" href="{% url 'onboarding' %}"><i data-lucide="sliders-horizontal"></i>{% trans "Preferences" %}</a>
+      <a class="nav-item" href="{% url 'profile' %}"><i data-lucide="bookmark"></i>{% trans "Profile" %}</a>
+      <a class="nav-item" href="{% url 'travel_guide' %}"><i data-lucide="book-open"></i>{% trans "Travel Guide" %}</a>
+      <a class="nav-item" href="{% url 'booking' %}"><i data-lucide="bed-double"></i>{% trans "Booking" %}</a>
+      <a class="nav-item" href="{% url 'car_rental' %}"><i data-lucide="car"></i>{% trans "Car Rental" %}</a>
+      <a class="nav-item" href="{% url 'settings' %}"><i data-lucide="settings"></i>{% trans "Settings" %}</a>
+      {% if request.user.is_staff %}<a href="{% url 'admin_panel' %}">{% trans "Admin Panel" %}</a>{% endif %}
+    </nav>
+    {% if request.user.is_authenticated %}<button class="btn-outline" type="button" onclick="logout()">{% trans "Logout" %}</button>{% else %}<a class="btn-primary" href="{% url 'login' %}">{% trans "Login" %}</a>{% endif %}
+  </aside>
+  {% if request.resolver_match.url_name != "events-page" and request.resolver_match.url_name != "event-details-page" and request.resolver_match.url_name != "index" and request.resolver_match.url_name != "home" %}
+  <div class="utility-strip page-width">
+    <span class="location-label"><i data-lucide="map-pin" aria-hidden="true"></i>{% if LANGUAGE_CODE == 'ar' %}الرياض، السعودية{% else %}Riyadh, Saudi Arabia{% endif %}</span>
+    <form action="{% url 'events-page' %}" method="get" role="search" class="header-search"><i data-lucide="search" aria-hidden="true"></i><input name="search" type="search" aria-label="{% trans 'Search places' %}" placeholder="{% trans 'Search places' %}"><button type="submit" class="sr-only">{% trans "Search" %}</button></form>
+    <button disabled aria-disabled="true" aria-label="{% trans 'Notifications unavailable' %}" class="sr-only">{% trans "Notifications unavailable" %}</button>
+  </div>
+  {% endif %}
+  <main id="main-content" tabindex="-1">{% block content %}{% endblock %}</main>
+  {% if request.resolver_match.url_name != 'admin_panel' %}
+  <nav class="mobile-travel-nav" aria-label="{% if LANGUAGE_CODE == 'ar' %}تنقل الرحلة{% else %}Travel navigation{% endif %}">
+    <a class="nav-item" href="{% url 'index' %}"><i data-lucide="house" aria-hidden="true"></i><span>{% trans 'Home' %}</span></a>
+    <a class="nav-item" href="{% url 'events-page' %}"><i data-lucide="compass" aria-hidden="true"></i><span>{% trans 'Explore' %}</span></a>
+    <a class="nav-item travel-nav-plan" href="{% url 'trips' %}"><i data-lucide="route" aria-hidden="true"></i><span>{% if LANGUAGE_CODE == 'ar' %}خطّط{% else %}Plan{% endif %}</span></a>
+    <a class="nav-item" href="{% url 'trips' %}?view=saved"><i data-lucide="bookmark" aria-hidden="true"></i><span>{% if LANGUAGE_CODE == 'ar' %}رحلاتي{% else %}My trips{% endif %}</span></a>
+  </nav>
+  {% endif %}
+  {% include "includes/footer.html" %}
+  <script src="{% static 'js/api.js' %}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

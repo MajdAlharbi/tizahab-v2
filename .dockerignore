@@ -1,0 +1,58 @@
+# VCS
+.git/
+.gitignore
+
+# Python cache/build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+.verification/
+staticfiles/
+*.sqlite3
+*.db
+*.dump
+*.sqlite
+*.sqlite3-wal
+*.sqlite3-shm
+*.backup
+.backups/
+
+# Environment files
+.env*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local-only reports
+docs/review/
+FINAL_HANDOFF.md
+UAT_REPORT.md
+
+# Logs and coverage
+*.log*
+coverage/
+htmlcov/
+
+# Docker files
+Dockerfile*
+.dockerignore
+
+# Node (defensive for frontend toolchains)
+node_modules/
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
