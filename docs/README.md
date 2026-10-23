@@ -1,7 +1,7 @@
 # Running Tizahab
 
 [Product overview](../README.md) · [API reference](API_DOCUMENTATION.md) ·
-[Deployment](DEPLOYMENT.md) · [Contributing](CONTRIBUTING.md)
+[Deployment](DEPLOYMENT.md)
 
 ## Requirements
 
