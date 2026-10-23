@@ -28,9 +28,9 @@
 .builder-step>.trip-note { margin-bottom:4px; }
 .trip-form input,.trip-form select,.trip-dialog input,.activity-edit select { min-height:50px; padding:12px; border:1px solid var(--border-color); border-radius:12px; color:var(--text-primary); background:var(--card-bg); width:100%; min-width:0; font-size:16px; }
 .trip-form label,.trip-dialog label { font-weight:600; font-size:13px; display:block; }
-.trip-input-pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; min-width:0; }
+.trip-input-pair { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; min-width:0; }
 .trip-input-pair>div { display:grid; gap:8px; min-width:0; align-content:start; }
-.trip-input-pair input { padding-inline:10px; }
+.trip-input-pair input { padding-inline:10px; max-width:100%; }
 .trip-form fieldset { display:grid; grid-template-columns:1fr 1fr; gap:10px; min-width:0; padding:0; border:0; }
 .trip-interest { position:relative; display:flex!important; align-items:center; gap:10px; border:1px solid var(--border-color); border-radius:14px; padding:16px 12px; min-height:76px; cursor:pointer; color:var(--text-secondary); }
 .trip-interest:has(input:checked) { border-color:var(--tz-violet); background:var(--color-primary-bg); color:var(--text-primary); box-shadow:0 0 0 1px var(--tz-violet); }
@@ -138,6 +138,7 @@
 [data-theme=dark] .day-tab[aria-selected=true] { border-color:var(--tz-lavender); }
 [data-theme=dark] #builderError { color:#ffb7bd; }
 [data-theme=dark] .activity-warning { color:var(--tz-paper); background:var(--bg-secondary); }
+@media(min-width:480px) { .trip-input-pair { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(min-width:640px) { .activity-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .activity-media { height:190px; } .trip-builder { padding:32px; } .planner-intro { padding-block:12px; } }
 @media(min-width:900px) {
   .trip-page { padding-top:28px; }

@@ -13,7 +13,7 @@
 .mobile-travel-nav { position:fixed; inset-inline:0; bottom:0; z-index:40; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); padding:8px 8px max(8px,env(safe-area-inset-bottom)); border-top:1px solid var(--border-color); background:var(--card-bg); box-shadow:0 -4px 24px #39235108; }
 .mobile-travel-nav .nav-item { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:3px; min-height:48px; font-size:11px; }
 .mobile-travel-nav svg { width:22px; height:22px; }
-.mobile-travel-nav .travel-nav-plan svg { background:var(--tz-violet); color:white; padding:7px; width:36px; height:36px; margin-top:-10px; border-radius:12px; }
+.mobile-travel-nav .nav-item[aria-current="page"] svg { background:var(--tz-violet); color:white; padding:7px; width:36px; height:36px; margin-top:-10px; border-radius:12px; }
 .tourism-experience { padding-bottom:76px; }
 .tourism-experience .site-footer { margin-top:48px; }
 .tourism-experience .footer-top { align-items:flex-start; }
