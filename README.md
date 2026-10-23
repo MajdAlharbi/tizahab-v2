@@ -38,6 +38,7 @@ Real views from the application, using sample itineraries.
 
 ## Links
 
+- [Live demo](https://tizahab-v2.onrender.com/) — free hosting may take a moment to wake up.
 - [Tizahab V2 on GitHub](https://github.com/MajdAlharbi/tizahab-v2)
 - [Run Tizahab locally](docs/README.md)
 - [API reference](docs/API_DOCUMENTATION.md) · [Deployment guide](docs/DEPLOYMENT.md)
